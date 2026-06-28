@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FashionWear</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              accent: "#13c1fe",
+              background: "#faf9f9",
+              primary: "#fe5013",
+              secondary: "#fec613",
+              "primary-dark": "#fc4201",
+              dark: "#1a1a1a",
+              light: "#4c4d4f",
+            },
+          },
+        },
+      };
+    </script>
+    <style type="text/tailwindcss">
+      [popover] {
+        position-area: bottom;
+        margin: initial;
+      }
+
+      .benefits-card {
+        @apply flex flex-col items-center gap-2;
+      }
+
+      .product-card {
+        @apply rounded-2xl overflow-hidden shadow-lg;
+      }
+    </style>
+  </head>
+  <body class="bg-background dark:bg-gray-800">
+    <div class="text-center text-dark bg-secondary px-4 py-1">
+      Flash sale upto 20% off.
+    </div>
+
+    <header class="py-4 shadow-md bg-white dark:bg-gray-950 sticky top-0 z-10">
+      <div class="container mx-auto px-4">
+        <div class="flex items-center justify-between gap-4">
+          <div class="flex items-center gap-2">
+            <img
+              src="image/logo.jpg"
+              alt="FashionWear"
+              height="32"
+              class="h-9"
+            />
+            <h1
+              class="text-2xl font-bold mt-1 text-transparent bg-gradient-to-r from-primary to-secondary bg-clip-text"
+            >
+              FashionWear
+            </h1>
+          </div>
+          <nav class="hidden md:block">
+            <a
+              class="text-dark dark:text-gray-200 px-2 py-1 hover:text-primary"
+              href="#hero"
+              >Home</a
+            >
+            <a
+              class="text-dark dark:text-gray-200 px-2 py-1 hover:text-primary"
+              href="#about"
+              >About</a
+            >
+            <a
+              class="text-dark dark:text-gray-200 px-2 py-1 hover:text-primary"
+              href="#featured"
+              >Shop</a
+            >
+            <a
+              class="text-dark dark:text-gray-200 px-2 py-1 hover:text-primary"
+              href="#best-seller"
+              >Featured</a
+            >
+            <a
+              class="text-dark dark:text-gray-200 px-2 py-1 hover:text-primary"
+              href="#contact"
+              >Contact</a
+            >
+          </nav>
+
+          <div class="flex items-center gap-4">
+            <button
+              id="lightThemeSwitcher"
+              class="hidden dark:block px-2 py-1.5 rounded-full bg-gray-100 dark:bg-gray-700"
+            >
+              🌞
+            </button>
+            <button
+              id="darkThemeSwitcher"
+              class="dark:hidden px-2 py-1.5 rounded-full bg-gray-100 dark:bg-gray-700"
+            >
+              🌙
+            </button>
+            <button
+              class="px-4 pt-1 pb-2 rounded-3xl bg-gray-100 dark:bg-gray-700 h-auto"
+              popovertarget="cart"
+            >
+              🛒
+              <span
+                class="bg-primary px-2 py-0.5 text-xs rounded-xl text-white"
+              >
+                5
+              </span>
+            </button>
+          </div>
+
+          <div
+            id="cart"
+            popover="auto"
+            class="bg-background shadow rounded-xl p-4 mt-0.2"
+          >
+            <ul>
+              <li>T-shirt</li>
+              <li>Leather Jacket</li>
+              <li>Jeans</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="hero" class="bg-white dark:bg-gray-900 py-12">
+        <div class="container mx-auto px-4">
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 md:items-center gap-8 lg:gap-16"
+          >
+            <img
+              src="image/hero.jpg"
+              alt="Hero image"
+              class="max-w-full w-auto h-full rounded-2xl shadow-lg"
+            />
+            <div>
+              <span
+                class="text-accent bg-accent/10 text-xs font-medium px-4 py-1 rounded-xl"
+                >Latest Collection 2026 ⚡</span
+              >
+              <h1
+                class="mt-2 text-4xl dark:text-white font-bold tracking-tight md:text-5xl lg:text-6xl"
+              >
+                Choose Your Everyday Style
+              </h1>
+              <p class="text-light dark:text-gray-400 py-4">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Quaerat quod saepe minus ex doloribus voluptatum, culpa
+                asperiores? Ex soluta cum, modi exercitationem dicta quod,
+                explicabo enim, eligendi qui in ipsa.
+              </p>
+              <button
+                class="bg-primary rounded-3xl text-white py-2 px-8 transition ease duration-300 hover:shadow-lg"
+              >
+                Shop Now →
+              </button>
+              <button
+                class="bg-tranparent rounded-3xl border-2 border-primary text-primary px-8 py-2 transition ease duration-300 mx-2 hover:bg-primary hover:text-white"
+              >
+                Explore
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="benefits" class="py-12">
+        <div class="container mx-auto px-4">
+          <h2 class="text-center mb-8 font-bold text-2xl dark:text-white">
+            Why Choose Us
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="benefits-card">
+              <span class="text-4xl">🚚</span>
+              <h4 class="text-lg dark:text-gray-200 font-medium">
+                Free Shipping
+              </h4>
+              <p class="text-light dark:text-gray-400 text-center text-sm">
+                On all orders over Rs.1000, faster delivery.
+              </p>
+            </div>
+            <div class="benefits-card">
+              <span class="text-4xl">🔁</span>
+              <h4 class="text-lg dark:text-gray-200 font-medium">
+                30-Days Returns
+              </h4>
+              <p class="text-light dark:text-gray-400 text-center text-sm">
+                Hassle free exchange & returns.
+              </p>
+            </div>
+            <div class="benefits-card">
+              <span class="text-4xl">🎧</span>
+              <h4 class="text-lg dark:text-gray-200 font-medium">
+                24/7 Support
+              </h4>
+              <p class="text-light dark:text-gray-400 text-center text-sm">
+                Always available for your assistance.
+              </p>
+            </div>
+            <div class="benefits-card">
+              <span class="text-4xl">💳</span>
+              <h4 class="text-lg dark:text-gray-200 font-medium">
+                Secure Payment
+              </h4>
+              <p class="text-light dark:text-gray-400 text-center text-sm">
+                Safe payment gateways, online and card.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="call-to-action" class="py-12">
+        <div class="container mx-auto px-4">
+          <div
+            class="bg-gradient-to-r from-primary to-primary-dark p-8 rounded-3xl flex items-center flex-col text-white gap-4"
+          >
+            <h2 class="text-2xl font-bold">Join Fashion Wear</h2>
+            <p class="text-center">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error,
+              nihil.
+            </p>
+            <button
+              class="bg-white px-8 py-2 rounded-3xl text-primary hover:shadow-lg"
+              onclick="signupForm.showModal()"
+            >
+              Signup to Get 15% Off...
+            </button>
+            <dialog id="signupForm" class="w-full bg-transparent">
+              <div
+                class="items-center bg-background dark:bg-gray-700 rounded-3xl flex flex-col h-max justify-center py-8 px-12 left-0 fixed top-1/2 w-full sm:left-1/4 sm:w-1/2"
+              >
+                <button
+                  class="absolute top-0 right-0 px-4 py-2 dark:text-white"
+                  onclick="signupForm.close()"
+                >
+                  x
+                </button>
+                <h2 class="text-dark dark:text-white text-2xl font-bold">
+                  Subscribe Us
+                </h2>
+
+                <form action="#" class="mt-10">
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    placeholder="Email address"
+                    class="w-full bg-white border border-primary/20 rounded-3xl px-4 py-2"
+                  />
+                  <button
+                    class="w-full bg-primary rounded-3xl px-6 py-2 text-white mt-4 hover:bg-primary-dark"
+                  >
+                    Subscribe
+                  </button>
+                </form>
+              </div>
+            </dialog>
+          </div>
+        </div>
+      </section>
+
+      <section id="featured" class="py-12">
+        <div class="container mx-auto px-4">
+          <h2 class="text-center mb-8 font-bold text-2xl dark:text-white">
+            Featured products
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="product-card">
+              <img
+                class="w-full h-40 object-cover"
+                src="image/jeans.jpg"
+                alt="featured"
+              />
+              <div class="bg-white dark:bg-gray-900 pt-3 px-4 pb-4">
+                <h4 class="dark:text-white font-semibold text-xl">
+                  Levis Jeans for Mens
+                </h4>
+                <p class="my-1 font-bold text-2xl text-primary">Rs. 3500</p>
+                <button
+                  class="bg-background dark:bg-gray-800 px-4 py-2 w-full text-center rounded-2xl mt-2 text-sm font-medium transition duration-300 ease hover:text-primary dark:text-gray-300"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+
+            <div class="product-card">
+              <img
+                class="w-full h-40 object-cover"
+                src="image/jeans.jpg"
+                alt="featured"
+              />
+              <div class="bg-white dark:bg-gray-900 pt-3 px-4 pb-4">
+                <h4 class="dark:text-white font-semibold text-xl">
+                  Levis Jeans for Mens
+                </h4>
+                <p class="my-1 font-bold text-2xl text-primary">Rs. 3500</p>
+                <button
+                  class="bg-background dark:bg-gray-800 px-4 py-2 w-full text-center rounded-2xl mt-2 text-sm font-medium transition duration-300 ease hover:text-primary dark:text-gray-300"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <div class="product-card">
+              <img
+                class="w-full h-40 object-cover"
+                src="image/jeans.jpg"
+                alt="featured"
+              />
+              <div class="bg-white dark:bg-gray-900 pt-3 px-4 pb-4">
+                <h4 class="dark:text-white font-semibold text-xl">
+                  Levis Jeans for Mens
+                </h4>
+                <p class="my-1 font-bold text-2xl text-primary">Rs. 3500</p>
+                <button
+                  class="bg-background dark:bg-gray-800 px-4 py-2 w-full text-center rounded-2xl mt-2 text-sm font-medium transition duration-300 ease hover:text-primary dark:text-gray-300"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <div class="product-card">
+              <img
+                class="w-full h-40 object-cover"
+                src="image/jeans.jpg"
+                alt="featured"
+              />
+              <div class="bg-white dark:bg-gray-900 pt-3 px-4 pb-4">
+                <h4 class="dark:text-white font-semibold text-xl">
+                  Levis Jeans for Mens
+                </h4>
+                <p class="my-1 font-bold text-2xl text-primary">Rs. 3500</p>
+                <button
+                  class="bg-background dark:bg-gray-800 px-4 py-2 w-full text-center rounded-2xl mt-2 text-sm font-medium transition duration-300 ease hover:text-primary dark:text-gray-300"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <div class="product-card">
+              <img
+                class="w-full h-40 object-cover"
+                src="image/jeans.jpg"
+                alt="featured"
+              />
+              <div class="bg-white dark:bg-gray-900 pt-3 px-4 pb-4">
+                <h4 class="dark:text-white font-semibold text-xl">
+                  Levis Jeans for Mens
+                </h4>
+                <p class="my-1 font-bold text-2xl text-primary">Rs. 3500</p>
+                <button
+                  class="bg-background dark:bg-gray-800 px-4 py-2 w-full text-center rounded-2xl mt-2 text-sm font-medium transition duration-300 ease hover:text-primary dark:text-gray-300"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+            <div class="product-card">
+              <img
+                class="w-full h-40 object-cover"
+                src="image/jeans.jpg"
+                alt="featured"
+              />
+              <div class="bg-white dark:bg-gray-900 pt-3 px-4 pb-4">
+                <h4 class="dark:text-white font-semibold text-xl">
+                  Levis Jeans for Mens
+                </h4>
+                <p class="my-1 font-bold text-2xl text-primary">Rs. 3500</p>
+                <button
+                  class="bg-background dark:bg-gray-800 px-4 py-2 w-full text-center rounded-2xl mt-2 text-sm font-medium transition duration-300 ease hover:text-primary dark:text-gray-300"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="best-seller" class="py-12 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+          <div
+            class="bg-primary/5 dark:bg-primary-dark p-8 rounded-3xl grid grid-cols-1 sm:grid-cols-2 md:px-12 gap-8 gap-4 items-center"
+          >
+            <img
+              class="max-w-full h-full rounded-2xl object-cover"
+              src="image/jacket.jpg"
+              alt="bestseller"
+            />
+            <div>
+              <h2 class="dark:text-white font-bold text-3xl">
+                Limited Edition Levis Jacket
+              </h2>
+              <p class="text-light dark:text-white py-2">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem
+                accusantium odio soluta nobis id maiores unde, beatae quia illum
+                repellat.
+              </p>
+              <h3 class="dark:text-white text-2xl font-semibold">Rs.5999</h3>
+              <button
+                class="bg-primary dark:bg-white rounded-3xl font-medium text-white dark:text-primary px-8 py-3 transition duration-300 ease mt-4"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="py-12">
+        <div class="container mx-auto px-4">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.662121468006!2d87.28372377643548!3d26.818885076703182!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ef4175e4f26a95%3A0x9b8526c7c4c7bc1c!2sCode%20IT!5e0!3m2!1sen!2snp!4v1775141776638!5m2!1sen!2snp"
+            height="200"
+            style="border: 0; width: 100%; border-radius: 2rem"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 mt-8"
+          >
+            <form class="flex flex-col gap-3" action="#">
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                placeholder="Your name"
+                class="w-full bg-white border border-primary/20 rounded-2xl px-4 py-2 focus:outline-2 focus:outline-primary"
+              />
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="Email address"
+                class="w-full bg-white border border-primary/20 rounded-2xl px-4 py-2 focus:outline-2 focus:outline-primary"
+              />
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                required
+                placeholder="Phone number"
+                class="w-full bg-white border border-primary/20 rounded-2xl px-4 py-2 focus:outline-2 focus:outline-primary"
+              />
+              <textarea
+                name="message"
+                id="message"
+                placeholder="Your message..."
+                rows="5"
+                class="w-full bg-white border border-primary/20 rounded-2xl px-4 py-2 focus:outline-2 focus:outline-primary"
+              ></textarea>
+              <button
+                class="bg-primary rounded-3xl text-white px-10 py-3 transition duration-300 ease max-w-fit mt-2"
+              >
+                Send Message
+              </button>
+            </form>
+
+            <div class="info">
+              <h2 class="text-3xl dark:text-white font-bold">Let's Connect</h2>
+              <p class="text-light dark:text-gray-300 text-sm my-4">
+                Have any questions? Please reach out to us.
+              </p>
+              <a
+                href="https://maps.app.goo.gl/PUFbCf7w5cHEX2AF6"
+                target="_blank"
+                class="m-1 text-sm block text-dark dark:text-white hover:text-primary"
+                >📍 Prithvi Path, Dharan, Sunsari</a
+              >
+              <a
+                href="mailto:info@codeit.com.np"
+                class="m-1 text-sm block text-dark dark:text-white hover:text-primary"
+                >📨 info@codeit.com.np</a
+              >
+              <a
+                href="tel:+977-25-575163"
+                class="m-1 text-sm block text-dark dark:text-white hover:text-primary"
+                >📞 +977-25-575163</a
+              >
+              <a
+                href="https://wa.me/9862130505"
+                class="m-1 text-sm block text-dark dark:text-white hover:text-primary"
+                >💬 9862130505</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-primary text-center text-white px-4 py-2">
+      &copy; 2026. All rights reserved.
+    </footer>
+
+    <script>
+      const darkThemeSwitcher = document.getElementById("darkThemeSwitcher");
+      const lightThemeSwitcher = document.getElementById("lightThemeSwitcher");
+      const html = document.querySelector("html");
+
+      darkThemeSwitcher.addEventListener("click", () => {
+        html.classList.add("dark");
+      });
+
+      lightThemeSwitcher.addEventListener("click", () => {
+        html.classList.remove("dark");
+      });
+    </script>
+  </body>
+</html>
