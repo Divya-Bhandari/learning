@@ -1,0 +1,58 @@
+body{
+    margin: 0;
+    background-color: rgb(251, 247, 247);
+}
+
+header{
+    background-color: cadetblue;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    font-family: "Comic Sans Mf", Arial;
+}
+
+nav{
+    overflow: hidden;
+    background-color: rgb(20, 87, 64);
+}
+
+nav a{
+    float: left;
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav a:hover{
+    background-color: rgb(79, 167, 37);
+    color: white;
+}
+
+.column{
+    float: left;
+    padding: 10px;
+}
+
+.column.side{
+    width: 25%;
+}
+
+.column.middle{
+    width: 50;
+}
+
+@media screen and (max-width: 256px){
+.column.side,.column.middle
+    width: 100%;
+}
+
+footer{
+    clear:both;
+    background-color: cadetblue;
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+p{
+    text-align: justify;
+}
