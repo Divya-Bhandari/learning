@@ -1,55 +1,61 @@
 /**
- * Loop: repeating over and over, round and round
- * 1. for
- * 2. while
- * 3. do while - exit control
+ * Loops
+ * A loop is used to run the same code again and again.
  *
- * Array methods
- * 1. forEach
- * 2. map
- * 3. filter
- * 4. find
- * 5. sort
- * 6. reduce
+ * Types of loops:
+ * 1. for loop
+ * 2. while loop
+ * 3. do...while loop
+ *
+ * Some useful array methods:
+ * - forEach()
+ * - map()
+ * - filter()
+ * - find()
+ * - sort()
+ * - reduce()
  */
 
+// Without using a loop
 console.log(1 * 1);
 console.log(2 * 2);
 console.log(3 * 3);
 
-/** For loop
- *
- * for (start point; condition ; increment/decrement) {
- *  // code
- * }
- *
- */
+console.log("===== For Loop =====");
 
-console.log("================ For Loop =============");
+/*
+Syntax:
 
-for (let i = 1; i <= 10; i = i + 2) {
+for (initialization; condition; increment/decrement) {
+   // code
+}
+*/
+
+// Print numbers from 1 to 10
+for (let i = 1; i <= 10; i++) {
   console.log(i);
 }
 
-console.log("================ While Loop =============");
+console.log("===== While Loop =====");
 
 let i = 1;
 
 while (i <= 10) {
   console.log(i);
-
   i++;
 }
 
-console.log("================ Do While Loop =============");
+console.log("===== Do While Loop =====");
 
 let j = 11;
 
+// This loop runs at least one time
 do {
   console.log(j);
-
   j++;
 } while (j <= 10);
+
+console.log("===== Array Example =====");
 
 const students = [
   "Ram",
@@ -62,6 +68,7 @@ const students = [
   "Bhim",
 ];
 
-for (let x = 0; x < students.length; x++) {
-  console.log(students[x]);
+// Print all student names
+for (let k = 0; k < students.length; k++) {
+  console.log(students[k]);
 }
