@@ -1,3 +1,12 @@
+/**
+ * Template literals
+ * Spread operator
+ * Destructing (Array/Object)
+ * Rest operator
+ * Arrow function
+ * Array Methods
+ */
+
 const name = "Rohan";
 const address = "Kathmandu";
 
@@ -45,7 +54,13 @@ const student = {
   section: "A",
 };
 
+// const grade = student.grade;
+// const roll = student.roll;
+// const studentName = student.name;
+// const section = student.section;
 
+// console.log(grade);
+// console.log(roll);
 
 const { grade, roll, name: studentName, section } = student;
 
