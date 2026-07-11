@@ -13,6 +13,10 @@ for (let i = 0; i < list.length; i++) {
 
 console.log(doubleList);
 
+/**
+ * Map: array.map() => array
+ * [a,b,c]=>map=>[x,y,z]
+ */
 
 console.log("=================== Map =======================");
 
@@ -20,13 +24,18 @@ const mappedList = list.map((number, index) => number * 2);
 
 console.log(mappedList);
 
-
+/**
+ * Filter: [a,b,a,a,b,b,a] => filter(a) => [a,a,a,a]
+ */
 console.log("=================== Filter =======================");
 
 const filteredList = list.filter((number, index) => number % 2 == 0);
 
 console.log(filteredList);
 
+/**
+ * Find: [a,v,b,d,f,g,h] => find(a) => a
+ */
 
 // list of 10 students with name, class, section and roll
 const students = [
@@ -46,6 +55,11 @@ const foundStudent = students.find((student, index) => student.section == "A");
 
 console.log(foundStudent);
 
+/**
+ * Includes : array.includes(a) => boolean
+ * Some : array.some(()=>condition) => boolean
+ * Every : array.every(()=>condition) => boolean
+ */
 
 const values = [4, 6, 7, 9, 23, 56, 86, 58];
 
