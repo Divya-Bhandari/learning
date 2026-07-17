@@ -3,41 +3,41 @@ const list = [
 ];
 
 console.log(list);
+
+// Double each number using a loop
 const doubleList = [];
 
 for (let i = 0; i < list.length; i++) {
-  const item = list[i] * 2;
-
-  doubleList.push(item);
+  doubleList.push(list[i] * 2);
 }
 
 console.log(doubleList);
 
-/**
- * Map: array.map() => array
- * [a,b,c]=>map=>[x,y,z]
+/*
+ * MAP
+ * Creates a new array after modifying each element.
  */
+console.log("=============== MAP ===============");
 
-console.log("=================== Map =======================");
-
-const mappedList = list.map((number, index) => number * 2);
+const mappedList = list.map((number) => number * 2);
 
 console.log(mappedList);
 
-/**
- * Filter: [a,b,a,a,b,b,a] => filter(a) => [a,a,a,a]
+/*
+ * FILTER
+ * Returns only the elements that match the condition.
  */
-console.log("=================== Filter =======================");
+console.log("============= FILTER ==============");
 
-const filteredList = list.filter((number, index) => number % 2 == 0);
+const filteredList = list.filter((number) => number % 2 === 0);
 
 console.log(filteredList);
 
-/**
- * Find: [a,v,b,d,f,g,h] => find(a) => a
+/*
+ * FIND
+ * Returns the first matching element.
  */
 
-// list of 10 students with name, class, section and roll
 const students = [
   { name: "John", class: "9th", section: "A", roll: 1 },
   { name: "Jane", class: "7th", section: "B", roll: 2 },
@@ -47,93 +47,83 @@ const students = [
   { name: "Jenny", class: "10th", section: "B", roll: 6 },
   { name: "Joe", class: "4th", section: "A", roll: 7 },
   { name: "Jessica", class: "9th", section: "B", roll: 8 },
-  { name: "Jackie", class: "3th", section: "A", roll: 9 },
+  { name: "Jackie", class: "3rd", section: "A", roll: 9 },
   { name: "Jasmine", class: "7th", section: "B", roll: 10 },
 ];
 
-const foundStudent = students.find((student, index) => student.section == "A");
+const foundStudent = students.find(
+  (student) => student.section === "A"
+);
 
 console.log(foundStudent);
 
-/**
- * Includes : array.includes(a) => boolean
- * Some : array.some(()=>condition) => boolean
- * Every : array.every(()=>condition) => boolean
+/*
+ * Includes, Some, Every
  */
 
 const values = [4, 6, 7, 9, 23, 56, 86, 58];
 
 console.log(values.includes(24));
 
-const someResult = values.some((number, index) => number > 10);
+const hasNumberGreaterThan10 = values.some((number) => number > 10);
+console.log(hasNumberGreaterThan10);
 
-console.log(someResult); //true
+const allGreaterThan10 = values.every((number) => number > 10);
+console.log(allGreaterThan10);
 
-const everyResult = values.every((number, index) => number > 10);
+/*
+ * SORT
+ */
 
-console.log(everyResult); // false
-
-// Sort
-
-values.sort((a, b) => a - b); // asc
-
+// Ascending order
+values.sort((a, b) => a - b);
 console.log(values);
 
+// Sort students by name (Z-A)
 students.sort((a, b) => b.name.localeCompare(a.name));
-
 console.log(students);
 
-// Reduce
-let totalSum = 0;
+/*
+ * REDUCE
+ */
+
+// Sum using loop
+let total = 0;
 
 for (let i = 0; i < list.length; i++) {
-  const item = list[i];
-
-  totalSum = totalSum + item;
+  total += list[i];
 }
 
-console.log(totalSum);
+console.log(total);
 
-const reducedTotalSum = list.reduce((total, item) => {
-  total = total + item;
-
-  return total;
+// Sum using reduce
+const totalUsingReduce = list.reduce((sum, number) => {
+  return sum + number;
 }, 0);
 
-console.log(reducedTotalSum);
+console.log(totalUsingReduce);
 
+// Group students by class
 const myList = [
-  {
-    name: "ram",
-    class: 2,
-  },
-  {
-    name: "sam",
-    class: 3,
-  },
-  {
-    name: "hari",
-    class: 2,
-  },
-  {
-    name: "mohan",
-    class: 3,
-  },
-  {
-    name: "sita",
-    class: 4,
-  },
+  { name: "Ram", class: 2 },
+  { name: "Sam", class: 3 },
+  { name: "Hari", class: 2 },
+  { name: "Mohan", class: 3 },
+  { name: "Sita", class: 4 },
 ];
 
-const groupedList = myList.reduce((acc, item) => {
-  acc[item.class] = acc[item.class] || [];
-  acc[item.class].push(item);
+const groupedList = myList.reduce((result, student) => {
+  if (!result[student.class]) {
+    result[student.class] = [];
+  }
 
-  return acc;
+  result[student.class].push(student);
+  return result;
 }, {});
 
 console.log(groupedList);
 
+// Count how many times each city appears
 const cities = [
   "Dharan",
   "Kathmandu",
@@ -147,16 +137,9 @@ const cities = [
   "Kathmandu",
 ];
 
-const citiesCount = cities.reduce((acc, city) => {
-  acc[city] = (acc[city] ?? 0) + 1;
-
-  return acc;
+const cityCount = cities.reduce((count, city) => {
+  count[city] = (count[city] || 0) + 1;
+  return count;
 }, {});
 
-console.log(citiesCount);
-// {
-//   "Dharan":4,
-//   "Kathmandu":1
-//   "Pokhara":2,
-//   "Butwal":1
-// }
+console.log(cityCount);
