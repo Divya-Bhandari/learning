@@ -2,42 +2,35 @@ const list = [
   34, 674, 689, 54, 678, 790, 23, 83, 247, 769, 3254, 97, 345, 75, 20,
 ];
 
+console.log("Original List:");
 console.log(list);
-const doubleList = [];
 
-for (let i = 0; i < list.length; i++) {
-  const item = list[i] * 2;
+// ================= forEach =================
+console.log("========== forEach ==========");
 
-  doubleList.push(item);
-}
+list.forEach((number, index) => {
+  console.log(`Index ${index}: ${number}`);
+});
 
-console.log(doubleList);
+// ================= Map =================
+console.log("========== Map ==========");
 
-/**
- * Map: array.map() => array
- * [a,b,c]=>map=>[x,y,z]
- */
-
-console.log("=================== Map =======================");
-
-const mappedList = list.map((number, index) => number * 2);
+const mappedList = list.map((number) => ({
+  original: number,
+  double: number * 2,
+}));
 
 console.log(mappedList);
 
-/**
- * Filter: [a,b,a,a,b,b,a] => filter(a) => [a,a,a,a]
- */
-console.log("=================== Filter =======================");
+// ================= Filter =================
+console.log("========== Filter ==========");
 
-const filteredList = list.filter((number, index) => number % 2 == 0);
+const filteredList = list.filter((number) => number > 100);
 
 console.log(filteredList);
 
-/**
- * Find: [a,v,b,d,f,g,h] => find(a) => a
- */
+// ================= Students =================
 
-// list of 10 students with name, class, section and roll
 const students = [
   { name: "John", class: "9th", section: "A", roll: 1 },
   { name: "Jane", class: "7th", section: "B", roll: 2 },
@@ -47,92 +40,78 @@ const students = [
   { name: "Jenny", class: "10th", section: "B", roll: 6 },
   { name: "Joe", class: "4th", section: "A", roll: 7 },
   { name: "Jessica", class: "9th", section: "B", roll: 8 },
-  { name: "Jackie", class: "3th", section: "A", roll: 9 },
+  { name: "Jackie", class: "3rd", section: "A", roll: 9 },
   { name: "Jasmine", class: "7th", section: "B", roll: 10 },
 ];
 
-const foundStudent = students.find((student, index) => student.section == "A");
+// ================= Find =================
+console.log("========== Find ==========");
+
+const foundStudent = students.find(
+  (student) => student.name === "Jessica"
+);
 
 console.log(foundStudent);
 
-/**
- * Includes : array.includes(a) => boolean
- * Some : array.some(()=>condition) => boolean
- * Every : array.every(()=>condition) => boolean
- */
+// ================= Includes =================
 
 const values = [4, 6, 7, 9, 23, 56, 86, 58];
 
-console.log(values.includes(24));
+console.log("Includes 56:", values.includes(56));
 
-const someResult = values.some((number, index) => number > 10);
+// ================= Some =================
 
-console.log(someResult); //true
+const someResult = values.some((number) => number % 2 === 0);
 
-const everyResult = values.every((number, index) => number > 10);
+console.log("Has Even Number:", someResult);
 
-console.log(everyResult); // false
+// ================= Every =================
 
-// Sort
+const everyResult = values.every((number) => number > 5);
 
-values.sort((a, b) => a - b); // asc
+console.log("Every Number > 5:", everyResult);
+
+// ================= Sort =================
+
+console.log("========== Sort ==========");
+
+values.sort((a, b) => b - a);
 
 console.log(values);
 
-students.sort((a, b) => b.name.localeCompare(a.name));
+students.sort((a, b) => a.roll - b.roll);
 
 console.log(students);
 
-// Reduce
-let totalSum = 0;
+// ================= Reduce (Sum) =================
 
-for (let i = 0; i < list.length; i++) {
-  const item = list[i];
+const totalSum = list.reduce((total, item) => total + item, 0);
 
-  totalSum = totalSum + item;
-}
+console.log("Total Sum:", totalSum);
 
-console.log(totalSum);
+// ================= Reduce (Maximum Number) =================
 
-const reducedTotalSum = list.reduce((total, item) => {
-  total = total + item;
+const maxNumber = list.reduce((max, item) => {
+  return item > max ? item : max;
+}, list[0]);
 
-  return total;
-}, 0);
+console.log("Maximum Number:", maxNumber);
 
-console.log(reducedTotalSum);
+// ================= Group Students by Section =================
 
-const myList = [
-  {
-    name: "ram",
-    class: 2,
-  },
-  {
-    name: "sam",
-    class: 3,
-  },
-  {
-    name: "hari",
-    class: 2,
-  },
-  {
-    name: "mohan",
-    class: 3,
-  },
-  {
-    name: "sita",
-    class: 4,
-  },
-];
+const groupedStudents = students.reduce((acc, student) => {
+  if (!acc[student.section]) {
+    acc[student.section] = [];
+  }
 
-const groupedList = myList.reduce((acc, item) => {
-  acc[item.class] = acc[item.class] || [];
-  acc[item.class].push(item);
+  acc[student.section].push(student);
 
   return acc;
 }, {});
 
-console.log(groupedList);
+console.log(groupedStudents);
+
+// ================= City Count =================
 
 const cities = [
   "Dharan",
@@ -147,16 +126,9 @@ const cities = [
   "Kathmandu",
 ];
 
-const citiesCount = cities.reduce((acc, city) => {
-  acc[city] = (acc[city] ?? 0) + 1;
-
+const cityCount = cities.reduce((acc, city) => {
+  acc[city] = (acc[city] || 0) + 1;
   return acc;
 }, {});
 
-console.log(citiesCount);
-// {
-//   "Dharan":4,
-//   "Kathmandu":1
-//   "Pokhara":2,
-//   "Butwal":1
-// }
+console.log(cityCount);
