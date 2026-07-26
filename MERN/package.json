@@ -1,0 +1,12 @@
+{
+  "name": "mern",
+  "version": "1.0.0",
+  "description": "- Node.js is a JavaScript runtime environment.\r - Runtime: A program that runs another program.\r - Run JS in local machine.\r - Build on C++\r - Powered byGoogle Chrome v8 engine\r - Used to build API, real time appps, micro-services",
+  "license": "ISC",
+  "author": "divya",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

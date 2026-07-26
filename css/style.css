@@ -1,0 +1,127 @@
+body{
+    margin: 0;
+    background-color: rgb(251, 247, 247);
+}
+
+header{
+    background-color: cadetblue;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    font-family: "Comic Sans MS", Arial;
+}
+
+header p{
+    text-align: center;
+}
+
+nav{
+    overflow: hidden;
+    background-color: rgb(20, 87, 64);
+}
+
+nav a{
+    float: left;
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav a:hover{
+    background-color: rgb(79, 167, 37);
+    color: white;
+}
+
+.column{
+    float: left;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.column.side{
+    width: 25%;
+}
+
+.column.middle{
+    width: 50%;
+}
+
+footer{
+    clear: both;
+    background-color: cadetblue;
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+div.gallery{
+    margin: 5px;
+    border: 10px solid black;
+    float: left;
+    width: 200px;
+}
+
+div.gallery:hover{
+    border: 5px solid red;
+}
+
+div.gallery img{
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+div.desc{
+    padding: 15px;
+    text-align: center;
+}
+
+@media screen and (max-width: 256px){
+    .column.side,
+    .column.middle{
+        width: 100%;
+    }
+}
+
+/* CONTACT FORM FIX */
+input[type=text],
+select,
+textarea{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+textarea{
+    height: 150px;
+}
+
+input[type=submit]{
+    background-color: rgb(20, 87, 64);
+    color: white;
+    padding: 12px 20px;
+    cursor: pointer;
+    border: none;
+    margin: 2px;
+}
+
+input[type=submit]:hover{
+    background-color: rgb(79, 167, 37);
+}
+
+.container h2,
+.container p{
+    text-align: center;
+}
+
+p{
+    text-align: justify;
+}
+
+.container p{
+    text-align: center;
+}
