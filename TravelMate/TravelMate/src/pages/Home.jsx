@@ -1,9 +1,8 @@
 const Home = () => {
   return (
-    <main>
-      <h1>Welcome to TravelMate</h1>
-      <p>Discover • Plan • Explore</p>
-    </main>
+    <div>
+      <h1>Home Page</h1>
+    </div>
   );
 };
 
