@@ -4,15 +4,10 @@ const SearchSection = () => {
   return (
     <section className="search-section">
       <div className="search-container">
-
         <h2>Search Your Next Adventure</h2>
 
         <form className="search-form">
-
-          <input
-            type="text"
-            placeholder="Where are you going?"
-          />
+          <input type="text" placeholder="Where are you going?" />
 
           <input type="date" />
 
@@ -23,15 +18,10 @@ const SearchSection = () => {
             <option>2 Travelers</option>
             <option>3 Travelers</option>
             <option>4 Travelers</option>
-            <option>5+ Travelers</option>
           </select>
 
-          <button>
-            Search
-          </button>
-
+          <button type="submit">Search</button>
         </form>
-
       </div>
     </section>
   );

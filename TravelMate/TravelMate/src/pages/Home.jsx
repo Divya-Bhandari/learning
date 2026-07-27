@@ -1,8 +1,14 @@
+import Hero from "../components/home/Hero/Hero";
+import SearchSection from "../components/home/SearchSection/SearchSection";
+import PopularDestinations from "../components/home/PopularDestinations/PopularDestinations";
+
 const Home = () => {
   return (
-    <div>
-      <h1>Home Page</h1>
-    </div>
+    <>
+      <Hero />
+      <SearchSection />
+      <PopularDestinations />
+    </>
   );
 };
 

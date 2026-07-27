@@ -1,0 +1,68 @@
+.popular{
+    padding:80px 8%;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+
+.container h2{
+    text-align:center;
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.container p{
+    text-align:center;
+    color:#666;
+    margin-bottom:40px;
+}
+
+.destination-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
+}
+
+.destination-card{
+    border-radius:16px;
+    overflow:hidden;
+    background:#fff;
+    box-shadow:0 8px 20px rgba(0,0,0,.1);
+    transition:.3s;
+}
+
+.destination-card:hover{
+    transform:translateY(-10px);
+}
+
+.destination-card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card-footer{
+    display:flex;
+    justify-content:space-between;
+    margin:20px 0;
+}
+
+.destination-card button{
+    width:100%;
+    padding:12px;
+    border:none;
+    background:#0EA5A4;
+    color:#fff;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.destination-card button:hover{
+    background:#0b8b8b;
+}
