@@ -1,10 +1,13 @@
 const DestinationCard = ({ destination }) => {
   return (
     <div className="destination-card">
-      <img
-        src={destination.image}
-        alt={destination.name}
-      />
+      <div className="image-container">
+        <img src={destination.image} alt={destination.name} />
+
+        <span className="price-badge">
+          {destination.price}
+        </span>
+      </div>
 
       <div className="card-content">
         <h3>{destination.name}</h3>
@@ -14,10 +17,8 @@ const DestinationCard = ({ destination }) => {
         <div className="card-footer">
           <span>⭐ {destination.rating}</span>
 
-          <span>{destination.price}</span>
+          <button>Book Now</button>
         </div>
-
-        <button>View Details</button>
       </div>
     </div>
   );

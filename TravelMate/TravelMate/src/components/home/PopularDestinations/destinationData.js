@@ -1,16 +1,10 @@
-import nepal from "../../../assets/images/destinations/nepal.jpg";
-import japan from "../../../assets/images/destinations/japan.jpg";
-import italy from "../../../assets/images/destinations/italy.jpg";
-import france from "../../../assets/images/destinations/france.jpg";
-import switzerland from "../../../assets/images/destinations/switzerland.jpg";
-import bhutan from "../../../assets/images/destinations/bhutan.jpg";
-
 const destinationData = [
   {
     id: 1,
     name: "Pokhara",
     country: "Nepal",
-    image: nepal,
+    image:
+      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800",
     rating: 4.9,
     price: "$199",
   },
@@ -18,7 +12,8 @@ const destinationData = [
     id: 2,
     name: "Tokyo",
     country: "Japan",
-    image: japan,
+    image:
+      "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800",
     rating: 4.8,
     price: "$599",
   },
@@ -26,7 +21,8 @@ const destinationData = [
     id: 3,
     name: "Rome",
     country: "Italy",
-    image: italy,
+    image:
+      "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800",
     rating: 4.8,
     price: "$499",
   },
@@ -34,7 +30,8 @@ const destinationData = [
     id: 4,
     name: "Paris",
     country: "France",
-    image: france,
+    image:
+      "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800",
     rating: 4.9,
     price: "$699",
   },
@@ -42,7 +39,8 @@ const destinationData = [
     id: 5,
     name: "Zermatt",
     country: "Switzerland",
-    image: switzerland,
+    image:
+      "https://images.unsplash.com/photo-1527668752968-14dc70a27c95?w=800",
     rating: 5.0,
     price: "$799",
   },
@@ -50,7 +48,8 @@ const destinationData = [
     id: 6,
     name: "Paro",
     country: "Bhutan",
-    image: bhutan,
+    image:
+      "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=800",
     rating: 4.9,
     price: "$399",
   },
