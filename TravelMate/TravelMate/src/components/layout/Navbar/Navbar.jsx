@@ -1,62 +1,21 @@
-import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { FaBars, FaTimes } from "react-icons/fa";
-import navLinks from "./navLinks";
+import "./Navbar.css";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
   return (
-    <header>
-      <nav>
-        <Link to="/">
-          <h2>TravelMate</h2>
-        </Link>
+    <nav className="navbar">
+      <div className="logo">
+        <h2>TravelMate</h2>
+      </div>
 
-        <ul>
-          {navLinks.map((link) => (
-            <li key={link.id}>
-              <NavLink to={link.path}>{link.title}</NavLink>
-            </li>
-          ))}
-        </ul>
+      <ul className="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/destinations">Destinations</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
 
-        <div>
-          <Link to="/login">Login</Link>
-          <Link to="/register">Register</Link>
-        </div>
-
-        <button onClick={toggleMenu}>
-          {isOpen ? <FaTimes /> : <FaBars />}
-        </button>
-      </nav>
-
-      {isOpen && (
-        <div>
-          {navLinks.map((link) => (
-            <NavLink
-              key={link.id}
-              to={link.path}
-              onClick={() => setIsOpen(false)}
-            >
-              {link.title}
-            </NavLink>
-          ))}
-
-          <NavLink to="/login" onClick={() => setIsOpen(false)}>
-            Login
-          </NavLink>
-
-          <NavLink to="/register" onClick={() => setIsOpen(false)}>
-            Register
-          </NavLink>
-        </div>
-      )}
-    </header>
+      <button className="login-btn">Login</button>
+    </nav>
   );
 };
 

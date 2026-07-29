@@ -1,0 +1,75 @@
+.hero {
+  max-width: 1200px;
+  margin: auto;
+  padding: 70px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.hero-left {
+  flex: 1;
+}
+
+.hero-tag {
+  color: teal;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.hero-left h1 {
+  font-size: 60px;
+  line-height: 1.2;
+  color: #222;
+}
+
+.hero-left span {
+  color: teal;
+}
+
+.hero-description {
+  margin-top: 25px;
+  font-size: 18px;
+  color: #666;
+  line-height: 1.8;
+}
+
+.hero-buttons {
+  margin-top: 35px;
+  display: flex;
+  gap: 20px;
+}
+
+.explore-btn {
+  background: teal;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.learn-btn {
+  background: white;
+  color: teal;
+  border: 2px solid teal;
+  padding: 14px 28px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.hero-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-right img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
