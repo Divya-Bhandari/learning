@@ -1,15 +1,17 @@
 import "./PopularDestinations.css";
 import destinationData from "./destinationData";
 import DestinationCard from "./DestinationCard";
+import SectionHeader from "../../common/SectionHeader/SectionHeader";
 
 const PopularDestinations = () => {
   return (
-    <section className="popular-section">
+    <section className="popular-destinations">
 
-      <div className="section-title">
-        <h2>Popular Destinations</h2>
-        <p>Explore the world's most beautiful places</p>
-      </div>
+      <SectionHeader
+        tag="Destinations"
+        title="Popular Destinations"
+        subtitle="Explore the world's most beautiful places"
+      />
 
       <div className="destination-grid">
         {destinationData.map((destination) => (
