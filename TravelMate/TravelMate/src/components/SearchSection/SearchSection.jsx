@@ -4,24 +4,37 @@ const SearchSection = () => {
   return (
     <section className="search-section">
       <div className="search-container">
-        <h2>Search Your Next Adventure</h2>
 
-        <form className="search-form">
-          <input type="text" placeholder="Where are you going?" />
+        <div className="search-box">
+          <label>Destination</label>
+          <input 
+            type="text" 
+            placeholder="Where are you going?"
+          />
+        </div>
 
+        <div className="search-box">
+          <label>Check In</label>
           <input type="date" />
+        </div>
 
+        <div className="search-box">
+          <label>Check Out</label>
           <input type="date" />
+        </div>
 
-          <select>
-            <option>1 Traveler</option>
-            <option>2 Travelers</option>
-            <option>3 Travelers</option>
-            <option>4 Travelers</option>
-          </select>
+        <div className="search-box">
+          <label>Guests</label>
+          <input 
+            type="number" 
+            placeholder="Number of guests"
+          />
+        </div>
 
-          <button type="submit">Search</button>
-        </form>
+        <button className="search-btn">
+          Search
+        </button>
+
       </div>
     </section>
   );

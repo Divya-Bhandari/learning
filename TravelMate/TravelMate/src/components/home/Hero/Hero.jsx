@@ -3,8 +3,11 @@ import "./Hero.css";
 const Hero = () => {
   return (
     <section className="hero">
+
       <div className="hero-left">
-        <p className="hero-tag">🌍 Explore the World</p>
+        <p className="hero-tag">
+          🌍 Explore the World
+        </p>
 
         <h1>
           Discover Your Next
@@ -17,10 +20,16 @@ const Hero = () => {
         </p>
 
         <div className="hero-buttons">
-          <button className="explore-btn">Explore Now</button>
-          <button className="learn-btn">Learn More</button>
+          <button className="explore-btn">
+            Explore Now
+          </button>
+
+          <button className="learn-btn">
+            Learn More
+          </button>
         </div>
       </div>
+
 
       <div className="hero-right">
         <img
@@ -28,6 +37,7 @@ const Hero = () => {
           alt="Travel"
         />
       </div>
+
     </section>
   );
 };

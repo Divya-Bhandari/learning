@@ -1,25 +1,12 @@
-import "./WhyChooseUs.css";
-import whyChooseData from "./whyChooseData";
-
 const WhyChooseUs = () => {
   return (
-    <section className="why">
-      <div className="container">
-        <h2>Why Choose TravelMate?</h2>
-        <p className="subtitle">
-          We make every journey comfortable, affordable, and unforgettable.
-        </p>
+    <section>
+      <h2>Why Choose TravelMate?</h2>
 
-        <div className="why-grid">
-          {whyChooseData.map((item) => (
-            <div className="why-card" key={item.id}>
-              <div className="icon">{item.icon}</div>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
+      <p>⭐ Best Price Guarantee</p>
+      <p>✈️ Safe Travel</p>
+      <p>🌍 Top Destinations</p>
+      <p>🕒 24/7 Support</p>
     </section>
   );
 };
