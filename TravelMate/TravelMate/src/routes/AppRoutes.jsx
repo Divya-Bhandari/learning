@@ -5,13 +5,8 @@ import About from "../pages/About";
 const AppRoutes = () => {
   return (
     <Routes>
-
       <Route path="/" element={<Home />} />
-
-      <Route
-        path="/about"
-        element={<h1 style={{ padding: "40px" }}>About Page</h1>}
-      />
+      <Route path="/about" element={<About />} />
 
       <Route
         path="/destinations"
@@ -22,7 +17,6 @@ const AppRoutes = () => {
         path="/contact"
         element={<h1 style={{ padding: "40px" }}>Contact Page</h1>}
       />
-
     </Routes>
   );
 };

@@ -1,0 +1,43 @@
+.our-story {
+  padding: 80px 20px;
+}
+
+.story-container {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 50px;
+  align-items: center;
+}
+
+.story-text span {
+  color: teal;
+  font-weight: 600;
+}
+
+.story-text h2 {
+  margin: 20px 0;
+  font-size: 40px;
+}
+
+.story-text p {
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.story-image img {
+  width: 100%;
+  border-radius: 20px;
+}
+
+@media (max-width: 768px) {
+  .story-container {
+    grid-template-columns: 1fr;
+  }
+
+  .story-text h2 {
+    font-size: 30px;
+  }
+}
