@@ -1,0 +1,74 @@
+.destination-hero {
+  height: 70vh;
+  background: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80")
+    center/cover no-repeat;
+  position: relative;
+}
+
+.destination-hero-overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.destination-hero-content {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
+  color: white;
+  text-align: center;
+}
+
+.destination-hero-content span {
+  color: #14b8a6;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.destination-hero-content h1 {
+  font-size: 60px;
+  margin: 20px 0;
+  color: white;
+}
+
+.destination-hero-content p {
+  max-width: 700px;
+  margin: auto;
+  line-height: 1.8;
+  font-size: 18px;
+}
+
+.destination-hero-content button {
+  margin-top: 35px;
+  padding: 15px 35px;
+  border: none;
+  border-radius: 40px;
+  background: #14b8a6;
+  color: white;
+  font-size: 17px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.destination-hero-content button:hover {
+  background: #0f766e;
+}
+
+@media (max-width:768px) {
+  .destination-hero {
+    height: 60vh;
+  }
+
+  .destination-hero-content h1 {
+    font-size: 40px;
+  }
+
+  .destination-hero-content p {
+    font-size: 16px;
+  }
+}

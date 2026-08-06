@@ -1,9 +1,10 @@
+import DestinationHero from "../components/destinations/DestinationHero/DestinationHero";
+
 const Destinations = () => {
   return (
-    <main>
-      <h1>Destinations</h1>
-      <p>Browse amazing destinations around the world.</p>
-    </main>
+    <>
+      <DestinationHero />
+    </>
   );
 };
 
