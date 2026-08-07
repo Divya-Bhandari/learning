@@ -1,8 +1,7 @@
 import "./DestinationGrid.css";
-import DestinationData from "../DestinationData";
 import DestinationCard from "../DestinationCard/DestinationCard";
 
-const DestinationGrid = () => {
+const DestinationGrid = ({ destinations }) => {
   return (
     <section className="destination-grid-section">
       <div className="destination-grid-container">
@@ -18,14 +17,23 @@ const DestinationGrid = () => {
           </p>
         </div>
 
-        <div className="destination-grid">
-          {DestinationData.map((destination) => (
-            <DestinationCard
-              key={destination.id}
-              destination={destination}
-            />
-          ))}
-        </div>
+        {destinations.length > 0 ? (
+          <div className="destination-grid">
+            {destinations.map((destination) => (
+              <DestinationCard
+                key={destination.id}
+                destination={destination}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="no-destinations">
+            <h3>No destinations found</h3>
+            <p>
+              Try changing your country, price, or duration filters.
+            </p>
+          </div>
+        )}
 
       </div>
     </section>
