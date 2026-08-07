@@ -1,5 +1,6 @@
 import "./DestinationGrid.css";
 import DestinationData from "../DestinationData";
+import DestinationCard from "../DestinationCard/DestinationCard";
 
 const DestinationGrid = () => {
   return (
@@ -19,23 +20,10 @@ const DestinationGrid = () => {
 
         <div className="destination-grid">
           {DestinationData.map((destination) => (
-            <div
-              className="destination-test-card"
+            <DestinationCard
               key={destination.id}
-            >
-              <img
-                src={destination.image}
-                alt={destination.name}
-              />
-
-              <h3>{destination.name}</h3>
-
-              <p>{destination.country}</p>
-
-              <p>{destination.description}</p>
-
-              <strong>${destination.price}</strong>
-            </div>
+              destination={destination}
+            />
           ))}
         </div>
 

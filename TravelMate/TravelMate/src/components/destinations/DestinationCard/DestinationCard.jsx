@@ -9,7 +9,7 @@ const DestinationCard = ({ destination }) => {
           alt={destination.name}
         />
 
-        <span className="destination-country">
+        <span className="destination-card-country">
           {destination.country}
         </span>
       </div>
@@ -18,27 +18,21 @@ const DestinationCard = ({ destination }) => {
         <div className="destination-card-title">
           <h3>{destination.name}</h3>
 
-          <span className="destination-rating">
-            {"★".repeat(destination.rating)}
-            <span className="rating-number">
-              {destination.rating}.0
-            </span>
-          </span>
+          <div className="destination-card-rating">
+            ⭐ {destination.rating}
+          </div>
         </div>
 
-        <p className="destination-description">
+        <p className="destination-card-description">
           {destination.description}
         </p>
 
         <div className="destination-card-info">
           <span>🕒 {destination.duration}</span>
-
-          <span>
-            From <strong>${destination.price}</strong>
-          </span>
+          <strong>${destination.price}</strong>
         </div>
 
-        <button className="destination-details-btn">
+        <button className="destination-card-button">
           View Details
         </button>
       </div>
