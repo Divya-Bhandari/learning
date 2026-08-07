@@ -6,9 +6,7 @@ const Destinations = () => {
   return (
     <>
       <DestinationHero />
-
       <DestinationFilter />
-
       <DestinationGrid />
     </>
   );
