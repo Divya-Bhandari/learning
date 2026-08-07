@@ -3,6 +3,7 @@ import { useState } from "react";
 import DestinationHero from "../components/destinations/DestinationHero/DestinationHero";
 import DestinationFilter from "../components/destinations/DestinationFilter/DestinationFilter";
 import DestinationGrid from "../components/destinations/DestinationGrid/DestinationGrid";
+import Pagination from "../components/destinations/Pagination/Pagination";
 
 import DestinationData from "../components/destinations/DestinationData";
 
@@ -12,6 +13,10 @@ const Destinations = () => {
     price: "Any Budget",
     duration: "Any Duration",
   });
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const destinationsPerPage = 6;
 
   const filteredDestinations = DestinationData.filter((destination) => {
     const countryMatch =
@@ -29,9 +34,9 @@ const Destinations = () => {
       priceMatch = destination.price > 1000;
     }
 
-    let durationMatch = true;
-
     const days = parseInt(destination.duration);
+
+    let durationMatch = true;
 
     if (filters.duration === "1 - 5 Days") {
       durationMatch = days <= 5;
@@ -44,16 +49,38 @@ const Destinations = () => {
     return countryMatch && priceMatch && durationMatch;
   });
 
+  const totalPages = Math.ceil(
+    filteredDestinations.length / destinationsPerPage
+  );
+
+  const startIndex = (currentPage - 1) * destinationsPerPage;
+
+  const currentDestinations = filteredDestinations.slice(
+    startIndex,
+    startIndex + destinationsPerPage
+  );
+
+  const handleFilterChange = (newFilters) => {
+    setFilters(newFilters);
+    setCurrentPage(1);
+  };
+
   return (
     <>
       <DestinationHero />
 
       <DestinationFilter
-        onFilterChange={setFilters}
+        onFilterChange={handleFilterChange}
       />
 
       <DestinationGrid
-        destinations={filteredDestinations}
+        destinations={currentDestinations}
+      />
+
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
       />
     </>
   );
