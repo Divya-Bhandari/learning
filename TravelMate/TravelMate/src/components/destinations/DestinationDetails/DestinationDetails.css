@@ -1,0 +1,239 @@
+.destination-details {
+  width: 100%;
+  background: #ffffff;
+}
+
+.destination-details-hero {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  overflow: hidden;
+}
+
+.destination-details-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.destination-details-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.7)
+  );
+  color: #ffffff;
+}
+
+.destination-details-overlay span {
+  margin-bottom: 10px;
+  padding: 7px 15px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #0f766e;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.destination-details-overlay h1 {
+  margin: 0 0 10px;
+  color: #ffffff;
+  font-size: 58px;
+  font-weight: 700;
+}
+
+.destination-details-overlay p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.destination-details-content {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 70px 25px;
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 60px;
+  box-sizing: border-box;
+}
+
+.details-label {
+  color: #0f766e;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.destination-details-main h2 {
+  margin: 12px 0 20px;
+  color: #111827;
+  font-size: 38px;
+}
+
+.details-description {
+  color: #6b7280;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.details-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 35px;
+}
+
+.details-info-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #f9fafb;
+}
+
+.details-info-card > span {
+  font-size: 23px;
+}
+
+.details-info-card div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.details-info-card small {
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+.details-info-card strong {
+  color: #111827;
+  font-size: 14px;
+}
+
+.destination-booking-card {
+  align-self: start;
+  padding: 30px;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.destination-booking-card > span {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.destination-booking-card h3 {
+  margin: 8px 0 0;
+  color: #0f766e;
+  font-size: 42px;
+}
+
+.destination-booking-card p {
+  margin: 2px 0 25px;
+  color: #9ca3af;
+  font-size: 13px;
+}
+
+.destination-booking-card button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: #0f766e;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.destination-booking-card button:hover {
+  background: #115e59;
+}
+
+.destination-booking-card a {
+  display: block;
+  margin-top: 18px;
+  color: #0f766e;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+}
+
+.destination-not-found {
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  text-align: center;
+}
+
+.destination-not-found h1 {
+  margin-bottom: 10px;
+  color: #111827;
+}
+
+.destination-not-found p {
+  margin-bottom: 25px;
+  color: #6b7280;
+}
+
+.destination-not-found a {
+  color: #0f766e;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+@media (max-width: 900px) {
+  .destination-details-content {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .destination-booking-card {
+    max-width: 500px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 700px) {
+  .destination-details-hero {
+    height: 380px;
+  }
+
+  .destination-details-overlay h1 {
+    font-size: 42px;
+  }
+
+  .details-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .destination-details-content {
+    padding: 50px 20px;
+  }
+
+  .destination-details-main h2 {
+    font-size: 30px;
+  }
+}
