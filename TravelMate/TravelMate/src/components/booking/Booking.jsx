@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import DestinationData from "../../destinations/DestinationData";
+
+import DestinationData from "../destinations/DestinationData";
+
 import "./Booking.css";
+import "./BookingSuccess.css";
 
 const Booking = () => {
   const { id } = useParams();
@@ -289,6 +292,7 @@ const Booking = () => {
 
                 <div>
                   <small>Duration</small>
+
                   <strong>
                     {destination.duration}
                   </strong>
@@ -296,6 +300,7 @@ const Booking = () => {
 
                 <div>
                   <small>Rating</small>
+
                   <strong>
                     ⭐ {destination.rating}
                   </strong>
@@ -321,6 +326,7 @@ const Booking = () => {
               </Link>
 
             </div>
+
           </aside>
 
         </div>

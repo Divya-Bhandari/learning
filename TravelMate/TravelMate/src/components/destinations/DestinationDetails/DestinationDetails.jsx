@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import DestinationData from "../components/destinations/DestinationData";
+import DestinationData from "../DestinationData";
 import "./DestinationDetails.css";
 
 const DestinationDetails = () => {
@@ -11,11 +11,8 @@ const DestinationDetails = () => {
 
   if (!destination) {
     return (
-      <main className="destination-not-found">
+      <main className="destination-details-not-found">
         <h1>Destination Not Found</h1>
-        <p>
-          Sorry, we couldn't find the destination you're looking for.
-        </p>
 
         <Link to="/destinations">
           ← Back to Destinations
@@ -25,75 +22,67 @@ const DestinationDetails = () => {
   }
 
   return (
-    <main className="destination-details">
-      <section className="destination-details-hero">
-        <img
-          src={destination.image}
-          alt={destination.name}
-        />
+    <main className="destination-details-page">
+      <div className="destination-details-container">
 
-        <div className="destination-details-overlay">
-          <span>{destination.country}</span>
-          <h1>{destination.name}</h1>
-          <p>⭐ {destination.rating} / 5</p>
-        </div>
-      </section>
+        <Link
+          to="/destinations"
+          className="destination-back-link"
+        >
+          ← Back to Destinations
+        </Link>
 
-      <section className="destination-details-content">
-        <div className="destination-details-main">
-          <span className="details-label">
-            Explore Your Next Adventure
-          </span>
+        <div className="destination-details-card">
 
-          <h2>Discover {destination.name}</h2>
+          <div className="destination-details-image">
+            <img
+              src={destination.image}
+              alt={destination.name}
+            />
+          </div>
 
-          <p className="details-description">
-            {destination.description}
-          </p>
+          <div className="destination-details-content">
 
-          <div className="details-info-grid">
-            <div className="details-info-card">
-              <span>📍</span>
+            <span className="destination-details-country">
+              {destination.country}
+            </span>
+
+            <h1>{destination.name}</h1>
+
+            <p className="destination-details-description">
+              {destination.description}
+            </p>
+
+            <div className="destination-details-info">
+
               <div>
-                <small>Destination</small>
-                <strong>{destination.country}</strong>
-              </div>
-            </div>
-
-            <div className="details-info-card">
-              <span>🕒</span>
-              <div>
-                <small>Duration</small>
+                <span>Duration</span>
                 <strong>{destination.duration}</strong>
               </div>
-            </div>
 
-            <div className="details-info-card">
-              <span>⭐</span>
               <div>
-                <small>Rating</small>
-                <strong>{destination.rating} / 5</strong>
+                <span>Rating</span>
+                <strong>⭐ {destination.rating}</strong>
               </div>
+
+              <div>
+                <span>Starting From</span>
+                <strong>${destination.price}</strong>
+              </div>
+
             </div>
+
+            <Link
+              to={`/booking/${destination.id}`}
+              className="destination-book-button"
+            >
+              Book This Trip
+            </Link>
+
           </div>
+
         </div>
-
-        <aside className="destination-booking-card">
-          <span>Starting From</span>
-
-          <h3>${destination.price}</h3>
-
-          <p>per person</p>
-
-          <button>
-            Book This Tour
-          </button>
-
-          <Link to="/destinations">
-            ← Back to Destinations
-          </Link>
-        </aside>
-      </section>
+      </div>
     </main>
   );
 };

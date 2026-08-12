@@ -3,10 +3,9 @@ import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import About from "../pages/About";
 import Destinations from "../pages/Destinations";
-import Contact from "../pages/Contact";
 
 import DestinationDetails from "../components/destinations/DestinationDetails/DestinationDetails";
-import Booking from "../components/booking/Booking/Booking";
+import Booking from "../components/booking/Booking";
 
 const AppRoutes = () => {
   return (
@@ -28,11 +27,6 @@ const AppRoutes = () => {
       <Route
         path="/booking/:id"
         element={<Booking />}
-      />
-
-      <Route
-        path="/contact"
-        element={<Contact />}
       />
     </Routes>
   );
