@@ -294,3 +294,14 @@
     padding: 20px;
   }
 }
+
+.booking-error {
+  color: #dc2626;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.booking-field input:has(+ .booking-error),
+.booking-field select:has(+ .booking-error) {
+  border-color: #dc2626;
+}

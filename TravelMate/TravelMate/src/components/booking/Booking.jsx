@@ -23,6 +23,7 @@ const Booking = () => {
     requests: "",
   });
 
+  const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e) => {
@@ -32,10 +33,66 @@ const Booking = () => {
       ...previous,
       [name]: value,
     }));
+
+    setErrors((previous) => ({
+      ...previous,
+      [name]: "",
+    }));
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!formData.name.trim()) {
+      newErrors.name = "Please enter your full name.";
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = "Please enter your email address.";
+    } else if (
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)
+    ) {
+      newErrors.email = "Please enter a valid email address.";
+    }
+
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Please enter your phone number.";
+    } else if (!/^[0-9+\-\s]{7,15}$/.test(formData.phone)) {
+      newErrors.phone = "Please enter a valid phone number.";
+    }
+
+    if (!formData.travelers || Number(formData.travelers) < 1) {
+      newErrors.travelers = "At least 1 traveler is required.";
+    }
+
+    if (!formData.date) {
+      newErrors.date = "Please select your travel date.";
+    } else {
+      const selectedDate = new Date(formData.date);
+      const today = new Date();
+
+      today.setHours(0, 0, 0, 0);
+
+      if (selectedDate < today) {
+        newErrors.date = "Travel date cannot be in the past.";
+      }
+    }
+
+    if (!formData.payment) {
+      newErrors.payment = "Please select a payment method.";
+    }
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
 
     setSubmitted(true);
 
@@ -73,8 +130,8 @@ const Booking = () => {
           </p>
 
           <p>
-            Our travel team will contact you soon with the
-            next steps.
+            Our travel team will contact you soon with the next
+            steps.
           </p>
 
           <div className="success-details">
@@ -141,8 +198,13 @@ const Booking = () => {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Enter your full name"
-                    required
                   />
+
+                  {errors.name && (
+                    <small className="booking-error">
+                      {errors.name}
+                    </small>
+                  )}
                 </div>
 
                 <div className="booking-field">
@@ -157,8 +219,13 @@ const Booking = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="Enter your email"
-                    required
                   />
+
+                  {errors.email && (
+                    <small className="booking-error">
+                      {errors.email}
+                    </small>
+                  )}
                 </div>
 
               </div>
@@ -177,8 +244,13 @@ const Booking = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="Enter your phone number"
-                    required
                   />
+
+                  {errors.phone && (
+                    <small className="booking-error">
+                      {errors.phone}
+                    </small>
+                  )}
                 </div>
 
                 <div className="booking-field">
@@ -193,8 +265,13 @@ const Booking = () => {
                     min="1"
                     value={formData.travelers}
                     onChange={handleChange}
-                    required
                   />
+
+                  {errors.travelers && (
+                    <small className="booking-error">
+                      {errors.travelers}
+                    </small>
+                  )}
                 </div>
 
               </div>
@@ -212,8 +289,13 @@ const Booking = () => {
                     type="date"
                     value={formData.date}
                     onChange={handleChange}
-                    required
                   />
+
+                  {errors.date && (
+                    <small className="booking-error">
+                      {errors.date}
+                    </small>
+                  )}
                 </div>
 
                 <div className="booking-field">
@@ -226,7 +308,6 @@ const Booking = () => {
                     name="payment"
                     value={formData.payment}
                     onChange={handleChange}
-                    required
                   >
                     <option value="">
                       Select payment method
@@ -244,6 +325,12 @@ const Booking = () => {
                       Khalti
                     </option>
                   </select>
+
+                  {errors.payment && (
+                    <small className="booking-error">
+                      {errors.payment}
+                    </small>
+                  )}
                 </div>
 
               </div>
