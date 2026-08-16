@@ -11,7 +11,6 @@ const Navbar = () => {
         </Link>
       </div>
 
-
       <ul className="nav-links">
 
         <li>
@@ -27,11 +26,14 @@ const Navbar = () => {
         </li>
 
         <li>
+          <Link to="/my-bookings">My Bookings</Link>
+        </li>
+
+        <li>
           <Link to="/contact">Contact</Link>
         </li>
 
       </ul>
-
 
       <button className="login-btn">
         Login

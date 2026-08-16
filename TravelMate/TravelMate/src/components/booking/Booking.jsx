@@ -49,37 +49,24 @@ const Booking = () => {
 
     if (!formData.email.trim()) {
       newErrors.email = "Please enter your email address.";
-    } else if (
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)
-    ) {
-      newErrors.email = "Please enter a valid email address.";
     }
 
     if (!formData.phone.trim()) {
       newErrors.phone = "Please enter your phone number.";
-    } else if (!/^[0-9+\-\s]{7,15}$/.test(formData.phone)) {
-      newErrors.phone = "Please enter a valid phone number.";
     }
 
     if (!formData.travelers || Number(formData.travelers) < 1) {
-      newErrors.travelers = "At least 1 traveler is required.";
+      newErrors.travelers =
+        "Number of travelers must be at least 1.";
     }
 
     if (!formData.date) {
       newErrors.date = "Please select your travel date.";
-    } else {
-      const selectedDate = new Date(formData.date);
-      const today = new Date();
-
-      today.setHours(0, 0, 0, 0);
-
-      if (selectedDate < today) {
-        newErrors.date = "Travel date cannot be in the past.";
-      }
     }
 
     if (!formData.payment) {
-      newErrors.payment = "Please select a payment method.";
+      newErrors.payment =
+        "Please select a payment method.";
     }
 
     setErrors(newErrors);
@@ -94,6 +81,44 @@ const Booking = () => {
       return;
     }
 
+    // Get existing bookings from localStorage
+    const existingBookings =
+      JSON.parse(
+        localStorage.getItem("travelmateBookings")
+      ) || [];
+
+    // Create new booking
+    const newBooking = {
+      id: Date.now(),
+
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+
+      travelers: Number(formData.travelers),
+
+      date: formData.date,
+
+      payment: formData.payment,
+
+      requests: formData.requests,
+
+      destination: destination.name,
+      country: destination.country,
+
+      price: destination.price,
+    };
+
+    // Save booking to localStorage
+    localStorage.setItem(
+      "travelmateBookings",
+      JSON.stringify([
+        ...existingBookings,
+        newBooking,
+      ])
+    );
+
+    // Show success page
     setSubmitted(true);
 
     window.scrollTo({
@@ -118,38 +143,67 @@ const Booking = () => {
     return (
       <main className="booking-success-page">
         <div className="booking-success-card">
-          <div className="success-icon">✓</div>
+
+          <div className="success-icon">
+            ✓
+          </div>
 
           <span>TravelMate Booking</span>
 
-          <h1>Booking Request Submitted!</h1>
+          <h1>
+            Booking Request Submitted!
+          </h1>
 
           <p>
-            Thank you, {formData.name}. Your booking request for{" "}
-            <strong>{destination.name}</strong> has been received.
+            Thank you, {formData.name}. Your
+            booking request for{" "}
+            <strong>
+              {destination.name}
+            </strong>{" "}
+            has been received.
           </p>
 
           <p>
-            Our travel team will contact you soon with the next
-            steps.
+            Our travel team will contact you
+            soon with the next steps.
           </p>
 
           <div className="success-details">
+
             <div>
               <span>Destination</span>
-              <strong>{destination.name}</strong>
+
+              <strong>
+                {destination.name}
+              </strong>
             </div>
 
             <div>
               <span>Travelers</span>
-              <strong>{formData.travelers}</strong>
+
+              <strong>
+                {formData.travelers}
+              </strong>
             </div>
 
             <div>
               <span>Travel Date</span>
-              <strong>{formData.date}</strong>
+
+              <strong>
+                {formData.date}
+              </strong>
             </div>
+
           </div>
+
+          <Link
+            to="/my-bookings"
+            className="success-back-button"
+          >
+            View My Bookings
+          </Link>
+
+          <br />
 
           <Link
             to="/destinations"
@@ -157,6 +211,7 @@ const Booking = () => {
           >
             Explore More Destinations
           </Link>
+
         </div>
       </main>
     );
@@ -164,29 +219,41 @@ const Booking = () => {
 
   return (
     <main className="booking-page">
+
       <div className="booking-container">
 
         <div className="booking-header">
-          <span>TravelMate Booking</span>
 
-          <h1>Book Your Trip</h1>
+          <span>
+            TravelMate Booking
+          </span>
+
+          <h1>
+            Book Your Trip
+          </h1>
 
           <p>
-            Complete the form below to start planning your
-            journey to {destination.name}.
+            Complete the form below to start
+            planning your journey to{" "}
+            {destination.name}.
           </p>
+
         </div>
 
         <div className="booking-layout">
 
           <div className="booking-form-card">
-            <h2>Your Information</h2>
+
+            <h2>
+              Your Information
+            </h2>
 
             <form onSubmit={handleSubmit}>
 
               <div className="booking-form-row">
 
                 <div className="booking-field">
+
                   <label htmlFor="name">
                     Full Name
                   </label>
@@ -205,9 +272,11 @@ const Booking = () => {
                       {errors.name}
                     </small>
                   )}
+
                 </div>
 
                 <div className="booking-field">
+
                   <label htmlFor="email">
                     Email Address
                   </label>
@@ -226,6 +295,7 @@ const Booking = () => {
                       {errors.email}
                     </small>
                   )}
+
                 </div>
 
               </div>
@@ -233,6 +303,7 @@ const Booking = () => {
               <div className="booking-form-row">
 
                 <div className="booking-field">
+
                   <label htmlFor="phone">
                     Phone Number
                   </label>
@@ -251,9 +322,11 @@ const Booking = () => {
                       {errors.phone}
                     </small>
                   )}
+
                 </div>
 
                 <div className="booking-field">
+
                   <label htmlFor="travelers">
                     Number of Travelers
                   </label>
@@ -272,6 +345,7 @@ const Booking = () => {
                       {errors.travelers}
                     </small>
                   )}
+
                 </div>
 
               </div>
@@ -279,6 +353,7 @@ const Booking = () => {
               <div className="booking-form-row">
 
                 <div className="booking-field">
+
                   <label htmlFor="date">
                     Travel Date
                   </label>
@@ -296,9 +371,11 @@ const Booking = () => {
                       {errors.date}
                     </small>
                   )}
+
                 </div>
 
                 <div className="booking-field">
+
                   <label htmlFor="payment">
                     Payment Method
                   </label>
@@ -324,6 +401,7 @@ const Booking = () => {
                     <option value="khalti">
                       Khalti
                     </option>
+
                   </select>
 
                   {errors.payment && (
@@ -331,11 +409,13 @@ const Booking = () => {
                       {errors.payment}
                     </small>
                   )}
+
                 </div>
 
               </div>
 
               <div className="booking-field">
+
                 <label htmlFor="requests">
                   Special Requests
                 </label>
@@ -348,6 +428,7 @@ const Booking = () => {
                   onChange={handleChange}
                   placeholder="Any special requests?"
                 />
+
               </div>
 
               <button
@@ -358,6 +439,7 @@ const Booking = () => {
               </button>
 
             </form>
+
           </div>
 
           <aside className="booking-summary">
@@ -369,40 +451,60 @@ const Booking = () => {
 
             <div className="booking-summary-content">
 
-              <span>Selected Destination</span>
+              <span>
+                Selected Destination
+              </span>
 
-              <h2>{destination.name}</h2>
+              <h2>
+                {destination.name}
+              </h2>
 
-              <p>{destination.country}</p>
+              <p>
+                {destination.country}
+              </p>
 
               <div className="booking-summary-info">
 
                 <div>
-                  <small>Duration</small>
+
+                  <small>
+                    Duration
+                  </small>
 
                   <strong>
                     {destination.duration}
                   </strong>
+
                 </div>
 
                 <div>
-                  <small>Rating</small>
+
+                  <small>
+                    Rating
+                  </small>
 
                   <strong>
                     ⭐ {destination.rating}
                   </strong>
+
                 </div>
 
               </div>
 
               <div className="booking-price">
-                <span>Starting From</span>
+
+                <span>
+                  Starting From
+                </span>
 
                 <strong>
                   ${destination.price}
                 </strong>
 
-                <small>per person</small>
+                <small>
+                  per person
+                </small>
+
               </div>
 
               <Link
@@ -417,7 +519,9 @@ const Booking = () => {
           </aside>
 
         </div>
+
       </div>
+
     </main>
   );
 };
