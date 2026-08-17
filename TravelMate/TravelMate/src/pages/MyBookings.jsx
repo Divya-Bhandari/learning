@@ -1,9 +1,32 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./MyBookings.css";
 
 const MyBookings = () => {
-  const bookings =
-    JSON.parse(localStorage.getItem("travelmateBookings")) || [];
+  const [bookings, setBookings] = useState(
+    JSON.parse(localStorage.getItem("travelmateBookings")) || []
+  );
+
+  const handleDelete = (id) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this booking?"
+    );
+
+    if (!confirmDelete) {
+      return;
+    }
+
+    const updatedBookings = bookings.filter(
+      (booking) => booking.id !== id
+    );
+
+    localStorage.setItem(
+      "travelmateBookings",
+      JSON.stringify(updatedBookings)
+    );
+
+    setBookings(updatedBookings);
+  };
 
   return (
     <main className="my-bookings-page">
@@ -41,55 +64,91 @@ const MyBookings = () => {
               >
 
                 <div className="booking-card-header">
+
                   <div>
                     <span>Destination</span>
 
-                    <h2>{booking.destination}</h2>
+                    <h2>
+                      {booking.destination}
+                    </h2>
 
-                    <p>{booking.country}</p>
+                    <p>
+                      {booking.country}
+                    </p>
                   </div>
 
                   <span className="booking-status">
                     Confirmed
                   </span>
+
                 </div>
 
                 <div className="booking-card-details">
 
                   <div>
                     <span>Traveler</span>
-                    <strong>{booking.name}</strong>
+                    <strong>
+                      {booking.name}
+                    </strong>
                   </div>
 
                   <div>
                     <span>Travelers</span>
-                    <strong>{booking.travelers}</strong>
+                    <strong>
+                      {booking.travelers}
+                    </strong>
                   </div>
 
                   <div>
                     <span>Travel Date</span>
-                    <strong>{booking.date}</strong>
+                    <strong>
+                      {booking.date}
+                    </strong>
                   </div>
 
                   <div>
                     <span>Payment</span>
-                    <strong>{booking.payment}</strong>
+                    <strong>
+                      {booking.payment}
+                    </strong>
                   </div>
 
                   <div>
                     <span>Price</span>
-                    <strong>${booking.price}</strong>
+                    <strong>
+                      ${booking.price}
+                    </strong>
                   </div>
 
                 </div>
 
                 {booking.requests && (
                   <div className="booking-requests">
-                    <span>Special Requests</span>
 
-                    <p>{booking.requests}</p>
+                    <span>
+                      Special Requests
+                    </span>
+
+                    <p>
+                      {booking.requests}
+                    </p>
+
                   </div>
                 )}
+
+                <div className="booking-card-actions">
+
+                  <button
+                    type="button"
+                    className="delete-booking-button"
+                    onClick={() =>
+                      handleDelete(booking.id)
+                    }
+                  >
+                    Delete Booking
+                  </button>
+
+                </div>
 
               </div>
             ))}
