@@ -81,13 +81,14 @@ const Booking = () => {
       return;
     }
 
-    // Get existing bookings from localStorage
     const existingBookings =
       JSON.parse(
         localStorage.getItem("travelmateBookings")
       ) || [];
 
-    // Create new booking
+    const totalPrice =
+      destination.price * Number(formData.travelers);
+
     const newBooking = {
       id: Date.now(),
 
@@ -107,9 +108,10 @@ const Booking = () => {
       country: destination.country,
 
       price: destination.price,
+
+      totalPrice: totalPrice,
     };
 
-    // Save booking to localStorage
     localStorage.setItem(
       "travelmateBookings",
       JSON.stringify([
@@ -118,7 +120,6 @@ const Booking = () => {
       ])
     );
 
-    // Show success page
     setSubmitted(true);
 
     window.scrollTo({
@@ -139,16 +140,22 @@ const Booking = () => {
     );
   }
 
+  const totalPrice =
+    destination.price * Number(formData.travelers);
+
   if (submitted) {
     return (
       <main className="booking-success-page">
+
         <div className="booking-success-card">
 
           <div className="success-icon">
             ✓
           </div>
 
-          <span>TravelMate Booking</span>
+          <span>
+            TravelMate Booking
+          </span>
 
           <h1>
             Booking Request Submitted!
@@ -171,7 +178,9 @@ const Booking = () => {
           <div className="success-details">
 
             <div>
-              <span>Destination</span>
+              <span>
+                Destination
+              </span>
 
               <strong>
                 {destination.name}
@@ -179,7 +188,9 @@ const Booking = () => {
             </div>
 
             <div>
-              <span>Travelers</span>
+              <span>
+                Travelers
+              </span>
 
               <strong>
                 {formData.travelers}
@@ -187,10 +198,22 @@ const Booking = () => {
             </div>
 
             <div>
-              <span>Travel Date</span>
+              <span>
+                Travel Date
+              </span>
 
               <strong>
                 {formData.date}
+              </strong>
+            </div>
+
+            <div>
+              <span>
+                Total Price
+              </span>
+
+              <strong>
+                ${totalPrice}
               </strong>
             </div>
 
@@ -213,6 +236,7 @@ const Booking = () => {
           </Link>
 
         </div>
+
       </main>
     );
   }
@@ -241,6 +265,8 @@ const Booking = () => {
         </div>
 
         <div className="booking-layout">
+
+          {/* BOOKING FORM */}
 
           <div className="booking-form-card">
 
@@ -401,7 +427,6 @@ const Booking = () => {
                     <option value="khalti">
                       Khalti
                     </option>
-
                   </select>
 
                   {errors.payment && (
@@ -441,6 +466,8 @@ const Booking = () => {
             </form>
 
           </div>
+
+          {/* BOOKING SUMMARY */}
 
           <aside className="booking-summary">
 
@@ -491,6 +518,8 @@ const Booking = () => {
 
               </div>
 
+              {/* PRICE PER PERSON */}
+
               <div className="booking-price">
 
                 <span>
@@ -503,6 +532,27 @@ const Booking = () => {
 
                 <small>
                   per person
+                </small>
+
+              </div>
+
+              {/* ESTIMATED TOTAL */}
+
+              <div className="booking-total-price">
+
+                <span>
+                  Estimated Total
+                </span>
+
+                <strong>
+                  ${totalPrice}
+                </strong>
+
+                <small>
+                  {formData.travelers} traveler
+                  {Number(formData.travelers) !== 1
+                    ? "s"
+                    : ""}
                 </small>
 
               </div>
