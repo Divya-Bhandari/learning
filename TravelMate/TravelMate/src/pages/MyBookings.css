@@ -205,3 +205,42 @@
     width: 100%;
   }
 }
+
+.booking-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 5px;
+  padding: 18px 20px;
+  border-radius: 12px;
+  background: #f0fdfa;
+  border: 1px solid #99f6e4;
+}
+
+.booking-total span {
+  display: block;
+  margin-bottom: 5px;
+  color: #0f766e;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.booking-total strong {
+  display: block;
+  color: #111827;
+  font-size: 24px;
+}
+
+.booking-total small {
+  color: #6b7280;
+  font-size: 12px;
+}
+
+@media (max-width: 500px) {
+  .booking-total {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
