@@ -7,12 +7,20 @@ import MyBookings from "../pages/MyBookings";
 
 import DestinationDetails from "../components/destinations/DestinationDetails/DestinationDetails";
 import Booking from "../components/booking/Booking";
+
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
 
-      <Route path="/about" element={<About />} />
+      <Route
+        path="/"
+        element={<Home />}
+      />
+
+      <Route
+        path="/about"
+        element={<About />}
+      />
 
       <Route
         path="/destinations"
@@ -28,6 +36,12 @@ const AppRoutes = () => {
         path="/booking/:id"
         element={<Booking />}
       />
+
+      <Route
+        path="/my-bookings"
+        element={<MyBookings />}
+      />
+
     </Routes>
   );
 };

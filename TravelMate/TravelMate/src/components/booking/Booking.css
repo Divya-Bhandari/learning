@@ -305,3 +305,33 @@
 .booking-field select:has(+ .booking-error) {
   border-color: #dc2626;
 }
+
+.booking-total {
+  margin-top: 20px;
+  padding: 18px;
+  border-radius: 12px;
+  background: #f0fdfa;
+  border: 1px solid #99f6e4;
+}
+
+.booking-total span {
+  display: block;
+  margin-bottom: 6px;
+  color: #0f766e;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.booking-total strong {
+  display: block;
+  color: #111827;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.booking-total small {
+  display: block;
+  margin-top: 4px;
+  color: #6b7280;
+  font-size: 12px;
+}

@@ -522,20 +522,40 @@ const Booking = () => {
 
               <div className="booking-price">
 
-                <span>
-                  Starting From
-                </span>
+  <span>
+    Starting From
+  </span>
 
-                <strong>
-                  ${destination.price}
-                </strong>
+  <strong>
+    ${destination.price}
+  </strong>
 
-                <small>
-                  per person
-                </small>
+  <small>
+    per person
+  </small>
 
-              </div>
+</div>
 
+<div className="booking-total">
+
+  <span>
+    Estimated Booking Total
+  </span>
+
+  <strong>
+    $
+    {(
+      Number(destination.price) *
+      Number(formData.travelers || 1)
+    ).toLocaleString()}
+  </strong>
+
+  <small>
+    {formData.travelers} traveler
+    {Number(formData.travelers) > 1 ? "s" : ""}
+  </small>
+
+</div>
               {/* ESTIMATED TOTAL */}
 
               <div className="booking-total-price">
