@@ -98,7 +98,9 @@
   font-size: 14px;
   outline: none;
   box-sizing: border-box;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .booking-field input:focus,
@@ -125,7 +127,9 @@
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
 .booking-submit-button:hover {
@@ -262,6 +266,58 @@
   text-decoration: none;
 }
 
+.booking-error {
+  color: #dc2626;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.booking-field input:has(+ .booking-error),
+.booking-field select:has(+ .booking-error) {
+  border-color: #dc2626;
+}
+
+
+/* =========================================
+   ESTIMATED BOOKING TOTAL
+========================================= */
+
+.booking-estimated-total {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 25px 0;
+  padding: 18px;
+  background: #f0fdfa;
+  border: 1px solid #99f6e4;
+  border-radius: 12px;
+}
+
+.booking-estimated-total div {
+  padding: 10px;
+}
+
+.booking-estimated-total span {
+  display: block;
+  margin-bottom: 6px;
+  color: #0f766e;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.booking-estimated-total strong {
+  display: block;
+  color: #111827;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
 @media (max-width: 850px) {
   .booking-layout {
     grid-template-columns: 1fr;
@@ -293,45 +349,8 @@
   .booking-summary-content {
     padding: 20px;
   }
-}
 
-.booking-error {
-  color: #dc2626;
-  font-size: 12px;
-  line-height: 1.4;
-}
-
-.booking-field input:has(+ .booking-error),
-.booking-field select:has(+ .booking-error) {
-  border-color: #dc2626;
-}
-
-.booking-total {
-  margin-top: 20px;
-  padding: 18px;
-  border-radius: 12px;
-  background: #f0fdfa;
-  border: 1px solid #99f6e4;
-}
-
-.booking-total span {
-  display: block;
-  margin-bottom: 6px;
-  color: #0f766e;
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.booking-total strong {
-  display: block;
-  color: #111827;
-  font-size: 28px;
-  font-weight: 700;
-}
-
-.booking-total small {
-  display: block;
-  margin-top: 4px;
-  color: #6b7280;
-  font-size: 12px;
+  .booking-estimated-total {
+    grid-template-columns: 1fr;
+  }
 }

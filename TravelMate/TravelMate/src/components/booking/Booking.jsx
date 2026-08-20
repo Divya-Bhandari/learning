@@ -81,14 +81,18 @@ const Booking = () => {
       return;
     }
 
+    // Calculate booking price
+    const travelers = Number(formData.travelers);
+    const pricePerPerson = Number(destination.price);
+    const totalPrice = pricePerPerson * travelers;
+
+    // Get existing bookings
     const existingBookings =
       JSON.parse(
         localStorage.getItem("travelmateBookings")
       ) || [];
 
-    const totalPrice =
-      destination.price * Number(formData.travelers);
-
+    // Create new booking
     const newBooking = {
       id: Date.now(),
 
@@ -96,7 +100,7 @@ const Booking = () => {
       email: formData.email,
       phone: formData.phone,
 
-      travelers: Number(formData.travelers),
+      travelers: travelers,
 
       date: formData.date,
 
@@ -107,11 +111,13 @@ const Booking = () => {
       destination: destination.name,
       country: destination.country,
 
-      price: destination.price,
+      price: pricePerPerson,
 
+      // Estimated total price
       totalPrice: totalPrice,
     };
 
+    // Save booking
     localStorage.setItem(
       "travelmateBookings",
       JSON.stringify([
@@ -120,6 +126,7 @@ const Booking = () => {
       ])
     );
 
+    // Show success page
     setSubmitted(true);
 
     window.scrollTo({
@@ -140,22 +147,20 @@ const Booking = () => {
     );
   }
 
-  const totalPrice =
-    destination.price * Number(formData.travelers);
-
   if (submitted) {
+    const totalPrice =
+      Number(destination.price) *
+      Number(formData.travelers);
+
     return (
       <main className="booking-success-page">
-
         <div className="booking-success-card">
 
           <div className="success-icon">
             ✓
           </div>
 
-          <span>
-            TravelMate Booking
-          </span>
+          <span>TravelMate Booking</span>
 
           <h1>
             Booking Request Submitted!
@@ -178,9 +183,7 @@ const Booking = () => {
           <div className="success-details">
 
             <div>
-              <span>
-                Destination
-              </span>
+              <span>Destination</span>
 
               <strong>
                 {destination.name}
@@ -188,9 +191,7 @@ const Booking = () => {
             </div>
 
             <div>
-              <span>
-                Travelers
-              </span>
+              <span>Travelers</span>
 
               <strong>
                 {formData.travelers}
@@ -198,25 +199,27 @@ const Booking = () => {
             </div>
 
             <div>
-              <span>
-                Travel Date
-              </span>
+              <span>Travel Date</span>
 
               <strong>
                 {formData.date}
               </strong>
             </div>
 
-            <div>
-              <span>
-                Total Price
-              </span>
+          </div>
 
-              <strong>
-                ${totalPrice}
-              </strong>
-            </div>
+          <div className="success-total">
+            <span>Estimated Booking Total</span>
 
+            <strong>
+              ${totalPrice.toLocaleString()}
+            </strong>
+
+            <small>
+              ${Number(destination.price).toLocaleString()} ×{" "}
+              {formData.travelers} traveler
+              {Number(formData.travelers) > 1 ? "s" : ""}
+            </small>
           </div>
 
           <Link
@@ -236,10 +239,13 @@ const Booking = () => {
           </Link>
 
         </div>
-
       </main>
     );
   }
+
+  const estimatedTotal =
+    Number(destination.price) *
+    Number(formData.travelers || 1);
 
   return (
     <main className="booking-page">
@@ -265,8 +271,6 @@ const Booking = () => {
         </div>
 
         <div className="booking-layout">
-
-          {/* BOOKING FORM */}
 
           <div className="booking-form-card">
 
@@ -427,6 +431,7 @@ const Booking = () => {
                     <option value="khalti">
                       Khalti
                     </option>
+
                   </select>
 
                   {errors.payment && (
@@ -456,6 +461,41 @@ const Booking = () => {
 
               </div>
 
+              {/* Estimated Total */}
+              <div className="booking-estimated-total">
+
+                <div>
+                  <span>
+                    Price Per Person
+                  </span>
+
+                  <strong>
+                    ${Number(destination.price).toLocaleString()}
+                  </strong>
+                </div>
+
+                <div>
+                  <span>
+                    Travelers
+                  </span>
+
+                  <strong>
+                    {formData.travelers}
+                  </strong>
+                </div>
+
+                <div>
+                  <span>
+                    Estimated Total
+                  </span>
+
+                  <strong>
+                    ${estimatedTotal.toLocaleString()}
+                  </strong>
+                </div>
+
+              </div>
+
               <button
                 type="submit"
                 className="booking-submit-button"
@@ -466,8 +506,6 @@ const Booking = () => {
             </form>
 
           </div>
-
-          {/* BOOKING SUMMARY */}
 
           <aside className="booking-summary">
 
@@ -518,61 +556,18 @@ const Booking = () => {
 
               </div>
 
-              {/* PRICE PER PERSON */}
-
               <div className="booking-price">
 
-  <span>
-    Starting From
-  </span>
-
-  <strong>
-    ${destination.price}
-  </strong>
-
-  <small>
-    per person
-  </small>
-
-</div>
-
-<div className="booking-total">
-
-  <span>
-    Estimated Booking Total
-  </span>
-
-  <strong>
-    $
-    {(
-      Number(destination.price) *
-      Number(formData.travelers || 1)
-    ).toLocaleString()}
-  </strong>
-
-  <small>
-    {formData.travelers} traveler
-    {Number(formData.travelers) > 1 ? "s" : ""}
-  </small>
-
-</div>
-              {/* ESTIMATED TOTAL */}
-
-              <div className="booking-total-price">
-
                 <span>
-                  Estimated Total
+                  Starting From
                 </span>
 
                 <strong>
-                  ${totalPrice}
+                  ${destination.price}
                 </strong>
 
                 <small>
-                  {formData.travelers} traveler
-                  {Number(formData.travelers) !== 1
-                    ? "s"
-                    : ""}
+                  per person
                 </small>
 
               </div>
