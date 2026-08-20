@@ -1,9 +1,33 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+
 import "./MyBookings.css";
 
 const MyBookings = () => {
-  const bookings =
-    JSON.parse(localStorage.getItem("travelmateBookings")) || [];
+  const [bookings, setBookings] = useState(
+    JSON.parse(localStorage.getItem("travelmateBookings")) || []
+  );
+
+  const handleDeleteBooking = (bookingId) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this booking?"
+    );
+
+    if (!confirmDelete) {
+      return;
+    }
+
+    const updatedBookings = bookings.filter(
+      (booking) => booking.id !== bookingId
+    );
+
+    localStorage.setItem(
+      "travelmateBookings",
+      JSON.stringify(updatedBookings)
+    );
+
+    setBookings(updatedBookings);
+  };
 
   return (
     <main className="my-bookings-page">
@@ -36,12 +60,14 @@ const MyBookings = () => {
 
             {bookings.map((booking) => {
 
-              const pricePerPerson = Number(booking.price) || 0;
+              const pricePerPerson =
+                Number(booking.price) || 0;
 
               const travelers =
                 Number(booking.travelers) || 1;
 
               const estimatedTotal =
+                Number(booking.totalPrice) ||
                 pricePerPerson * travelers;
 
               return (
@@ -114,7 +140,6 @@ const MyBookings = () => {
 
                   </div>
 
-                  {/* Estimated Booking Total */}
                   <div className="booking-total">
 
                     <div>
@@ -148,6 +173,20 @@ const MyBookings = () => {
 
                     </div>
                   )}
+
+                  <div className="booking-card-actions">
+
+                    <button
+                      type="button"
+                      className="delete-booking-button"
+                      onClick={() =>
+                        handleDeleteBooking(booking.id)
+                      }
+                    >
+                      Delete Booking
+                    </button>
+
+                  </div>
 
                 </div>
               );
