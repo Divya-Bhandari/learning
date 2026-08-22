@@ -9,6 +9,7 @@ import DestinationDetails from "../components/destinations/DestinationDetails/De
 import Booking from "../components/booking/Booking";
 
 import BookingDetails from "../pages/BookingDetails/BookingDetails";
+import Login from "../pages/Login";
 
 const AppRoutes = () => {
   return (
