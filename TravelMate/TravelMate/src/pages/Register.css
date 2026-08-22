@@ -1,0 +1,126 @@
+.register-page {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  background: #f8fafc;
+}
+
+.register-card {
+  width: 100%;
+  max-width: 450px;
+  padding: 40px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.register-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.register-header > span {
+  color: #0f766e;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.register-header h1 {
+  margin: 10px 0;
+  color: #111827;
+  font-size: 32px;
+}
+
+.register-header p {
+  margin: 0;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.register-error {
+  margin-bottom: 20px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #fee2e2;
+  color: #b91c1c;
+  font-size: 14px;
+}
+
+.register-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 18px;
+}
+
+.register-field label {
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.register-field input {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  box-sizing: border-box;
+  outline: none;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.register-field input:focus {
+  border-color: #0f766e;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
+}
+
+.register-submit-button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: #0f766e;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.register-submit-button:hover {
+  background: #115e59;
+}
+
+.register-login {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.register-login p {
+  display: inline;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.register-login a {
+  margin-left: 5px;
+  color: #0f766e;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+@media (max-width: 500px) {
+  .register-page {
+    padding: 40px 15px;
+  }
+
+  .register-card {
+    padding: 30px 20px;
+  }
+}
