@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import "./Login.css";
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -28,7 +29,9 @@ const Login = () => {
     e.preventDefault();
 
     const savedUser =
-      JSON.parse(localStorage.getItem("travelmateUser"));
+      JSON.parse(
+        localStorage.getItem("travelmateUser")
+      );
 
     if (!savedUser) {
       setError(
@@ -52,7 +55,14 @@ const Login = () => {
       "true"
     );
 
-    navigate("/");
+    const destination =
+      location.state?.from;
+
+    if (destination) {
+      navigate(destination);
+    } else {
+      navigate("/");
+    }
   };
 
   return (
@@ -133,7 +143,7 @@ const Login = () => {
           </p>
 
           <Link to="/register">
-            Create an Account
+            Create Account
           </Link>
 
         </div>

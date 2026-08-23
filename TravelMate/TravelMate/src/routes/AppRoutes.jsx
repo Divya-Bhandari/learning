@@ -12,6 +12,8 @@ import Booking from "../components/booking/Booking";
 
 import BookingDetails from "../pages/BookingDetails/BookingDetails";
 
+import ProtectedRoute from "../components/auth/ProtectedRoute";
+
 const AppRoutes = () => {
   return (
     <Routes>
@@ -40,24 +42,6 @@ const AppRoutes = () => {
         element={<DestinationDetails />}
       />
 
-      {/* Booking */}
-      <Route
-        path="/booking/:id"
-        element={<Booking />}
-      />
-
-      {/* My Bookings */}
-      <Route
-        path="/my-bookings"
-        element={<MyBookings />}
-      />
-
-      {/* Booking Details */}
-      <Route
-        path="/booking-details/:id"
-        element={<BookingDetails />}
-      />
-
       {/* Login */}
       <Route
         path="/login"
@@ -68,6 +52,36 @@ const AppRoutes = () => {
       <Route
         path="/register"
         element={<Register />}
+      />
+
+      {/* Booking */}
+      <Route
+        path="/booking/:id"
+        element={
+          <ProtectedRoute>
+            <Booking />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* My Bookings */}
+      <Route
+        path="/my-bookings"
+        element={
+          <ProtectedRoute>
+            <MyBookings />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Booking Details */}
+      <Route
+        path="/booking-details/:id"
+        element={
+          <ProtectedRoute>
+            <BookingDetails />
+          </ProtectedRoute>
+        }
       />
 
     </Routes>
