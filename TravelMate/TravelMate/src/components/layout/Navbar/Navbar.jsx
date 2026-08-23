@@ -1,7 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const isLoggedIn =
+    localStorage.getItem("travelmateLoggedIn") === "true";
+
+  const handleLogout = () => {
+    localStorage.removeItem("travelmateLoggedIn");
+    navigate("/login");
+  };
+
   return (
     <nav className="navbar">
 
@@ -22,22 +32,40 @@ const Navbar = () => {
         </li>
 
         <li>
-          <Link to="/destinations">Destinations</Link>
+          <Link to="/destinations">
+            Destinations
+          </Link>
         </li>
 
         <li>
-          <Link to="/my-bookings">My Bookings</Link>
+          <Link to="/my-bookings">
+            My Bookings
+          </Link>
         </li>
 
         <li>
-          <Link to="/contact">Contact</Link>
+          <Link to="/contact">
+            Contact
+          </Link>
         </li>
 
       </ul>
 
-      <button className="login-btn">
-        Login
-      </button>
+      {isLoggedIn ? (
+        <button
+          className="login-btn"
+          onClick={handleLogout}
+        >
+          Logout
+        </button>
+      ) : (
+        <button
+          className="login-btn"
+          onClick={() => navigate("/login")}
+        >
+          Login
+        </button>
+      )}
 
     </nav>
   );
