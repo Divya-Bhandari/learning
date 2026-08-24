@@ -14,6 +14,7 @@ const Register = () => {
   });
 
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,24 +25,40 @@ const Register = () => {
     }));
 
     setError("");
+    setSuccess("");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match.");
+    if (
+      !formData.name.trim() ||
+      !formData.email.trim() ||
+      !formData.password ||
+      !formData.confirmPassword
+    ) {
+      setError("Please fill in all fields.");
       return;
     }
 
     if (formData.password.length < 6) {
-      setError("Password must be at least 6 characters.");
+      setError(
+        "Password must be at least 6 characters."
+      );
+      return;
+    }
+
+    if (
+      formData.password !==
+      formData.confirmPassword
+    ) {
+      setError("Passwords do not match.");
       return;
     }
 
     const user = {
-      name: formData.name,
-      email: formData.email,
+      name: formData.name.trim(),
+      email: formData.email.trim(),
       password: formData.password,
     };
 
@@ -50,12 +67,17 @@ const Register = () => {
       JSON.stringify(user)
     );
 
-    localStorage.setItem(
-      "travelmateLoggedIn",
-      "true"
+    localStorage.removeItem(
+      "travelmateLoggedIn"
     );
 
-    navigate("/");
+    setSuccess(
+      "Account created successfully! Redirecting to login..."
+    );
+
+    setTimeout(() => {
+      navigate("/login");
+    }, 1000);
   };
 
   return (
@@ -82,6 +104,12 @@ const Register = () => {
           </div>
         )}
 
+        {success && (
+          <div className="register-success">
+            {success}
+          </div>
+        )}
+
         <form onSubmit={handleSubmit}>
 
           <div className="register-field">
@@ -97,7 +125,6 @@ const Register = () => {
               value={formData.name}
               onChange={handleChange}
               placeholder="Enter your full name"
-              required
             />
 
           </div>
@@ -115,7 +142,6 @@ const Register = () => {
               value={formData.email}
               onChange={handleChange}
               placeholder="Enter your email"
-              required
             />
 
           </div>
@@ -133,7 +159,6 @@ const Register = () => {
               value={formData.password}
               onChange={handleChange}
               placeholder="Create a password"
-              required
             />
 
           </div>
@@ -151,7 +176,6 @@ const Register = () => {
               value={formData.confirmPassword}
               onChange={handleChange}
               placeholder="Confirm your password"
-              required
             />
 
           </div>
