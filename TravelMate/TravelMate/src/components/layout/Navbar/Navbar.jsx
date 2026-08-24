@@ -7,9 +7,15 @@ const Navbar = () => {
   const isLoggedIn =
     localStorage.getItem("travelmateLoggedIn") === "true";
 
+  const user =
+    JSON.parse(
+      localStorage.getItem("travelmateUser")
+    ) || null;
+
   const handleLogout = () => {
     localStorage.removeItem("travelmateLoggedIn");
-    navigate("/login");
+
+    navigate("/");
   };
 
   return (
@@ -37,11 +43,13 @@ const Navbar = () => {
           </Link>
         </li>
 
-        <li>
-          <Link to="/my-bookings">
-            My Bookings
-          </Link>
-        </li>
+        {isLoggedIn && (
+          <li>
+            <Link to="/my-bookings">
+              My Bookings
+            </Link>
+          </li>
+        )}
 
         <li>
           <Link to="/contact">
@@ -51,21 +59,32 @@ const Navbar = () => {
 
       </ul>
 
-      {isLoggedIn ? (
-        <button
-          className="login-btn"
-          onClick={handleLogout}
-        >
-          Logout
-        </button>
-      ) : (
-        <button
-          className="login-btn"
-          onClick={() => navigate("/login")}
-        >
-          Login
-        </button>
-      )}
+      <div className="navbar-auth">
+
+        {isLoggedIn ? (
+          <>
+            <span className="navbar-user">
+              Hi, {user?.name || "Traveler"}
+            </span>
+
+            <button
+              type="button"
+              className="logout-btn"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <Link
+            to="/login"
+            className="login-btn"
+          >
+            Login
+          </Link>
+        )}
+
+      </div>
 
     </nav>
   );
