@@ -42,23 +42,22 @@
   line-height: 1.6;
 }
 
-.register-error {
-  margin-bottom: 20px;
-  padding: 12px;
-  border-radius: 8px;
-  background: #fee2e2;
-  color: #b91c1c;
-  font-size: 14px;
-}
-
+.register-error,
 .register-success {
   margin-bottom: 20px;
   padding: 12px;
   border-radius: 8px;
+  font-size: 14px;
+}
+
+.register-error {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.register-success {
   background: #dcfce7;
   color: #166534;
-  font-size: 14px;
-  line-height: 1.5;
 }
 
 .register-field {
@@ -83,7 +82,6 @@
   outline: none;
   font-family: inherit;
   font-size: 14px;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .register-field input:focus {
@@ -101,12 +99,10 @@
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .register-submit-button:hover {
   background: #115e59;
-  transform: translateY(-1px);
 }
 
 .register-login {
@@ -128,10 +124,6 @@
   text-decoration: none;
 }
 
-.register-login a:hover {
-  color: #115e59;
-}
-
 @media (max-width: 500px) {
   .register-page {
     padding: 40px 15px;
@@ -139,9 +131,5 @@
 
   .register-card {
     padding: 30px 20px;
-  }
-
-  .register-header h1 {
-    font-size: 28px;
   }
 }

@@ -1,11 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+
 import "./Navbar.css";
 
 const Navbar = () => {
   const navigate = useNavigate();
 
-  const isLoggedIn =
-    localStorage.getItem("travelmateLoggedIn") === "true";
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem("travelmateLoggedIn") === "true"
+  );
 
   const user =
     JSON.parse(
@@ -14,6 +17,8 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("travelmateLoggedIn");
+
+    setIsLoggedIn(false);
 
     navigate("/");
   };
@@ -76,12 +81,21 @@ const Navbar = () => {
             </button>
           </>
         ) : (
-          <Link
-            to="/login"
-            className="login-btn"
-          >
-            Login
-          </Link>
+          <>
+            <Link
+              to="/login"
+              className="login-btn"
+            >
+              Login
+            </Link>
+
+            <Link
+              to="/register"
+              className="register-btn"
+            >
+              Register
+            </Link>
+          </>
         )}
 
       </div>

@@ -42,16 +42,11 @@ const Register = () => {
     }
 
     if (formData.password.length < 6) {
-      setError(
-        "Password must be at least 6 characters."
-      );
+      setError("Password must be at least 6 characters.");
       return;
     }
 
-    if (
-      formData.password !==
-      formData.confirmPassword
-    ) {
+    if (formData.password !== formData.confirmPassword) {
       setError("Passwords do not match.");
       return;
     }
@@ -67,9 +62,7 @@ const Register = () => {
       JSON.stringify(user)
     );
 
-    localStorage.removeItem(
-      "travelmateLoggedIn"
-    );
+    localStorage.removeItem("travelmateLoggedIn");
 
     setSuccess(
       "Account created successfully! Redirecting to login..."
@@ -82,7 +75,6 @@ const Register = () => {
 
   return (
     <main className="register-page">
-
       <div className="register-card">
 
         <div className="register-header">
@@ -202,7 +194,6 @@ const Register = () => {
         </div>
 
       </div>
-
     </main>
   );
 };
