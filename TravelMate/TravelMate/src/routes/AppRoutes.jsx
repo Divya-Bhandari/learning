@@ -3,16 +3,16 @@ import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import About from "../pages/About";
 import Destinations from "../pages/Destinations";
+import Contact from "../pages/Contact";
 import MyBookings from "../pages/MyBookings";
-import Login from "../pages/Login";
-import Register from "../pages/Register";
 
 import DestinationDetails from "../components/destinations/DestinationDetails/DestinationDetails";
 import Booking from "../components/booking/Booking";
 
 import BookingDetails from "../pages/BookingDetails/BookingDetails";
 
-import ProtectedRoute from "../components/auth/ProtectedRoute";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
 
 const AppRoutes = () => {
   return (
@@ -42,6 +42,30 @@ const AppRoutes = () => {
         element={<DestinationDetails />}
       />
 
+      {/* Booking */}
+      <Route
+        path="/booking/:id"
+        element={<Booking />}
+      />
+
+      {/* My Bookings */}
+      <Route
+        path="/my-bookings"
+        element={<MyBookings />}
+      />
+
+      {/* Booking Details */}
+      <Route
+        path="/booking-details/:id"
+        element={<BookingDetails />}
+      />
+
+      {/* Contact */}
+      <Route
+        path="/contact"
+        element={<Contact />}
+      />
+
       {/* Login */}
       <Route
         path="/login"
@@ -52,36 +76,6 @@ const AppRoutes = () => {
       <Route
         path="/register"
         element={<Register />}
-      />
-
-      {/* Booking */}
-      <Route
-        path="/booking/:id"
-        element={
-          <ProtectedRoute>
-            <Booking />
-          </ProtectedRoute>
-        }
-      />
-
-      {/* My Bookings */}
-      <Route
-        path="/my-bookings"
-        element={
-          <ProtectedRoute>
-            <MyBookings />
-          </ProtectedRoute>
-        }
-      />
-
-      {/* Booking Details */}
-      <Route
-        path="/booking-details/:id"
-        element={
-          <ProtectedRoute>
-            <BookingDetails />
-          </ProtectedRoute>
-        }
       />
 
     </Routes>
