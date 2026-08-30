@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "./Navbar.css";
 
@@ -10,15 +10,37 @@ const Navbar = () => {
     localStorage.getItem("travelmateLoggedIn") === "true"
   );
 
-  const user =
-    JSON.parse(
-      localStorage.getItem("travelmateUser")
-    ) || null;
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("travelmateUser")) || null
+  );
+
+  useEffect(() => {
+    const checkLoginStatus = () => {
+      const loggedIn =
+        localStorage.getItem("travelmateLoggedIn") === "true";
+
+      const savedUser =
+        JSON.parse(localStorage.getItem("travelmateUser")) || null;
+
+      setIsLoggedIn(loggedIn);
+      setUser(savedUser);
+    };
+
+    window.addEventListener("storage", checkLoginStatus);
+
+    const interval = setInterval(checkLoginStatus, 500);
+
+    return () => {
+      window.removeEventListener("storage", checkLoginStatus);
+      clearInterval(interval);
+    };
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("travelmateLoggedIn");
 
     setIsLoggedIn(false);
+    setUser(null);
 
     navigate("/");
   };
