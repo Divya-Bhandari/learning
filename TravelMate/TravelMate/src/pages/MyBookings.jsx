@@ -1,12 +1,36 @@
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 import "./MyBookings.css";
 
 const MyBookings = () => {
+  const navigate = useNavigate();
+
+  const isLoggedIn =
+    localStorage.getItem("travelmateLoggedIn") === "true";
+
   const bookings =
     JSON.parse(
       localStorage.getItem("travelmateBookings")
     ) || [];
+
+  if (!isLoggedIn) {
+    return (
+      <main className="my-bookings-not-found">
+        <h1>Login Required</h1>
+
+        <p>
+          Please login to view your bookings.
+        </p>
+
+        <Link to="/login">
+          Login
+        </Link>
+      </main>
+    );
+  }
+
+  const handleViewBooking = (id) => {
+    navigate(`/booking-details/${id}`);
+  };
 
   return (
     <main className="my-bookings-page">
@@ -20,21 +44,31 @@ const MyBookings = () => {
           <h1>My Bookings</h1>
 
           <p>
-            View and manage your travel bookings.
+            View and manage all your upcoming and
+            previous travel bookings.
           </p>
 
         </div>
 
         {bookings.length === 0 ? (
-          <div className="no-bookings">
+          <div className="my-bookings-empty">
+
+            <div className="empty-icon">
+              ✈
+            </div>
 
             <h2>No Bookings Yet</h2>
 
             <p>
               You haven't made any bookings yet.
+              Start exploring destinations and plan
+              your next journey.
             </p>
 
-            <Link to="/destinations">
+            <Link
+              to="/destinations"
+              className="browse-destinations-button"
+            >
               Explore Destinations
             </Link>
 
@@ -44,15 +78,15 @@ const MyBookings = () => {
 
             {bookings.map((booking) => {
 
-              const pricePerPerson =
-                Number(booking.price) || 0;
-
               const travelers =
                 Number(booking.travelers) || 1;
 
-              const estimatedTotal =
+              const price =
+                Number(booking.price) || 0;
+
+              const total =
                 Number(booking.totalPrice) ||
-                pricePerPerson * travelers;
+                price * travelers;
 
               return (
                 <div
@@ -60,11 +94,11 @@ const MyBookings = () => {
                   key={booking.id}
                 >
 
-                  <div className="booking-card-header">
+                  <div className="booking-card-main">
 
-                    <div>
+                    <div className="booking-card-info">
 
-                      <span>
+                      <span className="booking-label">
                         Destination
                       </span>
 
@@ -87,29 +121,15 @@ const MyBookings = () => {
                   <div className="booking-card-details">
 
                     <div>
-                      <span>
-                        Traveler
-                      </span>
+                      <span>Booking ID</span>
 
                       <strong>
-                        {booking.name}
+                        #{booking.id}
                       </strong>
                     </div>
 
                     <div>
-                      <span>
-                        Travelers
-                      </span>
-
-                      <strong>
-                        {travelers}
-                      </strong>
-                    </div>
-
-                    <div>
-                      <span>
-                        Travel Date
-                      </span>
+                      <span>Travel Date</span>
 
                       <strong>
                         {booking.date}
@@ -117,67 +137,38 @@ const MyBookings = () => {
                     </div>
 
                     <div>
-                      <span>
-                        Payment
-                      </span>
+                      <span>Travelers</span>
 
                       <strong>
-                        {booking.payment}
+                        {travelers}
                       </strong>
                     </div>
 
                     <div>
-                      <span>
-                        Price Per Person
-                      </span>
+                      <span>Total</span>
 
                       <strong>
-                        ${pricePerPerson.toLocaleString()}
+                        ${total.toLocaleString()}
                       </strong>
                     </div>
 
                   </div>
 
-                  <div className="booking-total">
-
-                    <span>
-                      Estimated Booking Total
-                    </span>
-
-                    <strong>
-                      ${estimatedTotal.toLocaleString()}
-                    </strong>
+                  <div className="booking-card-footer">
 
                     <small>
-                      ${pricePerPerson.toLocaleString()} ×{" "}
-                      {travelers} traveler
-                      {travelers > 1 ? "s" : ""}
+                      Booked by {booking.name}
                     </small>
 
-                  </div>
-
-                  {booking.requests && (
-                    <div className="booking-requests">
-
-                      <span>
-                        Special Requests
-                      </span>
-
-                      <p>
-                        {booking.requests}
-                      </p>
-
-                    </div>
-                  )}
-
-                  <div className="booking-card-actions">
-
-                    <Link
-                      to={`/booking-details/${booking.id}`}
+                    <button
+                      type="button"
+                      onClick={() =>
+                        handleViewBooking(booking.id)
+                      }
                       className="view-booking-button"
                     >
-                      View Booking Details
-                    </Link>
+                      View Details
+                    </button>
 
                   </div>
 
