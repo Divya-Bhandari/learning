@@ -32,6 +32,27 @@ const MyBookings = () => {
     navigate(`/booking-details/${id}`);
   };
 
+  const handleCancelBooking = (id) => {
+    const confirmed = window.confirm(
+      "Are you sure you want to cancel this booking?"
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    const updatedBookings = bookings.filter(
+      (booking) => String(booking.id) !== String(id)
+    );
+
+    localStorage.setItem(
+      "travelmateBookings",
+      JSON.stringify(updatedBookings)
+    );
+
+    window.location.reload();
+  };
+
   return (
     <main className="my-bookings-page">
 
@@ -160,15 +181,29 @@ const MyBookings = () => {
                       Booked by {booking.name}
                     </small>
 
-                    <button
-                      type="button"
-                      onClick={() =>
-                        handleViewBooking(booking.id)
-                      }
-                      className="view-booking-button"
-                    >
-                      View Details
-                    </button>
+                    <div className="booking-card-actions">
+
+                      <button
+                        type="button"
+                        onClick={() =>
+                          handleViewBooking(booking.id)
+                        }
+                        className="view-booking-button"
+                      >
+                        View Details
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() =>
+                          handleCancelBooking(booking.id)
+                        }
+                        className="cancel-booking-button"
+                      >
+                        Cancel Booking
+                      </button>
+
+                    </div>
 
                   </div>
 

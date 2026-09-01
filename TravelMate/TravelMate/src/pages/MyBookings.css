@@ -237,3 +237,38 @@
     width: 100%;
   }
 }
+
+.booking-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cancel-booking-button {
+  padding: 10px 18px;
+  border: 1px solid #dc2626;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #dc2626;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cancel-booking-button:hover {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+@media (max-width: 600px) {
+  .booking-card-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .booking-card-actions button {
+    width: 100%;
+  }
+}
