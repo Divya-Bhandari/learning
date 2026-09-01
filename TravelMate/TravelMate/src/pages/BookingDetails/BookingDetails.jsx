@@ -1,9 +1,10 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import "./BookingDetails.css";
 
 const BookingDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const bookings =
     JSON.parse(
@@ -20,7 +21,8 @@ const BookingDetails = () => {
         <h1>Booking Not Found</h1>
 
         <p>
-          The booking you are looking for does not exist.
+          The booking you are looking for does not exist
+          or has already been cancelled.
         </p>
 
         <Link to="/my-bookings">
@@ -39,6 +41,28 @@ const BookingDetails = () => {
   const estimatedTotal =
     Number(booking.totalPrice) ||
     pricePerPerson * travelers;
+
+  const handleCancelBooking = () => {
+    const confirmed = window.confirm(
+      "Are you sure you want to cancel this booking?"
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    const updatedBookings = bookings.filter(
+      (item) =>
+        String(item.id) !== String(booking.id)
+    );
+
+    localStorage.setItem(
+      "travelmateBookings",
+      JSON.stringify(updatedBookings)
+    );
+
+    navigate("/my-bookings");
+  };
 
   return (
     <main className="booking-details-page">
@@ -141,7 +165,7 @@ const BookingDetails = () => {
               <span>Payment Method</span>
 
               <strong>
-                {booking.payment}
+                {booking.payment || "Not specified"}
               </strong>
             </div>
 
@@ -186,6 +210,25 @@ const BookingDetails = () => {
 
             </div>
           )}
+
+          <div className="booking-details-actions">
+
+            <Link
+              to="/my-bookings"
+              className="booking-details-back-button"
+            >
+              Back to My Bookings
+            </Link>
+
+            <button
+              type="button"
+              className="booking-details-cancel-button"
+              onClick={handleCancelBooking}
+            >
+              Cancel Booking
+            </button>
+
+          </div>
 
         </div>
 
