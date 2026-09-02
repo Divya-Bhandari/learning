@@ -1,36 +1,39 @@
 import { Routes, Route } from "react-router-dom";
 
+// Pages
 import Home from "../pages/Home";
 import About from "../pages/About";
 import Destinations from "../pages/Destinations";
 import Contact from "../pages/Contact";
 import MyBookings from "../pages/MyBookings";
-
-import DestinationDetails from "../components/destinations/DestinationDetails/DestinationDetails";
-import Booking from "../components/booking/Booking";
-
 import BookingDetails from "../pages/BookingDetails/BookingDetails";
-
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+
+// Destination
+import DestinationDetails from "../components/destinations/DestinationDetails/DestinationDetails";
+
+// Booking
+import Booking from "../components/booking/Booking";
+import BookingSuccess from "../components/booking/BookingSuccess";
 
 const AppRoutes = () => {
   return (
     <Routes>
 
-      {/* Home */}
+      {/* ==================== HOME ==================== */}
       <Route
         path="/"
         element={<Home />}
       />
 
-      {/* About */}
+      {/* ==================== ABOUT ==================== */}
       <Route
         path="/about"
         element={<About />}
       />
 
-      {/* Destinations */}
+      {/* ==================== DESTINATIONS ==================== */}
       <Route
         path="/destinations"
         element={<Destinations />}
@@ -42,13 +45,19 @@ const AppRoutes = () => {
         element={<DestinationDetails />}
       />
 
-      {/* Booking */}
+      {/* ==================== BOOKING ==================== */}
       <Route
         path="/booking/:id"
         element={<Booking />}
       />
 
-      {/* My Bookings */}
+      {/* Booking Success */}
+      <Route
+        path="/booking-success"
+        element={<BookingSuccess />}
+      />
+
+      {/* ==================== MY BOOKINGS ==================== */}
       <Route
         path="/my-bookings"
         element={<MyBookings />}
@@ -60,19 +69,18 @@ const AppRoutes = () => {
         element={<BookingDetails />}
       />
 
-      {/* Contact */}
+      {/* ==================== CONTACT ==================== */}
       <Route
         path="/contact"
         element={<Contact />}
       />
 
-      {/* Login */}
+      {/* ==================== AUTHENTICATION ==================== */}
       <Route
         path="/login"
         element={<Login />}
       />
 
-      {/* Register */}
       <Route
         path="/register"
         element={<Register />}
