@@ -6,38 +6,39 @@ import "./Navbar.css";
 const Navbar = () => {
   const navigate = useNavigate();
 
+  const getUser = () => {
+    try {
+      return JSON.parse(localStorage.getItem("travelmateUser")) || null;
+    } catch {
+      return null;
+    }
+  };
+
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("travelmateLoggedIn") === "true"
   );
 
-  const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("travelmateUser")) || null
-  );
+  const [user, setUser] = useState(getUser());
 
   useEffect(() => {
     const checkLoginStatus = () => {
       const loggedIn =
         localStorage.getItem("travelmateLoggedIn") === "true";
 
-      const savedUser =
-        JSON.parse(localStorage.getItem("travelmateUser")) || null;
-
       setIsLoggedIn(loggedIn);
-      setUser(savedUser);
+      setUser(getUser());
     };
 
     window.addEventListener("storage", checkLoginStatus);
 
-    const interval = setInterval(checkLoginStatus, 500);
-
     return () => {
       window.removeEventListener("storage", checkLoginStatus);
-      clearInterval(interval);
     };
   }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("travelmateLoggedIn");
+    localStorage.removeItem("travelmateUser");
 
     setIsLoggedIn(false);
     setUser(null);
@@ -48,12 +49,14 @@ const Navbar = () => {
   return (
     <nav className="navbar">
 
+      {/* Logo */}
       <div className="logo">
         <Link to="/">
           TravelMate
         </Link>
       </div>
 
+      {/* Navigation Links */}
       <ul className="nav-links">
 
         <li>
@@ -86,6 +89,7 @@ const Navbar = () => {
 
       </ul>
 
+      {/* Authentication */}
       <div className="navbar-auth">
 
         {isLoggedIn ? (
