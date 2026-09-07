@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 import "./Login.css";
 
@@ -27,28 +27,53 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const savedUser = JSON.parse(
+    setError("");
+
+    if (!formData.email.trim()) {
+      setError("Please enter your email address.");
+      return;
+    }
+
+    if (!formData.password) {
+      setError("Please enter your password.");
+      return;
+    }
+
+    const registeredUser = JSON.parse(
       localStorage.getItem("travelmateUser")
     );
 
-    if (!savedUser) {
+    if (!registeredUser) {
       setError("No account found. Please register first.");
       return;
     }
 
     if (
-      formData.email !== savedUser.email ||
-      formData.password !== savedUser.password
+      registeredUser.email.toLowerCase() !==
+      formData.email.trim().toLowerCase()
     ) {
-      setError("Incorrect email or password.");
+      setError("Invalid email or password.");
       return;
     }
 
+    if (registeredUser.password !== formData.password) {
+      setError("Invalid email or password.");
+      return;
+    }
+
+    // Save login status
     localStorage.setItem(
       "travelmateLoggedIn",
       "true"
     );
 
+    // Save current user
+    localStorage.setItem(
+      "travelmateUser",
+      JSON.stringify(registeredUser)
+    );
+
+    // Go to home page
     navigate("/");
   };
 
@@ -57,6 +82,7 @@ const Login = () => {
       <div className="login-card">
 
         <div className="login-header">
+
           <span>TravelMate</span>
 
           <h1>Welcome Back</h1>
@@ -64,6 +90,7 @@ const Login = () => {
           <p>
             Login to continue planning your next journey.
           </p>
+
         </div>
 
         {error && (
@@ -75,6 +102,7 @@ const Login = () => {
         <form onSubmit={handleSubmit}>
 
           <div className="login-field">
+
             <label htmlFor="email">
               Email Address
             </label>
@@ -86,11 +114,12 @@ const Login = () => {
               value={formData.email}
               onChange={handleChange}
               placeholder="Enter your email"
-              required
             />
+
           </div>
 
           <div className="login-field">
+
             <label htmlFor="password">
               Password
             </label>
@@ -102,8 +131,8 @@ const Login = () => {
               value={formData.password}
               onChange={handleChange}
               placeholder="Enter your password"
-              required
             />
+
           </div>
 
           <button
@@ -116,6 +145,7 @@ const Login = () => {
         </form>
 
         <div className="login-register">
+
           <p>
             Don't have an account?
           </p>
@@ -123,6 +153,7 @@ const Login = () => {
           <Link to="/register">
             Create Account
           </Link>
+
         </div>
 
       </div>
