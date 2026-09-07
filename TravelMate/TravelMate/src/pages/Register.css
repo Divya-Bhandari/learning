@@ -1,5 +1,5 @@
 .register-page {
-  min-height: 80vh;
+  min-height: calc(100vh - 72px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,6 +25,8 @@
 }
 
 .register-header > span {
+  display: inline-block;
+  margin-bottom: 8px;
   color: #0f766e;
   font-size: 13px;
   font-weight: 700;
@@ -33,24 +35,39 @@
 }
 
 .register-header h1 {
-  margin: 10px 0;
+  margin: 8px 0 10px;
   color: #111827;
   font-size: 32px;
+  line-height: 1.2;
 }
 
 .register-header p {
   margin: 0;
   color: #6b7280;
+  font-size: 14px;
   line-height: 1.6;
 }
 
 .register-error {
   margin-bottom: 20px;
-  padding: 12px;
+  padding: 12px 14px;
+  border: 1px solid #fecaca;
   border-radius: 8px;
   background: #fee2e2;
   color: #b91c1c;
   font-size: 14px;
+  line-height: 1.5;
+}
+
+.register-success {
+  margin-bottom: 20px;
+  padding: 12px 14px;
+  border: 1px solid #99f6e4;
+  border-radius: 8px;
+  background: #f0fdfa;
+  color: #0f766e;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .register-field {
@@ -71,12 +88,15 @@
   padding: 13px 14px;
   border: 1px solid #d1d5db;
   border-radius: 10px;
-  box-sizing: border-box;
-  outline: none;
   background: #ffffff;
   color: #111827;
+  box-sizing: border-box;
+  outline: none;
   font-family: inherit;
   font-size: 14px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .register-field input::placeholder {
@@ -90,11 +110,13 @@
 
 .register-submit-button {
   width: 100%;
+  margin-top: 5px;
   padding: 14px;
   border: none;
   border-radius: 10px;
   background: #0f766e;
   color: #ffffff;
+  font-family: inherit;
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
@@ -108,6 +130,10 @@
   transform: translateY(-1px);
 }
 
+.register-submit-button:active {
+  transform: translateY(0);
+}
+
 .register-login {
   margin-top: 25px;
   text-align: center;
@@ -115,6 +141,7 @@
 
 .register-login p {
   display: inline;
+  margin: 0;
   color: #6b7280;
   font-size: 14px;
 }
@@ -134,11 +161,13 @@
 
 @media (max-width: 500px) {
   .register-page {
+    min-height: calc(100vh - 60px);
     padding: 40px 15px;
   }
 
   .register-card {
     padding: 30px 20px;
+    border-radius: 16px;
   }
 
   .register-header h1 {
