@@ -1,55 +1,75 @@
+import { Link } from "react-router-dom";
+
 import "./Footer.css";
 
 const Footer = () => {
   return (
     <footer className="footer">
+
       <div className="footer-container">
 
-        <div className="footer-section">
-          <h2>TravelMate</h2>
+        <div className="footer-brand">
+
+          <Link to="/" className="footer-logo">
+            TravelMate
+          </Link>
+
           <p>
-            Discover amazing destinations, plan unforgettable journeys,
-            and explore the world with confidence.
+            Discover beautiful destinations, plan your
+            journey, and create unforgettable memories.
           </p>
+
         </div>
 
-        <div className="footer-section">
-          <h3>Quick Links</h3>
+        <div className="footer-links">
 
-          <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/destinations">Destinations</a></li>
-            <li><a href="/contact">Contact</a></li>
-          </ul>
-        </div>
+          <div className="footer-column">
 
-        <div className="footer-section">
-          <h3>Popular Places</h3>
+            <h3>Explore</h3>
 
-          <ul>
-            <li>Pokhara</li>
-            <li>Bali</li>
-            <li>Paris</li>
-            <li>Swiss Alps</li>
-          </ul>
-        </div>
+            <Link to="/">Home</Link>
 
-        <div className="footer-section">
-          <h3>Contact</h3>
+            <Link to="/destinations">
+              Destinations
+            </Link>
 
-          <p>📍 Kathmandu, Nepal</p>
-          <p>📧 info@travelmate.com</p>
-          <p>📞 +977 9800000000</p>
+            <Link to="/about">
+              About
+            </Link>
+
+          </div>
+
+          <div className="footer-column">
+
+            <h3>Support</h3>
+
+            <Link to="/contact">
+              Contact
+            </Link>
+
+            <Link to="/my-bookings">
+              My Bookings
+            </Link>
+
+            <Link to="/login">
+              Login
+            </Link>
+
+          </div>
+
         </div>
 
       </div>
 
       <div className="footer-bottom">
+
         <p>
-          © {new Date().getFullYear()} TravelMate. All Rights Reserved.
+          © {new Date().getFullYear()} TravelMate.
+          All rights reserved.
         </p>
+
       </div>
+
     </footer>
   );
 };

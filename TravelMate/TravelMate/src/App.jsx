@@ -1,8 +1,8 @@
-import Navbar from "./components/layout/Navbar/Navbar";
-import Footer from "./components/layout/Footer/Footer";
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 import AppRoutes from "./routes/AppRoutes";
 
-const App = () => {
+function App() {
   return (
     <>
       <Navbar />
@@ -12,6 +12,6 @@ const App = () => {
       <Footer />
     </>
   );
-};
+}
 
 export default App;
