@@ -8,9 +8,7 @@ const MyBookings = () => {
     localStorage.getItem("travelmateLoggedIn") === "true";
 
   const bookings =
-    JSON.parse(
-      localStorage.getItem("travelmateBookings")
-    ) || [];
+    JSON.parse(localStorage.getItem("travelmateBookings")) || [];
 
   if (!isLoggedIn) {
     return (
@@ -18,7 +16,7 @@ const MyBookings = () => {
         <h1>Login Required</h1>
 
         <p>
-          Please login to view your bookings.
+          Please login to view and manage your bookings.
         </p>
 
         <Link to="/login">
@@ -42,7 +40,8 @@ const MyBookings = () => {
     }
 
     const updatedBookings = bookings.filter(
-      (booking) => String(booking.id) !== String(id)
+      (booking) =>
+        String(booking.id) !== String(id)
     );
 
     localStorage.setItem(
@@ -58,18 +57,18 @@ const MyBookings = () => {
 
       <div className="my-bookings-container">
 
-        <div className="my-bookings-header">
+        <section className="my-bookings-header">
 
           <span>TravelMate</span>
 
           <h1>My Bookings</h1>
 
           <p>
-            View and manage all your upcoming and
-            previous travel bookings.
+            View and manage all your travel bookings
+            in one place.
           </p>
 
-        </div>
+        </section>
 
         {bookings.length === 0 ? (
           <div className="my-bookings-empty">
@@ -78,11 +77,13 @@ const MyBookings = () => {
               ✈
             </div>
 
-            <h2>No Bookings Yet</h2>
+            <h2>
+              No Bookings Yet
+            </h2>
 
             <p>
               You haven't made any bookings yet.
-              Start exploring destinations and plan
+              Explore our destinations and plan
               your next journey.
             </p>
 
@@ -103,14 +104,21 @@ const MyBookings = () => {
                 Number(booking.travelers) || 1;
 
               const price =
-                Number(booking.price) || 0;
+                Number(
+                  booking.pricePerTraveler ??
+                  booking.price ??
+                  0
+                );
 
               const total =
-                Number(booking.totalPrice) ||
-                price * travelers;
+                Number(
+                  booking.total ??
+                  booking.totalPrice ??
+                  price * travelers
+                );
 
               return (
-                <div
+                <article
                   className="booking-card"
                   key={booking.id}
                 >
@@ -134,7 +142,7 @@ const MyBookings = () => {
                     </div>
 
                     <span className="booking-status">
-                      Confirmed
+                      {booking.status || "Confirmed"}
                     </span>
 
                   </div>
@@ -142,7 +150,9 @@ const MyBookings = () => {
                   <div className="booking-card-details">
 
                     <div>
-                      <span>Booking ID</span>
+                      <span>
+                        Booking ID
+                      </span>
 
                       <strong>
                         #{booking.id}
@@ -150,7 +160,9 @@ const MyBookings = () => {
                     </div>
 
                     <div>
-                      <span>Travel Date</span>
+                      <span>
+                        Travel Date
+                      </span>
 
                       <strong>
                         {booking.date}
@@ -158,7 +170,9 @@ const MyBookings = () => {
                     </div>
 
                     <div>
-                      <span>Travelers</span>
+                      <span>
+                        Travelers
+                      </span>
 
                       <strong>
                         {travelers}
@@ -166,7 +180,9 @@ const MyBookings = () => {
                     </div>
 
                     <div>
-                      <span>Total</span>
+                      <span>
+                        Total
+                      </span>
 
                       <strong>
                         ${total.toLocaleString()}
@@ -185,20 +201,24 @@ const MyBookings = () => {
 
                       <button
                         type="button"
-                        onClick={() =>
-                          handleViewBooking(booking.id)
-                        }
                         className="view-booking-button"
+                        onClick={() =>
+                          handleViewBooking(
+                            booking.id
+                          )
+                        }
                       >
                         View Details
                       </button>
 
                       <button
                         type="button"
-                        onClick={() =>
-                          handleCancelBooking(booking.id)
-                        }
                         className="cancel-booking-button"
+                        onClick={() =>
+                          handleCancelBooking(
+                            booking.id
+                          )
+                        }
                       >
                         Cancel Booking
                       </button>
@@ -207,7 +227,7 @@ const MyBookings = () => {
 
                   </div>
 
-                </div>
+                </article>
               );
             })}
 
