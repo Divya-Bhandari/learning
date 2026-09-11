@@ -1,36 +1,17 @@
 import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
+import DestinationData from "../destinations/DestinationData";
 import "./Booking.css";
-
-const destinations = {
-  1: {
-    name: "Pokhara",
-    country: "Nepal",
-    price: 250,
-  },
-  2: {
-    name: "Kathmandu",
-    country: "Nepal",
-    price: 200,
-  },
-  3: {
-    name: "Chitwan",
-    country: "Nepal",
-    price: 220,
-  },
-  4: {
-    name: "Everest Base Camp",
-    country: "Nepal",
-    price: 650,
-  },
-};
 
 const Booking = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const destination = destinations[id];
+  // Find the selected destination from the main destination data
+  const destination = DestinationData.find(
+    (item) => String(item.id) === String(id)
+  );
 
   const [formData, setFormData] = useState({
     name: "",
@@ -75,20 +56,31 @@ const Booking = () => {
       return;
     }
 
+    const travelers = Number(formData.travelers);
+
     const booking = {
       id: Date.now().toString(),
-      destinationId: id,
+
+      destinationId: destination.id,
       destination: destination.name,
       country: destination.country,
-      name: formData.name,
-      email: formData.email,
-      phone: formData.phone,
+      image: destination.image,
+
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      phone: formData.phone.trim(),
+
       date: formData.date,
-      travelers: Number(formData.travelers),
-      requests: formData.requests,
+      travelers,
+
+      requests: formData.requests.trim(),
+
       pricePerTraveler: destination.price,
-      total:
-        destination.price * Number(formData.travelers),
+      total: destination.price * travelers,
+
+      duration: destination.duration,
+      rating: destination.rating,
+
       status: "Confirmed",
     };
 
@@ -108,11 +100,11 @@ const Booking = () => {
     navigate("/booking-success");
   };
 
+  // Handle invalid destination ID
   if (!destination) {
     return (
       <main className="booking-page">
         <div className="booking-container">
-
           <Link
             to="/destinations"
             className="booking-back"
@@ -121,7 +113,6 @@ const Booking = () => {
           </Link>
 
           <div className="booking-form-card">
-
             <h2>Destination Not Found</h2>
 
             <p>
@@ -132,9 +123,7 @@ const Booking = () => {
             <Link to="/destinations">
               Explore Destinations
             </Link>
-
           </div>
-
         </div>
       </main>
     );
@@ -146,18 +135,15 @@ const Booking = () => {
 
   return (
     <main className="booking-page">
-
       <div className="booking-container">
-
         <Link
-          to={`/destinations/${id}`}
+          to={`/destinations/${destination.id}`}
           className="booking-back"
         >
           ← Back to Destination
         </Link>
 
         <section className="booking-header">
-
           <span>TravelMate</span>
 
           <h1>Book Your Journey</h1>
@@ -166,20 +152,19 @@ const Booking = () => {
             Complete the form below to plan your trip
             to {destination.name}.
           </p>
-
         </section>
 
         <section className="booking-layout">
+          {/* =========================
+              TRIP SUMMARY
+          ========================= */}
 
           <aside className="booking-summary">
-
             <div className="booking-summary-label">
               Your Trip
             </div>
 
-            <h2>
-              {destination.name}
-            </h2>
+            <h2>{destination.name}</h2>
 
             <p className="booking-country">
               {destination.country}
@@ -188,50 +173,58 @@ const Booking = () => {
             <div className="summary-divider"></div>
 
             <div className="summary-row">
-
-              <span>
-                Price per traveler
-              </span>
+              <span>Duration</span>
 
               <strong>
-                ${destination.price}
+                {destination.duration}
               </strong>
-
             </div>
 
             <div className="summary-row">
+              <span>Rating</span>
 
-              <span>
-                Travelers
-              </span>
+              <strong>
+                ⭐ {destination.rating}
+              </strong>
+            </div>
+
+            <div className="summary-row">
+              <span>Price per traveler</span>
+
+              <strong>
+                ${destination.price.toLocaleString()}
+              </strong>
+            </div>
+
+            <div className="summary-row">
+              <span>Travelers</span>
 
               <strong>
                 {formData.travelers}
               </strong>
-
             </div>
 
             <div className="summary-divider"></div>
 
             <div className="summary-total">
-
               <span>Total</span>
 
               <strong>
-                ${total}
+                ${total.toLocaleString()}
               </strong>
-
             </div>
 
             <div className="summary-note">
               Your booking information is stored
               securely in your TravelMate account.
             </div>
-
           </aside>
 
-          <div className="booking-form-card">
+          {/* =========================
+              BOOKING FORM
+          ========================= */}
 
+          <div className="booking-form-card">
             {error && (
               <div className="booking-error">
                 {error}
@@ -239,17 +232,15 @@ const Booking = () => {
             )}
 
             <form onSubmit={handleSubmit}>
+              {/* =========================
+                  PERSONAL INFORMATION
+              ========================= */}
 
               <section className="form-section">
-
-                <h2>
-                  Personal Information
-                </h2>
+                <h2>Personal Information</h2>
 
                 <div className="form-grid">
-
                   <div className="booking-field">
-
                     <label htmlFor="name">
                       Full Name *
                     </label>
@@ -262,11 +253,9 @@ const Booking = () => {
                       onChange={handleChange}
                       placeholder="Enter your full name"
                     />
-
                   </div>
 
                   <div className="booking-field">
-
                     <label htmlFor="email">
                       Email Address *
                     </label>
@@ -279,11 +268,9 @@ const Booking = () => {
                       onChange={handleChange}
                       placeholder="Enter your email"
                     />
-
                   </div>
 
                   <div className="booking-field">
-
                     <label htmlFor="phone">
                       Phone Number *
                     </label>
@@ -296,23 +283,19 @@ const Booking = () => {
                       onChange={handleChange}
                       placeholder="Enter your phone number"
                     />
-
                   </div>
-
                 </div>
-
               </section>
 
-              <section className="form-section">
+              {/* =========================
+                  TRIP INFORMATION
+              ========================= */}
 
-                <h2>
-                  Trip Information
-                </h2>
+              <section className="form-section">
+                <h2>Trip Information</h2>
 
                 <div className="form-grid">
-
                   <div className="booking-field">
-
                     <label htmlFor="date">
                       Travel Date *
                     </label>
@@ -323,12 +306,15 @@ const Booking = () => {
                       type="date"
                       value={formData.date}
                       onChange={handleChange}
+                      min={
+                        new Date()
+                          .toISOString()
+                          .split("T")[0]
+                      }
                     />
-
                   </div>
 
                   <div className="booking-field">
-
                     <label htmlFor="travelers">
                       Number of Travelers
                     </label>
@@ -378,23 +364,19 @@ const Booking = () => {
                       <option value="10">
                         10 Travelers
                       </option>
-
                     </select>
-
                   </div>
-
                 </div>
-
               </section>
 
-              <section className="form-section">
+              {/* =========================
+                  SPECIAL REQUESTS
+              ========================= */}
 
-                <h2>
-                  Special Requests
-                </h2>
+              <section className="form-section">
+                <h2>Special Requests</h2>
 
                 <div className="booking-field">
-
                   <label htmlFor="requests">
                     Additional Information
                   </label>
@@ -407,30 +389,32 @@ const Booking = () => {
                     onChange={handleChange}
                     placeholder="Tell us about any special requests..."
                   />
-
                 </div>
-
               </section>
 
+              {/* =========================
+                  FINAL TOTAL
+              ========================= */}
+
               <div className="booking-final-total">
-
                 <div>
-
                   <span>
                     Total Estimated Price
                   </span>
 
                   <small>
-                    {formData.travelers} traveler(s) × $
-                    {destination.price}
+                    {formData.travelers} traveler
+                    {Number(formData.travelers) > 1
+                      ? "s"
+                      : ""}{" "}
+                    × $
+                    {destination.price.toLocaleString()}
                   </small>
-
                 </div>
 
                 <strong>
-                  ${total}
+                  ${total.toLocaleString()}
                 </strong>
-
               </div>
 
               <button
@@ -444,15 +428,10 @@ const Booking = () => {
                 🔒 Your booking information is handled
                 securely by TravelMate.
               </p>
-
             </form>
-
           </div>
-
         </section>
-
       </div>
-
     </main>
   );
 };
