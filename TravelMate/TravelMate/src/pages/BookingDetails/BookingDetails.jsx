@@ -1,5 +1,4 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
-
 import "./BookingDetails.css";
 
 const BookingDetails = () => {
@@ -7,9 +6,7 @@ const BookingDetails = () => {
   const navigate = useNavigate();
 
   const bookings =
-    JSON.parse(
-      localStorage.getItem("travelmateBookings")
-    ) || [];
+    JSON.parse(localStorage.getItem("travelmateBookings")) || [];
 
   const booking = bookings.find(
     (item) => String(item.id) === String(id)
@@ -18,29 +15,36 @@ const BookingDetails = () => {
   if (!booking) {
     return (
       <main className="booking-details-not-found">
-        <h1>Booking Not Found</h1>
+        <div>
+          <span>TravelMate</span>
+          <h1>Booking Not Found</h1>
 
-        <p>
-          The booking you are looking for does not exist
-          or has already been cancelled.
-        </p>
+          <p>
+            The booking you are looking for does not exist
+            or has already been cancelled.
+          </p>
 
-        <Link to="/my-bookings">
-          ← Back to My Bookings
-        </Link>
+          <Link to="/my-bookings">
+            ← Back to My Bookings
+          </Link>
+        </div>
       </main>
     );
   }
 
-  const pricePerPerson =
-    Number(booking.price) || 0;
+  const pricePerPerson = Number(
+    booking.pricePerTraveler ??
+      booking.price ??
+      0
+  );
 
-  const travelers =
-    Number(booking.travelers) || 1;
+  const travelers = Number(booking.travelers) || 1;
 
-  const estimatedTotal =
-    Number(booking.totalPrice) ||
-    pricePerPerson * travelers;
+  const estimatedTotal = Number(
+    booking.total ??
+      booking.totalPrice ??
+      pricePerPerson * travelers
+  );
 
   const handleCancelBooking = () => {
     const confirmed = window.confirm(
@@ -66,9 +70,7 @@ const BookingDetails = () => {
 
   return (
     <main className="booking-details-page">
-
       <div className="booking-details-container">
-
         <Link
           to="/my-bookings"
           className="booking-details-back"
@@ -76,100 +78,62 @@ const BookingDetails = () => {
           ← Back to My Bookings
         </Link>
 
-        <div className="booking-details-header">
-
+        <section className="booking-details-header">
           <span>TravelMate</span>
 
           <h1>Booking Details</h1>
 
           <p>
             View the complete information for your
-            booking.
+            travel booking.
           </p>
+        </section>
 
-        </div>
-
-        <div className="booking-details-card">
+        <section className="booking-details-card">
+          {/* =========================
+              DESTINATION HEADER
+          ========================= */}
 
           <div className="booking-details-top">
-
-            <div>
+            <div className="booking-details-destination">
               <span>Destination</span>
 
-              <h2>
-                {booking.destination}
-              </h2>
+              <h2>{booking.destination}</h2>
 
-              <p>
-                {booking.country}
-              </p>
+              <p>{booking.country}</p>
             </div>
 
             <span className="booking-details-status">
-              Confirmed
+              {booking.status || "Confirmed"}
             </span>
-
           </div>
 
-          <div className="booking-details-grid">
+          {/* =========================
+              DESTINATION INFORMATION
+          ========================= */}
 
-            <div>
-              <span>Booking ID</span>
+          <div className="booking-destination-info">
+            {booking.duration && (
+              <div className="booking-info-item">
+                <span>Duration</span>
 
-              <strong>
-                #{booking.id}
-              </strong>
-            </div>
+                <strong>
+                  {booking.duration}
+                </strong>
+              </div>
+            )}
 
-            <div>
-              <span>Traveler</span>
+            {booking.rating && (
+              <div className="booking-info-item">
+                <span>Rating</span>
 
-              <strong>
-                {booking.name}
-              </strong>
-            </div>
+                <strong>
+                  ⭐ {booking.rating}
+                </strong>
+              </div>
+            )}
 
-            <div>
-              <span>Email</span>
-
-              <strong>
-                {booking.email}
-              </strong>
-            </div>
-
-            <div>
-              <span>Phone</span>
-
-              <strong>
-                {booking.phone}
-              </strong>
-            </div>
-
-            <div>
-              <span>Travelers</span>
-
-              <strong>
-                {travelers}
-              </strong>
-            </div>
-
-            <div>
-              <span>Travel Date</span>
-
-              <strong>
-                {booking.date}
-              </strong>
-            </div>
-
-            <div>
-              <span>Payment Method</span>
-
-              <strong>
-                {booking.payment || "Not specified"}
-              </strong>
-            </div>
-
-            <div>
+            <div className="booking-info-item">
               <span>Price Per Person</span>
 
               <strong>
@@ -177,42 +141,111 @@ const BookingDetails = () => {
               </strong>
             </div>
 
+            <div className="booking-info-item">
+              <span>Travelers</span>
+
+              <strong>{travelers}</strong>
+            </div>
           </div>
 
-          <div className="booking-details-total">
+          {/* =========================
+              BOOKING INFORMATION
+          ========================= */}
 
-            <span>
-              Estimated Booking Total
-            </span>
+          <div className="booking-details-section">
+            <h3>Booking Information</h3>
+
+            <div className="booking-details-grid">
+              <div>
+                <span>Booking ID</span>
+
+                <strong>
+                  #{booking.id}
+                </strong>
+              </div>
+
+              <div>
+                <span>Traveler</span>
+
+                <strong>
+                  {booking.name}
+                </strong>
+              </div>
+
+              <div>
+                <span>Email</span>
+
+                <strong>
+                  {booking.email}
+                </strong>
+              </div>
+
+              <div>
+                <span>Phone</span>
+
+                <strong>
+                  {booking.phone}
+                </strong>
+              </div>
+
+              <div>
+                <span>Travel Date</span>
+
+                <strong>
+                  {booking.date}
+                </strong>
+              </div>
+
+              <div>
+                <span>Payment Method</span>
+
+                <strong>
+                  {booking.payment ||
+                    "Not specified"}
+                </strong>
+              </div>
+            </div>
+          </div>
+
+          {/* =========================
+              PRICE SUMMARY
+          ========================= */}
+
+          <div className="booking-details-total">
+            <div>
+              <span>
+                Estimated Booking Total
+              </span>
+
+              <small>
+                ${pricePerPerson.toLocaleString()} ×{" "}
+                {travelers} traveler
+                {travelers > 1 ? "s" : ""}
+              </small>
+            </div>
 
             <strong>
               ${estimatedTotal.toLocaleString()}
             </strong>
-
-            <small>
-              ${pricePerPerson.toLocaleString()} ×{" "}
-              {travelers} traveler
-              {travelers > 1 ? "s" : ""}
-            </small>
-
           </div>
+
+          {/* =========================
+              SPECIAL REQUESTS
+          ========================= */}
 
           {booking.requests && (
             <div className="booking-details-requests">
+              <h3>Special Requests</h3>
 
-              <span>
-                Special Requests
-              </span>
-
-              <p>
-                {booking.requests}
-              </p>
-
+              <p>{booking.requests}</p>
             </div>
           )}
 
-          <div className="booking-details-actions">
+          {/* =========================
+              ACTIONS
+          ========================= */}
 
+          <div className="booking-details-actions">
             <Link
               to="/my-bookings"
               className="booking-details-back-button"
@@ -227,13 +260,9 @@ const BookingDetails = () => {
             >
               Cancel Booking
             </button>
-
           </div>
-
-        </div>
-
+        </section>
       </div>
-
     </main>
   );
 };
