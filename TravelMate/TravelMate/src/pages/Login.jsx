@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 import "./Login.css";
 
@@ -29,9 +29,7 @@ const Login = () => {
 
     setError("");
 
-    const email = formData.email.trim().toLowerCase();
-
-    if (!email) {
+    if (!formData.email.trim()) {
       setError("Please enter your email address.");
       return;
     }
@@ -51,15 +49,23 @@ const Login = () => {
     }
 
     if (
-      registeredUser.email.toLowerCase() !== email ||
-      registeredUser.password !== formData.password
+      registeredUser.email.toLowerCase() !==
+      formData.email.trim().toLowerCase()
     ) {
       setError("Invalid email or password.");
       return;
     }
 
+    if (registeredUser.password !== formData.password) {
+      setError("Invalid email or password.");
+      return;
+    }
+
     // Save login status
-    localStorage.setItem("travelmateLoggedIn", "true");
+    localStorage.setItem(
+      "travelmateLoggedIn",
+      "true"
+    );
 
     // Save current user
     localStorage.setItem(
@@ -67,14 +73,16 @@ const Login = () => {
       JSON.stringify(registeredUser)
     );
 
-    // Redirect to home page
+    // Go to home page
     navigate("/");
   };
 
   return (
     <main className="login-page">
       <div className="login-card">
+
         <div className="login-header">
+
           <span>TravelMate</span>
 
           <h1>Welcome Back</h1>
@@ -82,6 +90,7 @@ const Login = () => {
           <p>
             Login to continue planning your next journey.
           </p>
+
         </div>
 
         {error && (
@@ -91,7 +100,9 @@ const Login = () => {
         )}
 
         <form onSubmit={handleSubmit}>
+
           <div className="login-field">
+
             <label htmlFor="email">
               Email Address
             </label>
@@ -104,9 +115,11 @@ const Login = () => {
               onChange={handleChange}
               placeholder="Enter your email"
             />
+
           </div>
 
           <div className="login-field">
+
             <label htmlFor="password">
               Password
             </label>
@@ -119,6 +132,7 @@ const Login = () => {
               onChange={handleChange}
               placeholder="Enter your password"
             />
+
           </div>
 
           <button
@@ -127,15 +141,21 @@ const Login = () => {
           >
             Login
           </button>
+
         </form>
 
         <div className="login-register">
-          <p>Don't have an account?</p>
+
+          <p>
+            Don't have an account?
+          </p>
 
           <Link to="/register">
             Create Account
           </Link>
+
         </div>
+
       </div>
     </main>
   );
