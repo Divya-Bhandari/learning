@@ -31,9 +31,15 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    setError("");
+    setSuccess("");
+
+    const name = formData.name.trim();
+    const email = formData.email.trim().toLowerCase();
+
     if (
-      !formData.name.trim() ||
-      !formData.email.trim() ||
+      !name ||
+      !email ||
       !formData.password ||
       !formData.confirmPassword
     ) {
@@ -51,9 +57,23 @@ const Register = () => {
       return;
     }
 
+    const existingUser = JSON.parse(
+      localStorage.getItem("travelmateUser")
+    );
+
+    if (
+      existingUser &&
+      existingUser.email.toLowerCase() === email
+    ) {
+      setError(
+        "An account with this email already exists."
+      );
+      return;
+    }
+
     const user = {
-      name: formData.name.trim(),
-      email: formData.email.trim(),
+      name,
+      email,
       password: formData.password,
     };
 
@@ -76,9 +96,7 @@ const Register = () => {
   return (
     <main className="register-page">
       <div className="register-card">
-
         <div className="register-header">
-
           <span>TravelMate</span>
 
           <h1>Create Account</h1>
@@ -87,7 +105,6 @@ const Register = () => {
             Create your account and start planning
             your next journey.
           </p>
-
         </div>
 
         {error && (
@@ -103,9 +120,7 @@ const Register = () => {
         )}
 
         <form onSubmit={handleSubmit}>
-
           <div className="register-field">
-
             <label htmlFor="name">
               Full Name
             </label>
@@ -118,11 +133,9 @@ const Register = () => {
               onChange={handleChange}
               placeholder="Enter your full name"
             />
-
           </div>
 
           <div className="register-field">
-
             <label htmlFor="email">
               Email Address
             </label>
@@ -135,11 +148,9 @@ const Register = () => {
               onChange={handleChange}
               placeholder="Enter your email"
             />
-
           </div>
 
           <div className="register-field">
-
             <label htmlFor="password">
               Password
             </label>
@@ -152,11 +163,9 @@ const Register = () => {
               onChange={handleChange}
               placeholder="Create a password"
             />
-
           </div>
 
           <div className="register-field">
-
             <label htmlFor="confirmPassword">
               Confirm Password
             </label>
@@ -169,7 +178,6 @@ const Register = () => {
               onChange={handleChange}
               placeholder="Confirm your password"
             />
-
           </div>
 
           <button
@@ -178,21 +186,15 @@ const Register = () => {
           >
             Create Account
           </button>
-
         </form>
 
         <div className="register-login">
-
-          <p>
-            Already have an account?
-          </p>
+          <p>Already have an account?</p>
 
           <Link to="/login">
             Login
           </Link>
-
         </div>
-
       </div>
     </main>
   );
