@@ -14,7 +14,6 @@ const Register = () => {
   });
 
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,36 +24,49 @@ const Register = () => {
     }));
 
     setError("");
-    setSuccess("");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (
-      !formData.name.trim() ||
-      !formData.email.trim() ||
-      !formData.password ||
-      !formData.confirmPassword
-    ) {
-      setError("Please fill in all fields.");
+    const name = formData.name.trim();
+    const email = formData.email.trim().toLowerCase();
+    const password = formData.password;
+    const confirmPassword = formData.confirmPassword;
+
+    if (!name || !email || !password || !confirmPassword) {
+      setError("Please complete all fields.");
       return;
     }
 
-    if (formData.password.length < 6) {
+    if (password.length < 6) {
       setError("Password must be at least 6 characters.");
       return;
     }
 
-    if (formData.password !== formData.confirmPassword) {
+    if (password !== confirmPassword) {
       setError("Passwords do not match.");
       return;
     }
 
+    const existingUser = JSON.parse(
+      localStorage.getItem("travelmateUser")
+    );
+
+    if (
+      existingUser &&
+      existingUser.email.toLowerCase() === email
+    ) {
+      setError(
+        "An account with this email already exists."
+      );
+      return;
+    }
+
     const user = {
-      name: formData.name.trim(),
-      email: formData.email.trim(),
-      password: formData.password,
+      name,
+      email,
+      password,
     };
 
     localStorage.setItem(
@@ -62,15 +74,12 @@ const Register = () => {
       JSON.stringify(user)
     );
 
-    localStorage.removeItem("travelmateLoggedIn");
-
-    setSuccess(
-      "Account created successfully! Redirecting to login..."
+    localStorage.setItem(
+      "travelmateLoggedIn",
+      "true"
     );
 
-    setTimeout(() => {
-      navigate("/login");
-    }, 1000);
+    navigate("/");
   };
 
   return (
@@ -78,16 +87,14 @@ const Register = () => {
       <div className="register-card">
 
         <div className="register-header">
-
           <span>TravelMate</span>
 
           <h1>Create Account</h1>
 
           <p>
-            Create your account and start planning
-            your next journey.
+            Create your account and start exploring
+            amazing destinations.
           </p>
-
         </div>
 
         {error && (
@@ -96,16 +103,9 @@ const Register = () => {
           </div>
         )}
 
-        {success && (
-          <div className="register-success">
-            {success}
-          </div>
-        )}
-
         <form onSubmit={handleSubmit}>
 
           <div className="register-field">
-
             <label htmlFor="name">
               Full Name
             </label>
@@ -118,11 +118,9 @@ const Register = () => {
               onChange={handleChange}
               placeholder="Enter your full name"
             />
-
           </div>
 
           <div className="register-field">
-
             <label htmlFor="email">
               Email Address
             </label>
@@ -135,11 +133,9 @@ const Register = () => {
               onChange={handleChange}
               placeholder="Enter your email"
             />
-
           </div>
 
           <div className="register-field">
-
             <label htmlFor="password">
               Password
             </label>
@@ -152,11 +148,9 @@ const Register = () => {
               onChange={handleChange}
               placeholder="Create a password"
             />
-
           </div>
 
           <div className="register-field">
-
             <label htmlFor="confirmPassword">
               Confirm Password
             </label>
@@ -169,7 +163,6 @@ const Register = () => {
               onChange={handleChange}
               placeholder="Confirm your password"
             />
-
           </div>
 
           <button
@@ -182,15 +175,11 @@ const Register = () => {
         </form>
 
         <div className="register-login">
-
-          <p>
-            Already have an account?
-          </p>
+          <p>Already have an account?</p>
 
           <Link to="/login">
             Login
           </Link>
-
         </div>
 
       </div>
