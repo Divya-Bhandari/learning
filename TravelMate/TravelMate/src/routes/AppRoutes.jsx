@@ -17,65 +17,32 @@ import DestinationDetails from "../components/destinations/DestinationDetails/De
 import Booking from "../components/booking/Booking";
 import BookingSuccess from "../components/booking/BookingSuccess";
 
+// Protected Route
+import ProtectedRoute from "./ProtectedRoute";
+
 const AppRoutes = () => {
   return (
     <Routes>
+      {/* Public Routes */}
+      <Route path="/" element={<Home />} />
 
-      {/* ==================== HOME ==================== */}
-      <Route
-        path="/"
-        element={<Home />}
-      />
+      <Route path="/about" element={<About />} />
 
-      {/* ==================== ABOUT ==================== */}
-      <Route
-        path="/about"
-        element={<About />}
-      />
-
-      {/* ==================== DESTINATIONS ==================== */}
       <Route
         path="/destinations"
         element={<Destinations />}
       />
 
-      {/* Destination Details */}
       <Route
         path="/destinations/:id"
         element={<DestinationDetails />}
       />
 
-      {/* ==================== BOOKING ==================== */}
-      <Route
-        path="/booking/:id"
-        element={<Booking />}
-      />
-
-      {/* Booking Success */}
-      <Route
-        path="/booking-success"
-        element={<BookingSuccess />}
-      />
-
-      {/* ==================== MY BOOKINGS ==================== */}
-      <Route
-        path="/my-bookings"
-        element={<MyBookings />}
-      />
-
-      {/* Booking Details */}
-      <Route
-        path="/booking-details/:id"
-        element={<BookingDetails />}
-      />
-
-      {/* ==================== CONTACT ==================== */}
       <Route
         path="/contact"
         element={<Contact />}
       />
 
-      {/* ==================== AUTHENTICATION ==================== */}
       <Route
         path="/login"
         element={<Login />}
@@ -86,6 +53,28 @@ const AppRoutes = () => {
         element={<Register />}
       />
 
+      {/* Protected Routes */}
+      <Route element={<ProtectedRoute />}>
+        <Route
+          path="/booking/:id"
+          element={<Booking />}
+        />
+
+        <Route
+          path="/booking-success"
+          element={<BookingSuccess />}
+        />
+
+        <Route
+          path="/my-bookings"
+          element={<MyBookings />}
+        />
+
+        <Route
+          path="/booking-details/:id"
+          element={<BookingDetails />}
+        />
+      </Route>
     </Routes>
   );
 };
