@@ -6,27 +6,26 @@ import "./Navbar.css";
 const Navbar = () => {
   const navigate = useNavigate();
 
-  const getUser = () => {
-    try {
-      return JSON.parse(localStorage.getItem("travelmateUser")) || null;
-    } catch {
-      return null;
-    }
-  };
-
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("travelmateLoggedIn") === "true"
   );
 
-  const [user, setUser] = useState(getUser());
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("travelmateUser")) || null
+  );
+
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const checkLoginStatus = () => {
       const loggedIn =
         localStorage.getItem("travelmateLoggedIn") === "true";
 
+      const savedUser =
+        JSON.parse(localStorage.getItem("travelmateUser")) || null;
+
       setIsLoggedIn(loggedIn);
-      setUser(getUser());
+      setUser(savedUser);
     };
 
     window.addEventListener("storage", checkLoginStatus);
@@ -36,96 +35,109 @@ const Navbar = () => {
     };
   }, []);
 
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
   const handleLogout = () => {
     localStorage.removeItem("travelmateLoggedIn");
-    localStorage.removeItem("travelmateUser");
 
     setIsLoggedIn(false);
     setUser(null);
+    setMenuOpen(false);
 
     navigate("/");
   };
 
   return (
     <nav className="navbar">
-
-      {/* Logo */}
       <div className="logo">
-        <Link to="/">
+        <Link to="/" onClick={closeMenu}>
           TravelMate
         </Link>
       </div>
 
-      {/* Navigation Links */}
-      <ul className="nav-links">
+      <button
+        type="button"
+        className="navbar-menu-button"
+        onClick={() => setMenuOpen((previous) => !previous)}
+        aria-label="Toggle navigation menu"
+        aria-expanded={menuOpen}
+      >
+        ☰
+      </button>
 
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-
-        <li>
-          <Link to="/about">About</Link>
-        </li>
-
-        <li>
-          <Link to="/destinations">
-            Destinations
-          </Link>
-        </li>
-
-        {isLoggedIn && (
+      <div className={`navbar-content ${menuOpen ? "open" : ""}`}>
+        <ul className="nav-links">
           <li>
-            <Link to="/my-bookings">
-              My Bookings
+            <Link to="/" onClick={closeMenu}>
+              Home
             </Link>
           </li>
-        )}
 
-        <li>
-          <Link to="/contact">
-            Contact
-          </Link>
-        </li>
-
-      </ul>
-
-      {/* Authentication */}
-      <div className="navbar-auth">
-
-        {isLoggedIn ? (
-          <>
-            <span className="navbar-user">
-              Hi, {user?.name || "Traveler"}
-            </span>
-
-            <button
-              type="button"
-              className="logout-btn"
-              onClick={handleLogout}
-            >
-              Logout
-            </button>
-          </>
-        ) : (
-          <>
-            <Link
-              to="/login"
-              className="login-btn"
-            >
-              Login
+          <li>
+            <Link to="/about" onClick={closeMenu}>
+              About
             </Link>
+          </li>
 
-            <Link
-              to="/register"
-              className="register-btn"
-            >
-              Register
+          <li>
+            <Link to="/destinations" onClick={closeMenu}>
+              Destinations
             </Link>
-          </>
-        )}
+          </li>
 
+          {isLoggedIn && (
+            <li>
+              <Link to="/my-bookings" onClick={closeMenu}>
+                My Bookings
+              </Link>
+            </li>
+          )}
+
+          <li>
+            <Link to="/contact" onClick={closeMenu}>
+              Contact
+            </Link>
+          </li>
+        </ul>
+
+        <div className="navbar-auth">
+          {isLoggedIn ? (
+            <>
+              <span className="navbar-user">
+                Hi, {user?.name || "Traveler"}
+              </span>
+
+              <button
+                type="button"
+                className="logout-btn"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="login-btn"
+                onClick={closeMenu}
+              >
+                Login
+              </Link>
+
+              <Link
+                to="/register"
+                className="register-btn"
+                onClick={closeMenu}
+              >
+                Register
+              </Link>
+            </>
+          )}
+        </div>
       </div>
-
     </nav>
   );
 };
