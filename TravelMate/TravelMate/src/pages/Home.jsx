@@ -5,20 +5,30 @@ import WhyChooseUs from "../components/home/WhyChooseUs/WhyChooseUs";
 import FeaturedTours from "../components/home/FeaturedTours/FeaturedTours";
 import Categories from "../components/home/Categories/Categories";
 import Testimonials from "../components/home/Testimonials/Testimonials";
+import Blog from "../components/home/Blog/Blog";
 import Newsletter from "../components/home/Newsletter/Newsletter";
 
 const Home = () => {
   return (
-    <>
+    <main>
       <Hero />
+
       <SearchSection />
+
       <PopularDestinations />
+
       <WhyChooseUs />
+
       <FeaturedTours />
+
       <Categories />
+
       <Testimonials />
+
+      <Blog />
+
       <Newsletter />
-    </>
+    </main>
   );
 };
 
