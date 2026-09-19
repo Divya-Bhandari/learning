@@ -10,23 +10,15 @@ import Newsletter from "../components/home/Newsletter/Newsletter";
 
 const Home = () => {
   return (
-    <main>
+    <main className="home-page">
       <Hero />
-
       <SearchSection />
-
       <PopularDestinations />
-
       <WhyChooseUs />
-
       <FeaturedTours />
-
       <Categories />
-
       <Testimonials />
-
       <Blog />
-
       <Newsletter />
     </main>
   );
