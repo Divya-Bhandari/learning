@@ -1,51 +1,54 @@
 .navbar {
   width: 100%;
-  min-height: 70px;
-  padding: 0 40px;
+  height: 68px;
+  padding: 0 45px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 30px;
+
   background: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
-  box-sizing: border-box;
+  border-bottom: 1px solid #eeeeee;
+
   position: relative;
   z-index: 1000;
 }
 
-.logo {
-  flex-shrink: 0;
-}
+/* Logo */
 
 .logo a {
   color: #0f766e;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 800;
   text-decoration: none;
+  letter-spacing: -0.4px;
 }
+
+/* Navigation */
 
 .navbar-content {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  flex: 1;
-  gap: 30px;
+  gap: 38px;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
   gap: 28px;
+
   margin: 0;
   padding: 0;
+
   list-style: none;
 }
 
 .nav-links a {
-  color: #374151;
-  font-size: 14px;
+  color: #4b5563;
+  font-size: 13px;
   font-weight: 600;
   text-decoration: none;
+
   transition: color 0.2s ease;
 }
 
@@ -53,43 +56,43 @@
   color: #0f766e;
 }
 
+/* Auth */
+
 .navbar-auth {
   display: flex;
   align-items: center;
-  gap: 12px;
-}
-
-.navbar-user {
-  color: #374151;
-  font-size: 14px;
-  font-weight: 600;
-  white-space: nowrap;
+  gap: 8px;
 }
 
 .login-btn,
 .register-btn,
 .logout-btn {
-  padding: 9px 16px;
-  border-radius: 8px;
+  height: 36px;
+  padding: 0 14px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 6px;
+
   font-family: inherit;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   text-decoration: none;
-  cursor: pointer;
-  transition:
-    background 0.2s ease,
-    color 0.2s ease,
-    border-color 0.2s ease;
+
+  box-sizing: border-box;
 }
 
 .login-btn {
-  border: 1px solid #0f766e;
+  border: 1px solid #d1d5db;
   background: #ffffff;
-  color: #0f766e;
+  color: #374151;
 }
 
 .login-btn:hover {
-  background: #f0fdfa;
+  border-color: #0f766e;
+  color: #0f766e;
 }
 
 .register-btn,
@@ -101,36 +104,32 @@
 
 .register-btn:hover,
 .logout-btn:hover {
-  border-color: #115e59;
   background: #115e59;
+  border-color: #115e59;
 }
 
-.logout-btn {
-  border: none;
+.navbar-user {
+  margin-right: 5px;
+  color: #4b5563;
+  font-size: 12px;
+  font-weight: 600;
 }
+
+/* Mobile button */
 
 .navbar-menu-button {
   display: none;
-  padding: 8px 10px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  background: #ffffff;
-  color: #374151;
-  font-size: 20px;
-  line-height: 1;
 }
 
-/* =========================
-   TABLET
-========================= */
+/* Tablet */
 
-@media (max-width: 950px) {
+@media (max-width: 900px) {
   .navbar {
     padding: 0 25px;
   }
 
   .navbar-content {
-    gap: 18px;
+    gap: 20px;
   }
 
   .nav-links {
@@ -138,29 +137,44 @@
   }
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* Mobile */
 
-@media (max-width: 768px) {
+@media (max-width: 700px) {
   .navbar {
-    min-height: 65px;
-    padding: 0 20px;
+    height: 64px;
+    padding: 0 18px;
     flex-wrap: wrap;
   }
 
   .navbar-menu-button {
-    display: block;
+    width: 38px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+
+    background: #ffffff;
+    color: #374151;
+
+    font-size: 18px;
   }
 
   .navbar-content {
     width: 100%;
     display: none;
+
     flex-direction: column;
     align-items: stretch;
-    gap: 20px;
-    padding: 20px 0;
-    border-top: 1px solid #e5e7eb;
+    gap: 15px;
+
+    padding: 18px 0;
+
+    background: #ffffff;
+    border-top: 1px solid #eeeeee;
   }
 
   .navbar-content.open {
@@ -180,16 +194,16 @@
 
   .nav-links a {
     display: block;
-    padding: 12px 5px;
+    padding: 11px 4px;
   }
 
   .navbar-auth {
     width: 100%;
     flex-direction: column;
-    align-items: stretch;
   }
 
   .navbar-user {
+    margin: 0 0 5px;
     text-align: center;
   }
 
@@ -197,8 +211,6 @@
   .register-btn,
   .logout-btn {
     width: 100%;
-    text-align: center;
-    box-sizing: border-box;
   }
 }
 
