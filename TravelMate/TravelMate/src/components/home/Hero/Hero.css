@@ -1,107 +1,118 @@
 .hero {
   width: 100%;
+  padding: 85px 20px 105px;
   background: #f0fdfa;
-  padding: 55px 20px 65px;
 }
 
 .hero-container {
   width: 100%;
-  max-width: 1050px;
-  min-height: 400px;
+  max-width: 1120px;
   margin: 0 auto;
 
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 380px;
+  grid-template-columns: 1fr 470px;
   align-items: center;
-  gap: 55px;
+  gap: 70px;
 }
 
 .hero-content {
-  max-width: 540px;
+  max-width: 600px;
 }
 
-.hero-label {
+.hero-eyebrow {
   display: inline-block;
-  margin-bottom: 12px;
+  margin-bottom: 18px;
+
   color: #0f766e;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
 }
 
 .hero-content h1 {
-  margin: 0 0 16px;
+  margin: 0 0 22px;
+
   color: #111827;
-  font-size: 46px;
-  line-height: 1.12;
-  letter-spacing: -1px;
+
+  font-size: 58px;
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -1.8px;
 }
 
 .hero-content p {
-  max-width: 490px;
-  margin: 0 0 25px;
-  color: #6b7280;
-  font-size: 15px;
+  max-width: 530px;
+
+  margin: 0 0 32px;
+
+  color: #5f6b7a;
+
+  font-size: 17px;
   line-height: 1.7;
 }
 
 .hero-buttons {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 14px;
 }
 
 .hero-primary-button,
 .hero-secondary-button {
-  height: 40px;
-  padding: 0 17px;
+  min-height: 48px;
+  padding: 0 22px;
 
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  border-radius: 7px;
+  border-radius: 8px;
 
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   text-decoration: none;
 
-  transition: 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .hero-primary-button {
-  border: 1px solid #0f766e;
   background: #0f766e;
+  border: 1px solid #0f766e;
   color: #ffffff;
+
+  box-shadow: 0 5px 15px rgba(15, 118, 110, 0.18);
 }
 
 .hero-primary-button:hover {
   background: #115e59;
+  transform: translateY(-1px);
 }
 
 .hero-secondary-button {
-  border: 1px solid #0f766e;
   background: #ffffff;
-  color: #0f766e;
+  border: 1px solid #d1d5db;
+  color: #374151;
 }
 
 .hero-secondary-button:hover {
-  background: #f0fdfa;
+  border-color: #0f766e;
+  color: #0f766e;
 }
 
-/* IMAGE */
+/* Hero image */
 
 .hero-image-wrapper {
-  width: 380px;
-  height: 270px;
+  width: 470px;
+  height: 350px;
 
+  position: relative;
   overflow: hidden;
 
-  border-radius: 14px;
+  border-radius: 22px;
 
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
 }
 
-.hero-image-wrapper img {
+.hero-image-wrapper > img {
   width: 100%;
   height: 100%;
 
@@ -110,21 +121,76 @@
   object-fit: cover;
 }
 
-/* TABLET */
+/* Small floating card */
 
-@media (max-width: 850px) {
+.hero-image-card {
+  position: absolute;
+
+  left: 20px;
+  bottom: 20px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 11px 15px;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  border-radius: 10px;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.hero-image-card > span {
+  width: 35px;
+  height: 35px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  background: #f0fdfa;
+
+  font-size: 18px;
+}
+
+.hero-image-card div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hero-image-card strong {
+  color: #111827;
+  font-size: 12px;
+}
+
+.hero-image-card small {
+  color: #6b7280;
+  font-size: 10px;
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+  .hero {
+    padding: 70px 20px 85px;
+  }
+
   .hero-container {
     grid-template-columns: 1fr;
-    gap: 35px;
+    gap: 45px;
     text-align: center;
   }
 
   .hero-content {
-    max-width: 650px;
+    max-width: 700px;
     margin: 0 auto;
   }
 
-  .hero-content h1,
   .hero-content p {
     margin-left: auto;
     margin-right: auto;
@@ -136,29 +202,30 @@
 
   .hero-image-wrapper {
     width: 100%;
-    max-width: 500px;
-    height: 270px;
+    max-width: 550px;
+    height: 330px;
     margin: 0 auto;
   }
 }
 
-/* MOBILE */
+/* Mobile */
 
 @media (max-width: 600px) {
   .hero {
-    padding: 45px 15px 50px;
+    padding: 55px 15px 70px;
   }
 
-  .hero-container {
-    min-height: auto;
+  .hero-eyebrow {
+    font-size: 13px;
   }
 
   .hero-content h1 {
-    font-size: 36px;
+    font-size: 42px;
+    letter-spacing: -1px;
   }
 
   .hero-content p {
-    font-size: 14px;
+    font-size: 15px;
   }
 
   .hero-buttons {
@@ -168,10 +235,16 @@
   .hero-primary-button,
   .hero-secondary-button {
     width: 100%;
-    max-width: 220px;
+    max-width: 260px;
   }
 
   .hero-image-wrapper {
-    height: 220px;
+    height: 250px;
+    border-radius: 16px;
+  }
+
+  .hero-image-card {
+    left: 12px;
+    bottom: 12px;
   }
 }

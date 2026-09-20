@@ -1,27 +1,32 @@
 .search-section {
+  width: 100%;
   padding: 0 20px;
-  background: #ffffff;
+  background: #f0fdfa;
 }
 
 .search-container {
   width: 100%;
-  max-width: 1050px;
+  max-width: 1000px;
+
   margin: -35px auto 0;
   padding: 20px;
+
   position: relative;
   z-index: 10;
+
   background: #ffffff;
+
   border: 1px solid #e5e7eb;
   border-radius: 14px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-  box-sizing: border-box;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.09);
 }
 
 .search-form {
   display: grid;
-  grid-template-columns: 1.3fr 1fr 1fr 0.9fr auto;
-  align-items: end;
+  grid-template-columns: 1.4fr 1fr 1fr 0.8fr auto;
   gap: 14px;
+  align-items: end;
 }
 
 .search-field {
@@ -39,16 +44,20 @@
 .search-field input,
 .search-field select {
   width: 100%;
-  height: 44px;
+  height: 46px;
+
   padding: 0 12px;
+
   border: 1px solid #d1d5db;
   border-radius: 8px;
+
   background: #ffffff;
   color: #374151;
-  outline: none;
+
   font-family: inherit;
   font-size: 13px;
-  box-sizing: border-box;
+
+  outline: none;
 }
 
 .search-field input:focus,
@@ -58,16 +67,19 @@
 }
 
 .search-button {
-  height: 44px;
+  height: 46px;
   padding: 0 22px;
+
   border: 1px solid #0f766e;
   border-radius: 8px;
+
   background: #0f766e;
   color: #ffffff;
+
   font-family: inherit;
   font-size: 13px;
   font-weight: 700;
-  cursor: pointer;
+
   white-space: nowrap;
 }
 
@@ -75,15 +87,7 @@
   background: #115e59;
 }
 
-/* =========================
-   TABLET
-========================= */
-
 @media (max-width: 900px) {
-  .search-container {
-    margin-top: -25px;
-  }
-
   .search-form {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -93,26 +97,17 @@
   }
 }
 
-/* =========================
-   MOBILE
-========================= */
-
 @media (max-width: 600px) {
   .search-section {
     padding: 0 15px;
   }
 
   .search-container {
-    margin-top: -20px;
+    margin-top: -25px;
     padding: 18px;
   }
 
   .search-form {
     grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  .search-button {
-    width: 100%;
   }
 }
