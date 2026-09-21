@@ -8,6 +8,7 @@ import Testimonials from "../components/home/Testimonials/Testimonials";
 import Blog from "../components/home/Blog/Blog";
 import Newsletter from "../components/home/Newsletter/Newsletter";
 
+
 const Home = () => {
   return (
     <main className="home-page">
