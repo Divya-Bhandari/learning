@@ -1,34 +1,38 @@
 import "./Newsletter.css";
 
 const Newsletter = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <section className="newsletter">
       <div className="newsletter-container">
+        <div className="newsletter-content">
+          <span className="newsletter-label">Stay Connected</span>
 
-        <span className="newsletter-tag">
-          📩 Stay Connected
-        </span>
+          <h2>Get travel inspiration in your inbox</h2>
 
-        <h2>
-          Subscribe to Our Newsletter
-        </h2>
+          <p>
+            Subscribe to receive travel tips, destination ideas, and
+            useful guides for your next adventure.
+          </p>
 
-        <p>
-          Get exclusive travel deals, destination guides,
-          and special offers delivered directly to your inbox.
-        </p>
+          <form className="newsletter-form" onSubmit={handleSubmit}>
+            <input
+              type="email"
+              placeholder="Enter your email address"
+              aria-label="Email address"
+              required
+            />
 
-        <form className="newsletter-form">
-          <input
-            type="email"
-            placeholder="Enter your email address"
-          />
+            <button type="submit">Subscribe</button>
+          </form>
 
-          <button type="submit">
-            Subscribe
-          </button>
-        </form>
-
+          <small>
+            No spam. Just useful travel inspiration.
+          </small>
+        </div>
       </div>
     </section>
   );
