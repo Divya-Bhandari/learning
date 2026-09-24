@@ -1,74 +1,78 @@
 .destination-hero {
-  height: 70vh;
-  background: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80")
-    center/cover no-repeat;
-  position: relative;
+  width: 100%;
+  padding: 80px 20px;
+
+  background: #f0fdfa;
 }
 
-.destination-hero-overlay {
+.destination-hero-container {
   width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.45);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  max-width: 1120px;
+  margin: 0 auto;
 }
 
 .destination-hero-content {
-  width: 100%;
-  max-width: 1200px;
-  padding: 0 20px;
-  color: white;
+  max-width: 700px;
+  margin: 0 auto;
+
   text-align: center;
 }
 
-.destination-hero-content span {
-  color: #14b8a6;
-  font-size: 18px;
-  font-weight: 600;
+.destination-hero-label {
+  display: inline-block;
+  margin-bottom: 14px;
+
+  color: #0f766e;
+  font-size: 13px;
+  font-weight: 700;
+
+  text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .destination-hero-content h1 {
-  font-size: 60px;
-  margin: 20px 0;
-  color: white;
+  margin: 0 0 18px;
+
+  color: #111827;
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -1px;
 }
 
 .destination-hero-content p {
-  max-width: 700px;
-  margin: auto;
-  line-height: 1.8;
-  font-size: 18px;
+  max-width: 620px;
+  margin: 0 auto;
+
+  color: #6b7280;
+  font-size: 16px;
+  line-height: 1.7;
 }
 
-.destination-hero-content button {
-  margin-top: 35px;
-  padding: 15px 35px;
-  border: none;
-  border-radius: 40px;
-  background: #14b8a6;
-  color: white;
-  font-size: 17px;
-  cursor: pointer;
-  transition: .3s;
-}
+/* Tablet */
 
-.destination-hero-content button:hover {
-  background: #0f766e;
-}
-
-@media (max-width:768px) {
+@media (max-width: 768px) {
   .destination-hero {
-    height: 60vh;
+    padding: 65px 20px;
   }
 
   .destination-hero-content h1 {
-    font-size: 40px;
+    font-size: 38px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 500px) {
+  .destination-hero {
+    padding: 55px 15px;
+  }
+
+  .destination-hero-content h1 {
+    font-size: 32px;
   }
 
   .destination-hero-content p {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
