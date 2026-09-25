@@ -1,72 +1,99 @@
 import { useState } from "react";
 import "./DestinationFilter.css";
 
-const DestinationFilter = () => {
-  const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("All");
+const DestinationFilter = ({ onFilterChange }) => {
+  const [country, setCountry] = useState("All Countries");
+  const [price, setPrice] = useState("Any Budget");
+  const [duration, setDuration] = useState("Any Duration");
 
-  const handleSearch = (e) => {
-    e.preventDefault();
+  const handleSearch = () => {
+    onFilterChange({
+      country,
+      price,
+      duration,
+    });
+  };
 
-    console.log({
-      search,
-      category,
+  const handleReset = () => {
+    setCountry("All Countries");
+    setPrice("Any Budget");
+    setDuration("Any Duration");
+
+    onFilterChange({
+      country: "All Countries",
+      price: "Any Budget",
+      duration: "Any Duration",
     });
   };
 
   return (
-    <section className="destination-filter">
+    <section className="destination-filter-section">
       <div className="destination-filter-container">
-        <div className="destination-filter-header">
-          <div>
-            <span>Find your place</span>
-            <h2>Explore Destinations</h2>
-          </div>
 
-          <p>
-            Search and filter destinations to find a place that
-            matches your travel plans.
-          </p>
+        <div className="filter-group">
+          <label>Country</label>
+
+          <select
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
+          >
+            <option>All Countries</option>
+            <option>Nepal</option>
+            <option>Indonesia</option>
+            <option>France</option>
+            <option>Switzerland</option>
+            <option>Greece</option>
+            <option>United Arab Emirates</option>
+            <option>Maldives</option>
+            <option>Japan</option>
+            <option>United Kingdom</option>
+          </select>
         </div>
 
-        <form
-          className="destination-filter-form"
-          onSubmit={handleSearch}
-        >
-          <div className="destination-filter-field search-field">
-            <label htmlFor="destination-search">Search</label>
+        <div className="filter-group">
+          <label>Price</label>
 
-            <input
-              id="destination-search"
-              type="text"
-              placeholder="Search destination..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          </div>
+          <select
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+          >
+            <option>Any Budget</option>
+            <option>Under $700</option>
+            <option>$700 - $1000</option>
+            <option>Above $1000</option>
+          </select>
+        </div>
 
-          <div className="destination-filter-field">
-            <label htmlFor="destination-category">
-              Category
-            </label>
+        <div className="filter-group">
+          <label>Duration</label>
 
-            <select
-              id="destination-category"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-            >
-              <option value="All">All Destinations</option>
-              <option value="Nature">Nature</option>
-              <option value="Beach">Beach</option>
-              <option value="Mountain">Mountain</option>
-              <option value="City">City</option>
-            </select>
-          </div>
+          <select
+            value={duration}
+            onChange={(e) => setDuration(e.target.value)}
+          >
+            <option>Any Duration</option>
+            <option>1 - 5 Days</option>
+            <option>6 - 7 Days</option>
+            <option>8+ Days</option>
+          </select>
+        </div>
 
-          <button type="submit" className="destination-filter-button">
+        <div className="filter-buttons">
+          <button
+            className="filter-search-button"
+            onClick={handleSearch}
+          >
             Search
           </button>
-        </form>
+
+          <button
+            className="filter-reset-button"
+            onClick={handleReset}
+          >
+            Reset
+          </button>
+        </div>
+
       </div>
     </section>
   );
