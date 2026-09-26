@@ -10,32 +10,35 @@ const DestinationCard = ({ destination }) => {
           alt={destination.name}
         />
 
-        <span className="destination-card-category">
-          {destination.category}
+        <span className="destination-card-country">
+          {destination.country}
         </span>
       </div>
 
       <div className="destination-card-content">
-        <div className="destination-card-location">
-          📍 {destination.country}
+        <div className="destination-card-title">
+          <h3>{destination.name}</h3>
+
+          <div className="destination-card-rating">
+            ⭐ {destination.rating}
+          </div>
         </div>
 
-        <h3>{destination.name}</h3>
-
-        <p>
-          {destination.description ||
-            "Discover beautiful places and unforgettable travel experiences."}
+        <p className="destination-card-description">
+          {destination.description}
         </p>
 
-        <div className="destination-card-footer">
-          <span>
-            {destination.tours || 0} Tours
-          </span>
-
-          <Link to={`/destinations/${destination.id}`}>
-            Explore →
-          </Link>
+        <div className="destination-card-info">
+          <span>🕒 {destination.duration}</span>
+          <strong>${destination.price}</strong>
         </div>
+
+        <Link
+          to={`/destinations/${destination.id}`}
+          className="destination-card-button"
+        >
+          View Details
+        </Link>
       </div>
     </article>
   );
