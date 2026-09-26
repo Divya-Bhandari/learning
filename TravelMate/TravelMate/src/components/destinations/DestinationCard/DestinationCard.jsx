@@ -8,6 +8,7 @@ const DestinationCard = ({ destination }) => {
         <img
           src={destination.image}
           alt={destination.name}
+          loading="lazy"
         />
 
         <span className="destination-card-country">
