@@ -14,6 +14,8 @@
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
+/* Image */
+
 .destination-card-image {
   position: relative;
   height: 240px;
@@ -32,6 +34,8 @@
   transform: scale(1.05);
 }
 
+/* Country badge */
+
 .destination-card-country {
   position: absolute;
   top: 15px;
@@ -44,9 +48,13 @@
   font-weight: 600;
 }
 
+/* Content */
+
 .destination-card-content {
   padding: 22px;
 }
+
+/* Title + rating */
 
 .destination-card-title {
   display: flex;
@@ -69,12 +77,16 @@
   white-space: nowrap;
 }
 
+/* Description */
+
 .destination-card-description {
   margin: 0 0 18px;
   color: #6b7280;
   font-size: 14px;
   line-height: 1.7;
 }
+
+/* Duration + price */
 
 .destination-card-info {
   display: flex;
@@ -93,6 +105,8 @@
   color: #0f766e;
   font-size: 21px;
 }
+
+/* Button */
 
 .destination-card-button {
   display: block;
@@ -114,6 +128,8 @@
 .destination-card-button:hover {
   background: #115e59;
 }
+
+/* Mobile */
 
 @media (max-width: 600px) {
   .destination-card-image {
