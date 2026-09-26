@@ -29,6 +29,7 @@ const DestinationGrid = ({ destinations }) => {
         ) : (
           <div className="no-destinations">
             <h3>No destinations found</h3>
+
             <p>
               Try changing your country, price, or duration filters.
             </p>
