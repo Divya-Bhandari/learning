@@ -1,52 +1,25 @@
-import { useMemo } from "react";
-import { useSearchParams } from "react-router-dom";
-
-import DestinationCard from "../DestinationCard/DestinationCard";
-import { destinations } from "../DestinationData";
 import "./DestinationGrid.css";
+import DestinationCard from "../DestinationCard/DestinationCard";
 
-const DestinationGrid = () => {
-  const [searchParams] = useSearchParams();
-
-  const search = searchParams.get("search") || "";
-  const category = searchParams.get("category") || "All";
-
-  const filteredDestinations = useMemo(() => {
-    return destinations.filter((destination) => {
-      const matchesSearch =
-        destination.name
-          .toLowerCase()
-          .includes(search.toLowerCase()) ||
-        destination.country
-          .toLowerCase()
-          .includes(search.toLowerCase());
-
-      const matchesCategory =
-        category === "All" ||
-        destination.category === category;
-
-      return matchesSearch && matchesCategory;
-    });
-  }, [search, category]);
-
+const DestinationGrid = ({ destinations }) => {
   return (
     <section className="destination-grid-section">
       <div className="destination-grid-container">
-        <div className="destination-grid-header">
-          <div>
-            <span>Popular places</span>
-            <h2>Explore Destinations</h2>
-          </div>
+
+        <div className="destination-grid-heading">
+          <span>Discover More</span>
+
+          <h2>Popular Destinations</h2>
 
           <p>
-            Discover places worth visiting and start planning your
-            next adventure.
+            Explore our handpicked destinations and find your next
+            unforgettable adventure.
           </p>
         </div>
 
-        {filteredDestinations.length > 0 ? (
+        {destinations.length > 0 ? (
           <div className="destination-grid">
-            {filteredDestinations.map((destination) => (
+            {destinations.map((destination) => (
               <DestinationCard
                 key={destination.id}
                 destination={destination}
@@ -54,13 +27,14 @@ const DestinationGrid = () => {
             ))}
           </div>
         ) : (
-          <div className="destination-empty">
+          <div className="no-destinations">
             <h3>No destinations found</h3>
             <p>
-              Try searching for another destination or category.
+              Try changing your country, price, or duration filters.
             </p>
           </div>
         )}
+
       </div>
     </section>
   );
