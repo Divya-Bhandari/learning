@@ -1,99 +1,126 @@
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import "./DestinationFilter.css";
 
-const DestinationFilter = ({ onFilterChange }) => {
-  const [country, setCountry] = useState("All Countries");
-  const [price, setPrice] = useState("Any Budget");
-  const [duration, setDuration] = useState("Any Duration");
+const DestinationFilter = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const handleSearch = () => {
-    onFilterChange({
-      country,
-      price,
-      duration,
-    });
+  const [search, setSearch] = useState(
+    searchParams.get("search") || ""
+  );
+
+  const [category, setCategory] = useState(
+    searchParams.get("category") || "All"
+  );
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+
+    const params = {};
+
+    if (search.trim()) {
+      params.search = search.trim();
+    }
+
+    if (category !== "All") {
+      params.category = category;
+    }
+
+    setSearchParams(params);
   };
 
-  const handleReset = () => {
-    setCountry("All Countries");
-    setPrice("Any Budget");
-    setDuration("Any Duration");
+  const handleCategoryChange = (e) => {
+    const selectedCategory = e.target.value;
 
-    onFilterChange({
-      country: "All Countries",
-      price: "Any Budget",
-      duration: "Any Duration",
-    });
+    setCategory(selectedCategory);
+
+    const params = {};
+
+    if (search.trim()) {
+      params.search = search.trim();
+    }
+
+    if (selectedCategory !== "All") {
+      params.category = selectedCategory;
+    }
+
+    setSearchParams(params);
+  };
+
+  const handleClear = () => {
+    setSearch("");
+    setCategory("All");
+    setSearchParams({});
   };
 
   return (
-    <section className="destination-filter-section">
+    <section className="destination-filter">
       <div className="destination-filter-container">
+        <div className="destination-filter-header">
+          <div>
+            <span>Find your place</span>
+            <h2>Explore Destinations</h2>
+          </div>
 
-        <div className="filter-group">
-          <label>Country</label>
-
-          <select
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
-          >
-            <option>All Countries</option>
-            <option>Nepal</option>
-            <option>Indonesia</option>
-            <option>France</option>
-            <option>Switzerland</option>
-            <option>Greece</option>
-            <option>United Arab Emirates</option>
-            <option>Maldives</option>
-            <option>Japan</option>
-            <option>United Kingdom</option>
-          </select>
+          <p>
+            Search and filter destinations to find a place that
+            matches your travel plans.
+          </p>
         </div>
 
-        <div className="filter-group">
-          <label>Price</label>
+        <form
+          className="destination-filter-form"
+          onSubmit={handleSearch}
+        >
+          <div className="destination-filter-field search-field">
+            <label htmlFor="destination-search">
+              Search
+            </label>
 
-          <select
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-          >
-            <option>Any Budget</option>
-            <option>Under $700</option>
-            <option>$700 - $1000</option>
-            <option>Above $1000</option>
-          </select>
-        </div>
+            <input
+              id="destination-search"
+              type="text"
+              placeholder="Search destination..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
 
-        <div className="filter-group">
-          <label>Duration</label>
+          <div className="destination-filter-field">
+            <label htmlFor="destination-category">
+              Category
+            </label>
 
-          <select
-            value={duration}
-            onChange={(e) => setDuration(e.target.value)}
-          >
-            <option>Any Duration</option>
-            <option>1 - 5 Days</option>
-            <option>6 - 7 Days</option>
-            <option>8+ Days</option>
-          </select>
-        </div>
+            <select
+              id="destination-category"
+              value={category}
+              onChange={handleCategoryChange}
+            >
+              <option value="All">All Destinations</option>
+              <option value="Nature">Nature</option>
+              <option value="Beach">Beach</option>
+              <option value="Mountain">Mountain</option>
+              <option value="City">City</option>
+            </select>
+          </div>
 
-        <div className="filter-buttons">
           <button
-            className="filter-search-button"
-            onClick={handleSearch}
+            type="submit"
+            className="destination-filter-button"
           >
             Search
           </button>
 
-          <button
-            className="filter-reset-button"
-            onClick={handleReset}
-          >
-            Reset
-          </button>
-        </div>
-
+          {(search || category !== "All") && (
+            <button
+              type="button"
+              className="destination-clear-button"
+              onClick={handleClear}
+            >
+              Clear
+            </button>
+          )}
+        </form>
       </div>
     </section>
   );
