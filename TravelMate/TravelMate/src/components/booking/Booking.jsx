@@ -1,33 +1,126 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
-import "./BookingSuccess.css";
+import DestinationData from "../destinations/DestinationData";
+import "./Booking.css";
 
-const BookingSuccess = () => {
-  const bookings =
-    JSON.parse(localStorage.getItem("travelmateBookings")) || [];
+const Booking = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
 
-  const booking = bookings.length
-    ? bookings[bookings.length - 1]
-    : null;
+  // Find the selected destination from the main destination data
+  const destination = DestinationData.find(
+    (item) => String(item.id) === String(id)
+  );
 
-  if (!booking) {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    date: "",
+    travelers: "1",
+    requests: "",
+  });
+
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((previous) => ({
+      ...previous,
+      [name]: value,
+    }));
+
+    setError("");
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const isLoggedIn =
+      localStorage.getItem("travelmateLoggedIn") === "true";
+
+    if (!isLoggedIn) {
+      setError("Please login before making a booking.");
+      return;
+    }
+
+    if (
+      !formData.name.trim() ||
+      !formData.email.trim() ||
+      !formData.phone.trim() ||
+      !formData.date
+    ) {
+      setError("Please complete all required fields.");
+      return;
+    }
+
+    const travelers = Number(formData.travelers);
+
+    const booking = {
+      id: Date.now().toString(),
+
+      destinationId: destination.id,
+      destination: destination.name,
+      country: destination.country,
+      image: destination.image,
+
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      phone: formData.phone.trim(),
+
+      date: formData.date,
+      travelers,
+
+      requests: formData.requests.trim(),
+
+      pricePerTraveler: destination.price,
+      total: destination.price * travelers,
+
+      duration: destination.duration,
+      rating: destination.rating,
+
+      status: "Confirmed",
+    };
+
+    const existingBookings =
+      JSON.parse(
+        localStorage.getItem("travelmateBookings")
+      ) || [];
+
+    localStorage.setItem(
+      "travelmateBookings",
+      JSON.stringify([
+        ...existingBookings,
+        booking,
+      ])
+    );
+
+    navigate("/booking-success");
+  };
+
+  // Handle invalid destination ID
+  if (!destination) {
     return (
-      <main className="booking-success-page">
-        <div className="booking-success-container">
-          <div className="booking-success-card">
-            <div className="booking-success-icon">!</div>
+      <main className="booking-page">
+        <div className="booking-container">
+          <Link
+            to="/destinations"
+            className="booking-back"
+          >
+            ← Back to Destinations
+          </Link>
 
-            <h1>No Booking Found</h1>
+          <div className="booking-form-card">
+            <h2>Destination Not Found</h2>
 
             <p>
-              We couldn't find a recent booking.
-              Please choose a destination and try again.
+              The destination you are trying to book
+              does not exist.
             </p>
 
-            <Link
-              to="/destinations"
-              className="booking-success-button"
-            >
+            <Link to="/destinations">
               Explore Destinations
             </Link>
           </div>
@@ -36,89 +129,311 @@ const BookingSuccess = () => {
     );
   }
 
+  const total =
+    destination.price *
+    Number(formData.travelers);
+
   return (
-    <main className="booking-success-page">
-      <div className="booking-success-container">
-        <div className="booking-success-card">
-          <div className="booking-success-icon">
-            ✓
-          </div>
+    <main className="booking-page">
+      <div className="booking-container">
+        <Link
+          to={`/destinations/${destination.id}`}
+          className="booking-back"
+        >
+          ← Back to Destination
+        </Link>
 
-          <span className="booking-success-label">
-            Booking Confirmed
-          </span>
+        <section className="booking-header">
+          <span>TravelMate</span>
 
-          <h1>Your trip is booked!</h1>
+          <h1>Book Your Journey</h1>
 
-          <p className="booking-success-message">
-            Thank you, {booking.name}. Your booking for{" "}
-            <strong>{booking.destination}</strong> has
-            been successfully confirmed.
+          <p>
+            Complete the form below to plan your trip
+            to {destination.name}.
           </p>
+        </section>
 
-          <div className="booking-success-details">
-            <div className="success-detail-row">
-              <span>Destination</span>
-              <strong>
-                {booking.destination}
-              </strong>
+        <section className="booking-layout">
+          {/* =========================
+              TRIP SUMMARY
+          ========================= */}
+
+          <aside className="booking-summary">
+            <div className="booking-summary-label">
+              Your Trip
             </div>
 
-            <div className="success-detail-row">
-              <span>Country</span>
-              <strong>
-                {booking.country}
-              </strong>
-            </div>
+            <h2>{destination.name}</h2>
 
-            <div className="success-detail-row">
-              <span>Travel Date</span>
-              <strong>
-                {booking.date}
-              </strong>
-            </div>
+            <p className="booking-country">
+              {destination.country}
+            </p>
 
-            <div className="success-detail-row">
-              <span>Travelers</span>
-              <strong>
-                {booking.travelers}
-              </strong>
-            </div>
+            <div className="summary-divider"></div>
 
-            <div className="success-detail-row">
+            <div className="summary-row">
               <span>Duration</span>
+
               <strong>
-                {booking.duration}
+                {destination.duration}
               </strong>
             </div>
 
-            <div className="success-detail-row success-total">
+            <div className="summary-row">
+              <span>Rating</span>
+
+              <strong>
+                ⭐ {destination.rating}
+              </strong>
+            </div>
+
+            <div className="summary-row">
+              <span>Price per traveler</span>
+
+              <strong>
+                ${destination.price.toLocaleString()}
+              </strong>
+            </div>
+
+            <div className="summary-row">
+              <span>Travelers</span>
+
+              <strong>
+                {formData.travelers}
+              </strong>
+            </div>
+
+            <div className="summary-divider"></div>
+
+            <div className="summary-total">
               <span>Total</span>
+
               <strong>
-                ${booking.total.toLocaleString()}
+                ${total.toLocaleString()}
               </strong>
             </div>
-          </div>
 
-          <div className="booking-success-actions">
-            <Link
-              to="/my-bookings"
-              className="booking-success-button"
-            >
-              View My Bookings
-            </Link>
+            <div className="summary-note">
+              Your booking information is stored
+              securely in your TravelMate account.
+            </div>
+          </aside>
 
-            <Link
-              to="/destinations"
-              className="booking-success-secondary"
-            >
-              Explore More Destinations
-            </Link>
+          {/* =========================
+              BOOKING FORM
+          ========================= */}
+
+          <div className="booking-form-card">
+            {error && (
+              <div className="booking-error">
+                {error}
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit}>
+              {/* =========================
+                  PERSONAL INFORMATION
+              ========================= */}
+
+              <section className="form-section">
+                <h2>Personal Information</h2>
+
+                <div className="form-grid">
+                  <div className="booking-field">
+                    <label htmlFor="name">
+                      Full Name *
+                    </label>
+
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="Enter your full name"
+                    />
+                  </div>
+
+                  <div className="booking-field">
+                    <label htmlFor="email">
+                      Email Address *
+                    </label>
+
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="Enter your email"
+                    />
+                  </div>
+
+                  <div className="booking-field">
+                    <label htmlFor="phone">
+                      Phone Number *
+                    </label>
+
+                    <input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="Enter your phone number"
+                    />
+                  </div>
+                </div>
+              </section>
+
+              {/* =========================
+                  TRIP INFORMATION
+              ========================= */}
+
+              <section className="form-section">
+                <h2>Trip Information</h2>
+
+                <div className="form-grid">
+                  <div className="booking-field">
+                    <label htmlFor="date">
+                      Travel Date *
+                    </label>
+
+                    <input
+                      id="date"
+                      name="date"
+                      type="date"
+                      value={formData.date}
+                      onChange={handleChange}
+                      min={
+                        new Date()
+                          .toISOString()
+                          .split("T")[0]
+                      }
+                    />
+                  </div>
+
+                  <div className="booking-field">
+                    <label htmlFor="travelers">
+                      Number of Travelers
+                    </label>
+
+                    <select
+                      id="travelers"
+                      name="travelers"
+                      value={formData.travelers}
+                      onChange={handleChange}
+                    >
+                      <option value="1">
+                        1 Traveler
+                      </option>
+
+                      <option value="2">
+                        2 Travelers
+                      </option>
+
+                      <option value="3">
+                        3 Travelers
+                      </option>
+
+                      <option value="4">
+                        4 Travelers
+                      </option>
+
+                      <option value="5">
+                        5 Travelers
+                      </option>
+
+                      <option value="6">
+                        6 Travelers
+                      </option>
+
+                      <option value="7">
+                        7 Travelers
+                      </option>
+
+                      <option value="8">
+                        8 Travelers
+                      </option>
+
+                      <option value="9">
+                        9 Travelers
+                      </option>
+
+                      <option value="10">
+                        10 Travelers
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </section>
+
+              {/* =========================
+                  SPECIAL REQUESTS
+              ========================= */}
+
+              <section className="form-section">
+                <h2>Special Requests</h2>
+
+                <div className="booking-field">
+                  <label htmlFor="requests">
+                    Additional Information
+                  </label>
+
+                  <textarea
+                    id="requests"
+                    name="requests"
+                    rows="5"
+                    value={formData.requests}
+                    onChange={handleChange}
+                    placeholder="Tell us about any special requests..."
+                  />
+                </div>
+              </section>
+
+              {/* =========================
+                  FINAL TOTAL
+              ========================= */}
+
+              <div className="booking-final-total">
+                <div>
+                  <span>
+                    Total Estimated Price
+                  </span>
+
+                  <small>
+                    {formData.travelers} traveler
+                    {Number(formData.travelers) > 1
+                      ? "s"
+                      : ""}{" "}
+                    × $
+                    {destination.price.toLocaleString()}
+                  </small>
+                </div>
+
+                <strong>
+                  ${total.toLocaleString()}
+                </strong>
+              </div>
+
+              <button
+                type="submit"
+                className="booking-submit-button"
+              >
+                Confirm Booking
+              </button>
+
+              <p className="booking-security">
+                🔒 Your booking information is handled
+                securely by TravelMate.
+              </p>
+            </form>
           </div>
-        </div>
+        </section>
       </div>
     </main>
   );
 };
 
-export default BookingSuccess;
+export default Booking;
