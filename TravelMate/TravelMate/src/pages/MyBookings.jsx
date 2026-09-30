@@ -1,47 +1,41 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./MyBookings.css";
 
 const MyBookings = () => {
-  const navigate = useNavigate();
+  const [bookings, setBookings] = useState([]);
 
-  const isLoggedIn =
-    localStorage.getItem("travelmateLoggedIn") === "true";
+  useEffect(() => {
+    const savedBookings =
+      JSON.parse(localStorage.getItem("travelmateBookings")) || [];
 
-  const bookings =
-    JSON.parse(localStorage.getItem("travelmateBookings")) || [];
+    const savedUser =
+      JSON.parse(localStorage.getItem("travelmateUser")) || null;
 
-  if (!isLoggedIn) {
-    return (
-      <main className="my-bookings-not-found">
-        <h1>Login Required</h1>
+    if (savedUser?.email) {
+      const userBookings = savedBookings.filter(
+        (booking) =>
+          booking.email?.toLowerCase() === savedUser.email.toLowerCase()
+      );
 
-        <p>
-          Please login to view and manage your bookings.
-        </p>
-
-        <Link to="/login">
-          Login
-        </Link>
-      </main>
-    );
-  }
-
-  const handleViewBooking = (id) => {
-    navigate(`/booking-details/${id}`);
-  };
-
-  const handleCancelBooking = (id) => {
-    const confirmed = window.confirm(
-      "Are you sure you want to cancel this booking?"
-    );
-
-    if (!confirmed) {
-      return;
+      setBookings(userBookings);
+    } else {
+      setBookings(savedBookings);
     }
+  }, []);
 
-    const updatedBookings = bookings.filter(
-      (booking) =>
-        String(booking.id) !== String(id)
+  const handleDelete = (bookingId) => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this booking?"
+    );
+
+    if (!confirmed) return;
+
+    const savedBookings =
+      JSON.parse(localStorage.getItem("travelmateBookings")) || [];
+
+    const updatedBookings = savedBookings.filter(
+      (booking) => booking.id !== bookingId
     );
 
     localStorage.setItem(
@@ -49,193 +43,136 @@ const MyBookings = () => {
       JSON.stringify(updatedBookings)
     );
 
-    window.location.reload();
+    setBookings((currentBookings) =>
+      currentBookings.filter((booking) => booking.id !== bookingId)
+    );
   };
 
   return (
     <main className="my-bookings-page">
-
-      <div className="my-bookings-container">
-
-        <section className="my-bookings-header">
-
+      <section className="my-bookings-header">
+        <div className="my-bookings-header-container">
           <span>TravelMate</span>
-
           <h1>My Bookings</h1>
-
           <p>
-            View and manage all your travel bookings
-            in one place.
+            Manage your upcoming trips and view your booking details.
           </p>
+        </div>
+      </section>
 
-        </section>
+      <section className="my-bookings-content">
+        <div className="my-bookings-container">
+          {bookings.length === 0 ? (
+            <div className="my-bookings-empty">
+              <div className="my-bookings-empty-icon">✈️</div>
 
-        {bookings.length === 0 ? (
-          <div className="my-bookings-empty">
+              <h2>No bookings yet</h2>
 
-            <div className="empty-icon">
-              ✈
+              <p>
+                You haven't booked any trips yet. Explore our destinations
+                and start planning your next adventure.
+              </p>
+
+              <Link
+                to="/destinations"
+                className="my-bookings-explore-button"
+              >
+                Explore Destinations
+              </Link>
             </div>
+          ) : (
+            <>
+              <div className="my-bookings-top">
+                <div>
+                  <span>Your Trips</span>
+                  <h2>{bookings.length} Booking{bookings.length !== 1 ? "s" : ""}</h2>
+                </div>
 
-            <h2>
-              No Bookings Yet
-            </h2>
-
-            <p>
-              You haven't made any bookings yet.
-              Explore our destinations and plan
-              your next journey.
-            </p>
-
-            <Link
-              to="/destinations"
-              className="browse-destinations-button"
-            >
-              Explore Destinations
-            </Link>
-
-          </div>
-        ) : (
-          <div className="bookings-list">
-
-            {bookings.map((booking) => {
-
-              const travelers =
-                Number(booking.travelers) || 1;
-
-              const price =
-                Number(
-                  booking.pricePerTraveler ??
-                  booking.price ??
-                  0
-                );
-
-              const total =
-                Number(
-                  booking.total ??
-                  booking.totalPrice ??
-                  price * travelers
-                );
-
-              return (
-                <article
-                  className="booking-card"
-                  key={booking.id}
+                <Link
+                  to="/destinations"
+                  className="my-bookings-new-button"
                 >
+                  + Book Another Trip
+                </Link>
+              </div>
 
-                  <div className="booking-card-main">
-
-                    <div className="booking-card-info">
-
-                      <span className="booking-label">
-                        Destination
-                      </span>
-
-                      <h2>
-                        {booking.destination}
-                      </h2>
-
-                      <p>
-                        {booking.country}
-                      </p>
-
+              <div className="my-bookings-list">
+                {bookings.map((booking) => (
+                  <article
+                    className="my-booking-card"
+                    key={booking.id}
+                  >
+                    <div className="my-booking-image">
+                      <img
+                        src={booking.image}
+                        alt={booking.destination}
+                      />
                     </div>
 
-                    <span className="booking-status">
-                      {booking.status || "Confirmed"}
-                    </span>
+                    <div className="my-booking-content">
+                      <div className="my-booking-main">
+                        <div>
+                          <span className="my-booking-country">
+                            📍 {booking.country}
+                          </span>
 
-                  </div>
+                          <h3>{booking.destination}</h3>
 
-                  <div className="booking-card-details">
+                          <p>
+                            {booking.duration} •{" "}
+                            {booking.travelers} traveler
+                            {Number(booking.travelers) !== 1 ? "s" : ""}
+                          </p>
+                        </div>
 
-                    <div>
-                      <span>
-                        Booking ID
-                      </span>
+                        <span className="my-booking-status">
+                          {booking.status || "Confirmed"}
+                        </span>
+                      </div>
 
-                      <strong>
-                        #{booking.id}
-                      </strong>
+                      <div className="my-booking-details">
+                        <div>
+                          <span>Travel Date</span>
+                          <strong>{booking.date}</strong>
+                        </div>
+
+                        <div>
+                          <span>Travelers</span>
+                          <strong>{booking.travelers}</strong>
+                        </div>
+
+                        <div>
+                          <span>Total</span>
+                          <strong>
+                            ${Number(booking.total).toLocaleString()}
+                          </strong>
+                        </div>
+                      </div>
+
+                      <div className="my-booking-actions">
+                        <Link
+                          to={`/booking-details/${booking.id}`}
+                          className="my-booking-view-button"
+                        >
+                          View Details
+                        </Link>
+
+                        <button
+                          type="button"
+                          className="my-booking-delete-button"
+                          onClick={() => handleDelete(booking.id)}
+                        >
+                          Delete
+                        </button>
+                      </div>
                     </div>
-
-                    <div>
-                      <span>
-                        Travel Date
-                      </span>
-
-                      <strong>
-                        {booking.date}
-                      </strong>
-                    </div>
-
-                    <div>
-                      <span>
-                        Travelers
-                      </span>
-
-                      <strong>
-                        {travelers}
-                      </strong>
-                    </div>
-
-                    <div>
-                      <span>
-                        Total
-                      </span>
-
-                      <strong>
-                        ${total.toLocaleString()}
-                      </strong>
-                    </div>
-
-                  </div>
-
-                  <div className="booking-card-footer">
-
-                    <small>
-                      Booked by {booking.name}
-                    </small>
-
-                    <div className="booking-card-actions">
-
-                      <button
-                        type="button"
-                        className="view-booking-button"
-                        onClick={() =>
-                          handleViewBooking(
-                            booking.id
-                          )
-                        }
-                      >
-                        View Details
-                      </button>
-
-                      <button
-                        type="button"
-                        className="cancel-booking-button"
-                        onClick={() =>
-                          handleCancelBooking(
-                            booking.id
-                          )
-                        }
-                      >
-                        Cancel Booking
-                      </button>
-
-                    </div>
-
-                  </div>
-
-                </article>
-              );
-            })}
-
-          </div>
-        )}
-
-      </div>
-
+                  </article>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      </section>
     </main>
   );
 };
