@@ -5,6 +5,7 @@
   box-sizing: border-box;
 }
 
+/* Main container */
 .contact-container {
   width: 100%;
   max-width: 1100px;
@@ -12,13 +13,13 @@
 }
 
 /* Header */
-
 .contact-header {
   max-width: 700px;
   margin: 0 auto 50px;
   text-align: center;
 }
 
+/* Small heading above Contact Us */
 .contact-header > span {
   display: inline-block;
   margin-bottom: 10px;
@@ -29,6 +30,7 @@
   letter-spacing: 1px;
 }
 
+/* Main page heading */
 .contact-header h1 {
   margin: 0 0 14px;
   color: #111827;
@@ -36,14 +38,14 @@
   line-height: 1.2;
 }
 
+/* Header description */
 .contact-header p {
   margin: 0;
   color: #6b7280;
   line-height: 1.7;
 }
 
-/* Main Layout */
-
+/* Main contact layout */
 .contact-layout {
   display: grid;
   grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
@@ -51,8 +53,7 @@
   align-items: start;
 }
 
-/* Contact Information */
-
+/* Shared card design */
 .contact-info,
 .contact-form-card {
   background: #ffffff;
@@ -61,10 +62,12 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
+/* Contact information card */
 .contact-info {
   padding: 35px;
 }
 
+/* Small section label */
 .contact-section-label {
   color: #0f766e;
   font-size: 12px;
@@ -73,6 +76,7 @@
   letter-spacing: 1px;
 }
 
+/* Contact information heading */
 .contact-info h2 {
   margin: 10px 0 15px;
   color: #111827;
@@ -80,26 +84,28 @@
   line-height: 1.3;
 }
 
+/* Contact information description */
 .contact-info > p {
   margin: 0;
   color: #6b7280;
   line-height: 1.7;
 }
 
-/* Contact Details */
-
+/* Contact details list */
 .contact-info-list {
   display: grid;
   gap: 20px;
   margin-top: 30px;
 }
 
+/* Individual contact information */
 .contact-info-item {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
+/* Contact information icon */
 .contact-info-icon {
   width: 45px;
   height: 45px;
@@ -112,36 +118,40 @@
   font-size: 20px;
 }
 
+/* Contact detail text */
 .contact-info-item span,
 .contact-info-item strong {
   display: block;
 }
 
+/* Contact detail label */
 .contact-info-item span {
   margin-bottom: 4px;
   color: #9ca3af;
   font-size: 12px;
 }
 
+/* Contact detail value */
 .contact-info-item strong {
   color: #374151;
   font-size: 14px;
 }
 
-/* Opening Hours */
-
+/* Opening hours section */
 .contact-hours {
   margin-top: 30px;
   padding-top: 25px;
   border-top: 1px solid #e5e7eb;
 }
 
+/* Opening hours heading */
 .contact-hours > span {
   color: #374151;
   font-size: 14px;
   font-weight: 700;
 }
 
+/* Opening hours description */
 .contact-hours p {
   margin: 7px 0 0;
   color: #6b7280;
@@ -149,18 +159,19 @@
   line-height: 1.6;
 }
 
-/* Form */
-
+/* Contact form card */
 .contact-form-card {
   padding: 35px;
 }
 
+/* Form heading */
 .contact-form-card h2 {
   margin: 0 0 8px;
   color: #111827;
   font-size: 24px;
 }
 
+/* Form description */
 .contact-form-card > p {
   margin: 0 0 25px;
   color: #6b7280;
@@ -168,12 +179,14 @@
   font-size: 14px;
 }
 
+/* Form fields in one row */
 .contact-form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 18px;
 }
 
+/* Individual form field */
 .contact-field {
   display: flex;
   flex-direction: column;
@@ -181,12 +194,14 @@
   margin-bottom: 18px;
 }
 
+/* Form labels */
 .contact-field label {
   color: #374151;
   font-size: 14px;
   font-weight: 600;
 }
 
+/* Input and textarea styling */
 .contact-field input,
 .contact-field textarea {
   width: 100%;
@@ -204,32 +219,33 @@
     box-shadow 0.2s ease;
 }
 
+/* Input focus effect */
 .contact-field input:focus,
 .contact-field textarea:focus {
   border-color: #0f766e;
   box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
 }
 
+/* Message textarea */
 .contact-field textarea {
   min-height: 140px;
   resize: vertical;
 }
 
+/* Placeholder text */
 .contact-field input::placeholder,
 .contact-field textarea::placeholder {
   color: #9ca3af;
 }
 
-/* Error */
-
+/* Error message */
 .contact-error {
   color: #dc2626;
   font-size: 12px;
   line-height: 1.4;
 }
 
-/* Success */
-
+/* Success message */
 .contact-success {
   margin-bottom: 20px;
   padding: 13px 15px;
@@ -241,8 +257,7 @@
   line-height: 1.5;
 }
 
-/* Submit Button */
-
+/* Submit button */
 .contact-submit-button {
   width: 100%;
   margin-top: 5px;
@@ -260,44 +275,48 @@
     transform 0.2s ease;
 }
 
+/* Submit button hover effect */
 .contact-submit-button:hover {
   background: #115e59;
   transform: translateY(-1px);
 }
 
-/* Tablet */
-
+/* Tablet responsive design */
 @media (max-width: 850px) {
   .contact-layout {
     grid-template-columns: 1fr;
   }
 }
 
-/* Mobile */
-
+/* Mobile responsive design */
 @media (max-width: 600px) {
   .contact-page {
     padding: 45px 15px;
   }
 
+  /* Smaller header spacing */
   .contact-header {
     margin-bottom: 35px;
   }
 
+  /* Smaller mobile heading */
   .contact-header h1 {
     font-size: 32px;
   }
 
+  /* Smaller card padding */
   .contact-info,
   .contact-form-card {
     padding: 25px 20px;
   }
 
+  /* Stack form fields vertically */
   .contact-form-row {
     grid-template-columns: 1fr;
     gap: 0;
   }
 
+  /* Smaller contact information heading */
   .contact-info h2 {
     font-size: 24px;
   }
