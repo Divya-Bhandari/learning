@@ -1,4 +1,5 @@
 .login-page {
+  /* Centers the login card vertically and horizontally */
   min-height: 80vh;
   display: flex;
   justify-content: center;
@@ -7,6 +8,7 @@
   background: #f8fafc;
 }
 
+/* Main login card */
 .login-card {
   width: 100%;
   max-width: 450px;
@@ -17,11 +19,13 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
+/* Login header section */
 .login-header {
   text-align: center;
   margin-bottom: 30px;
 }
 
+/* Small text above the heading */
 .login-header > span {
   color: #0f766e;
   font-size: 13px;
@@ -30,18 +34,21 @@
   letter-spacing: 1px;
 }
 
+/* Main login heading */
 .login-header h1 {
   margin: 10px 0;
   color: #111827;
   font-size: 32px;
 }
 
+/* Header description */
 .login-header p {
   margin: 0;
   color: #6b7280;
   line-height: 1.6;
 }
 
+/* Login error message */
 .login-error {
   margin-bottom: 20px;
   padding: 12px;
@@ -51,6 +58,7 @@
   font-size: 14px;
 }
 
+/* Individual form field */
 .login-field {
   display: flex;
   flex-direction: column;
@@ -58,12 +66,14 @@
   margin-bottom: 20px;
 }
 
+/* Form field label */
 .login-field label {
   color: #374151;
   font-size: 14px;
   font-weight: 600;
 }
 
+/* Email and password inputs */
 .login-field input {
   width: 100%;
   padding: 13px 14px;
@@ -75,11 +85,13 @@
   font-size: 14px;
 }
 
+/* Input focus effect */
 .login-field input:focus {
   border-color: #0f766e;
   box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
 }
 
+/* Login submit button */
 .login-submit-button {
   width: 100%;
   padding: 14px;
@@ -92,21 +104,25 @@
   cursor: pointer;
 }
 
+/* Login button hover effect */
 .login-submit-button:hover {
   background: #115e59;
 }
 
+/* Register section below the form */
 .login-register {
   margin-top: 25px;
   text-align: center;
 }
 
+/* Register text */
 .login-register p {
   display: inline;
   color: #6b7280;
   font-size: 14px;
 }
 
+/* Register link */
 .login-register a {
   margin-left: 5px;
   color: #0f766e;
@@ -115,11 +131,13 @@
   text-decoration: none;
 }
 
+/* Mobile responsive design */
 @media (max-width: 500px) {
   .login-page {
     padding: 40px 15px;
   }
 
+  /* Reduce card padding on smaller screens */
   .login-card {
     padding: 30px 20px;
   }
