@@ -1,12 +1,13 @@
 .my-bookings-page {
+  /* Main page container */
   width: 100%;
   min-height: 100vh;
   background: #f8fafc;
 }
 
 /* Header */
-
 .my-bookings-header {
+  /* Header section at the top of the page */
   width: 100%;
   padding: 75px 20px;
   background: #ffffff;
@@ -14,12 +15,14 @@
 }
 
 .my-bookings-header-container {
+  /* Centers and limits the header content */
   width: 100%;
   max-width: 1120px;
   margin: 0 auto;
   text-align: center;
 }
 
+/* Small text above the main heading */
 .my-bookings-header-container > span {
   display: block;
   margin-bottom: 10px;
@@ -29,6 +32,7 @@
   letter-spacing: 0.5px;
 }
 
+/* Main My Bookings heading */
 .my-bookings-header-container h1 {
   margin: 0 0 12px;
   color: #111827;
@@ -37,6 +41,7 @@
   font-weight: 800;
 }
 
+/* Header description */
 .my-bookings-header-container p {
   max-width: 600px;
   margin: 0 auto;
@@ -45,21 +50,22 @@
 }
 
 /* Content */
-
 .my-bookings-content {
+  /* Main content area below the header */
   width: 100%;
   padding: 55px 20px 80px;
 }
 
 .my-bookings-container {
+  /* Centers and limits the booking content */
   width: 100%;
   max-width: 1000px;
   margin: 0 auto;
 }
 
-/* Top */
-
+/* Top section */
 .my-bookings-top {
+  /* Places the heading and new booking button in one row */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -67,12 +73,14 @@
   margin-bottom: 30px;
 }
 
+/* Small label above the bookings heading */
 .my-bookings-top span {
   color: #0f766e;
   font-size: 13px;
   font-weight: 700;
 }
 
+/* Bookings section heading */
 .my-bookings-top h2 {
   margin-top: 5px;
   color: #111827;
@@ -80,6 +88,7 @@
   font-weight: 800;
 }
 
+/* New booking button */
 .my-bookings-new-button {
   display: inline-flex;
   align-items: center;
@@ -96,21 +105,22 @@
   transition: background 0.2s ease;
 }
 
+/* New booking button hover effect */
 .my-bookings-new-button:hover {
   background: #115e59;
 }
 
 /* Booking List */
-
 .my-bookings-list {
+  /* Arranges booking cards vertically */
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
 /* Booking Card */
-
 .my-booking-card {
+  /* Creates image and booking information columns */
   display: grid;
   grid-template-columns: 250px 1fr;
   overflow: hidden;
@@ -119,11 +129,13 @@
   border-radius: 12px;
 }
 
+/* Booking image container */
 .my-booking-image {
   width: 100%;
   min-height: 245px;
 }
 
+/* Booking image */
 .my-booking-image img {
   width: 100%;
   height: 100%;
@@ -131,11 +143,13 @@
   object-fit: cover;
 }
 
+/* Booking information area */
 .my-booking-content {
   min-width: 0;
   padding: 24px;
 }
 
+/* Booking title and status section */
 .my-booking-main {
   display: flex;
   align-items: flex-start;
@@ -143,6 +157,7 @@
   gap: 20px;
 }
 
+/* Country name */
 .my-booking-country {
   display: block;
   margin-bottom: 6px;
@@ -151,6 +166,7 @@
   font-weight: 700;
 }
 
+/* Destination name */
 .my-booking-main h3 {
   margin: 0 0 6px;
   color: #111827;
@@ -158,13 +174,16 @@
   font-weight: 800;
 }
 
+/* Booking short description */
 .my-booking-main p {
   margin: 0;
   color: #6b7280;
   font-size: 14px;
 }
 
+/* Booking status badge */
 .my-booking-status {
+  /* Prevents the status badge from shrinking */
   flex-shrink: 0;
   padding: 7px 11px;
   border-radius: 20px;
@@ -174,9 +193,9 @@
   font-weight: 700;
 }
 
-/* Details */
-
+/* Booking Details */
 .my-booking-details {
+  /* Displays booking details in three columns */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 15px;
@@ -186,32 +205,36 @@
   border-bottom: 1px solid #e5e7eb;
 }
 
+/* Individual booking detail */
 .my-booking-details div {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
+/* Detail label */
 .my-booking-details span {
   color: #9ca3af;
   font-size: 12px;
   font-weight: 600;
 }
 
+/* Detail value */
 .my-booking-details strong {
   color: #374151;
   font-size: 14px;
 }
 
-/* Actions */
-
+/* Booking Actions */
 .my-booking-actions {
+  /* Places action buttons next to each other */
   display: flex;
   align-items: center;
   gap: 10px;
   margin-top: 20px;
 }
 
+/* Common button styles */
 .my-booking-view-button,
 .my-booking-delete-button {
   min-height: 40px;
@@ -223,6 +246,7 @@
   cursor: pointer;
 }
 
+/* View booking button */
 .my-booking-view-button {
   display: inline-flex;
   align-items: center;
@@ -233,23 +257,26 @@
   border: 1px solid #0f766e;
 }
 
+/* View button hover effect */
 .my-booking-view-button:hover {
   background: #115e59;
 }
 
+/* Delete booking button */
 .my-booking-delete-button {
   background: #ffffff;
   color: #b91c1c;
   border: 1px solid #fecaca;
 }
 
+/* Delete button hover effect */
 .my-booking-delete-button:hover {
   background: #fef2f2;
 }
 
 /* Empty State */
-
 .my-bookings-empty {
+  /* Message shown when there are no bookings */
   max-width: 650px;
   margin: 20px auto 0;
   padding: 65px 30px;
@@ -259,6 +286,7 @@
   border-radius: 12px;
 }
 
+/* Empty state icon */
 .my-bookings-empty-icon {
   width: 64px;
   height: 64px;
@@ -271,6 +299,7 @@
   font-size: 28px;
 }
 
+/* Empty state heading */
 .my-bookings-empty h2 {
   margin-bottom: 10px;
   color: #111827;
@@ -278,6 +307,7 @@
   font-weight: 800;
 }
 
+/* Empty state description */
 .my-bookings-empty p {
   max-width: 500px;
   margin: 0 auto 25px;
@@ -285,6 +315,7 @@
   font-size: 15px;
 }
 
+/* Explore destinations button */
 .my-bookings-explore-button {
   display: inline-flex;
   align-items: center;
@@ -299,17 +330,21 @@
   text-decoration: none;
 }
 
+/* Explore button hover effect */
 .my-bookings-explore-button:hover {
   background: #115e59;
 }
 
-/* Responsive */
+/* Responsive Design */
 
+/* Tablet */
 @media (max-width: 800px) {
+  /* Changes the booking card to a single column */
   .my-booking-card {
     grid-template-columns: 1fr;
   }
 
+  /* Adjusts the booking image height */
   .my-booking-image,
   .my-booking-image img {
     height: 240px;
@@ -317,55 +352,68 @@
   }
 }
 
+/* Mobile */
 @media (max-width: 600px) {
+  /* Reduces header spacing on mobile */
   .my-bookings-header {
     padding: 55px 20px;
   }
 
+  /* Reduces main heading size */
   .my-bookings-header-container h1 {
     font-size: 34px;
   }
 
+  /* Reduces content spacing */
   .my-bookings-content {
     padding: 40px 15px 60px;
   }
 
+  /* Stacks the top section vertically */
   .my-bookings-top {
     align-items: flex-start;
     flex-direction: column;
   }
 
+  /* Makes the new booking button full width */
   .my-bookings-new-button {
     width: 100%;
   }
 
+  /* Reduces booking card padding */
   .my-booking-content {
     padding: 20px;
   }
 
+  /* Stacks booking title and status */
   .my-booking-main {
     flex-direction: column;
     gap: 12px;
   }
 
+  /* Keeps the status aligned to the left */
   .my-booking-status {
     align-self: flex-start;
   }
 
+  /* Stacks booking details vertically */
   .my-booking-details {
     grid-template-columns: 1fr;
     gap: 14px;
   }
 
+  /* Stacks action buttons vertically */
   .my-booking-actions {
     flex-direction: column;
   }
 
+  /* Makes both buttons full width */
   .my-booking-view-button,
   .my-booking-delete-button {
     width: 100%;
   }
 
+  /* Reduces empty state padding */
   .my-bookings-empty {
     padding: 50px 20px;
   }
