@@ -1,3 +1,4 @@
+/* Main 404 page container */
 .not-found-page {
   min-height: 80vh;
   display: flex;
@@ -8,6 +9,7 @@
   box-sizing: border-box;
 }
 
+/* Main 404 card */
 .not-found-card {
   width: 100%;
   max-width: 600px;
@@ -20,6 +22,7 @@
   box-sizing: border-box;
 }
 
+/* Small label above the 404 number */
 .not-found-label {
   color: #0f766e;
   font-size: 13px;
@@ -28,6 +31,7 @@
   letter-spacing: 1px;
 }
 
+/* Large 404 number */
 .not-found-number {
   margin: 15px 0 5px;
   color: #0f766e;
@@ -36,12 +40,14 @@
   line-height: 1;
 }
 
+/* Main error heading */
 .not-found-card h1 {
   margin: 15px 0 10px;
   color: #111827;
   font-size: 32px;
 }
 
+/* Error message */
 .not-found-card p {
   max-width: 450px;
   margin: 0 auto;
@@ -50,6 +56,7 @@
   line-height: 1.7;
 }
 
+/* Button to return to the previous page */
 .not-found-button {
   display: inline-block;
   margin-top: 30px;
@@ -65,25 +72,31 @@
     transform 0.2s ease;
 }
 
+/* Button hover effect */
 .not-found-button:hover {
   background: #115e59;
   transform: translateY(-1px);
 }
 
+/* Mobile responsive design */
 @media (max-width: 600px) {
+  /* Reduces page spacing on small screens */
   .not-found-page {
     padding: 40px 15px;
   }
 
+  /* Adjusts card spacing and rounded corners */
   .not-found-card {
     padding: 40px 20px;
     border-radius: 15px;
   }
 
+  /* Makes the 404 number smaller */
   .not-found-number {
     font-size: 65px;
   }
 
+  /* Reduces the heading size */
   .not-found-card h1 {
     font-size: 28px;
   }
