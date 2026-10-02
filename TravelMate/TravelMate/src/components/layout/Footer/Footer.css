@@ -1,3 +1,8 @@
+
+/* =========================
+   MAIN FOOTER
+========================= */
+
 .footer {
   width: 100%;
   background: #111827;
@@ -11,7 +16,9 @@
   padding: 60px 20px 0;
 }
 
-/* Main Footer */
+/* =========================
+   MAIN FOOTER CONTENT
+========================= */
 
 .footer-main {
   display: grid;
@@ -20,12 +27,16 @@
   padding-bottom: 45px;
 }
 
-/* Brand */
+/* =========================
+   BRAND
+========================= */
 
+/* Footer brand section */
 .footer-brand {
   max-width: 330px;
 }
 
+/* Footer logo */
 .footer-logo {
   display: inline-block;
   margin-bottom: 15px;
@@ -37,6 +48,7 @@
   text-decoration: none;
 }
 
+/* Brand description */
 .footer-brand p {
   margin: 0;
 
@@ -45,14 +57,18 @@
   line-height: 1.7;
 }
 
-/* Social */
+/* =========================
+   SOCIAL LINKS
+========================= */
 
+/* Social media links container */
 .footer-socials {
   display: flex;
   gap: 9px;
   margin-top: 22px;
 }
 
+/* Social media button */
 .footer-socials a {
   width: 34px;
   height: 34px;
@@ -72,14 +88,18 @@
   transition: all 0.2s ease;
 }
 
+/* Social button hover effect */
 .footer-socials a:hover {
   border-color: #0f766e;
   background: #0f766e;
   color: #ffffff;
 }
 
-/* Footer Columns */
+/* =========================
+   FOOTER COLUMNS
+========================= */
 
+/* Footer column layout */
 .footer-column {
   display: flex;
   flex-direction: column;
@@ -87,6 +107,7 @@
   gap: 11px;
 }
 
+/* Footer column heading */
 .footer-column h3 {
   margin: 0 0 7px;
 
@@ -95,6 +116,7 @@
   font-weight: 700;
 }
 
+/* Footer links and text */
 .footer-column a,
 .footer-column p {
   margin: 0;
@@ -107,18 +129,25 @@
   transition: color 0.2s ease;
 }
 
+/* Footer link hover effect */
 .footer-column a:hover {
   color: #5eead4;
 }
 
-/* Contact */
+/* =========================
+   CONTACT
+========================= */
 
+/* Contact information */
 .footer-contact p {
   color: #9ca3af;
 }
 
-/* Bottom */
+/* =========================
+   FOOTER BOTTOM
+========================= */
 
+/* Bottom footer section */
 .footer-bottom {
   min-height: 70px;
 
@@ -129,6 +158,7 @@
   border-top: 1px solid #374151;
 }
 
+/* Copyright text */
 .footer-bottom p {
   margin: 0;
 
@@ -136,50 +166,63 @@
   font-size: 12px;
 }
 
+/* Bottom footer links */
 .footer-bottom-links {
   display: flex;
   gap: 20px;
 }
 
+/* Bottom footer link */
 .footer-bottom-links a {
   color: #9ca3af;
   font-size: 12px;
   text-decoration: none;
 }
 
+/* Bottom link hover effect */
 .footer-bottom-links a:hover {
   color: #5eead4;
 }
 
-/* Tablet */
+/* =========================
+   TABLET
+========================= */
 
 @media (max-width: 850px) {
+  /* Changes footer columns into a two-column layout */
   .footer-main {
     grid-template-columns: repeat(2, 1fr);
     gap: 40px;
   }
 
+  /* Allows the brand section to use the full column width */
   .footer-brand {
     max-width: 100%;
   }
 }
 
-/* Mobile */
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 600px) {
+  /* Reduces footer spacing on mobile */
   .footer-container {
     padding: 45px 20px 0;
   }
 
+  /* Stacks all footer sections vertically */
   .footer-main {
     grid-template-columns: 1fr;
     gap: 32px;
   }
 
+  /* Reduces spacing between footer items */
   .footer-column {
     gap: 9px;
   }
 
+  /* Stacks the bottom footer content */
   .footer-bottom {
     min-height: auto;
     padding: 22px 0;
@@ -189,6 +232,7 @@
     gap: 12px;
   }
 
+  /* Allows bottom links to wrap on small screens */
   .footer-bottom-links {
     flex-wrap: wrap;
     gap: 15px;
