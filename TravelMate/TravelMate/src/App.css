@@ -1,3 +1,4 @@
+/* Counter button or badge */
 .counter {
   font-size: 16px;
   padding: 5px 10px;
@@ -8,18 +9,23 @@
   transition: border-color 0.3s;
   margin-bottom: 24px;
 
+  /* Hover effect */
   &:hover {
     border-color: var(--accent-border);
   }
+
+  /* Keyboard focus effect */
   &:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
   }
 }
 
+/* Hero section */
 .hero {
   position: relative;
 
+  /* Centers the hero images */
   .base,
   .framework,
   .vite {
@@ -27,17 +33,20 @@
     margin: 0 auto;
   }
 
+  /* Main base image */
   .base {
     width: 170px;
     position: relative;
     z-index: 0;
   }
 
+  /* Framework and Vite images are placed on top of the base */
   .framework,
   .vite {
     position: absolute;
   }
 
+  /* Framework image styling */
   .framework {
     z-index: 1;
     top: 34px;
@@ -46,6 +55,7 @@
       scale(1.4);
   }
 
+  /* Vite image styling */
   .vite {
     z-index: 0;
     top: 107px;
@@ -56,6 +66,7 @@
   }
 }
 
+/* Main center content */
 #center {
   display: flex;
   flex-direction: column;
@@ -64,46 +75,56 @@
   place-items: center;
   flex-grow: 1;
 
+  /* Adjusts spacing on smaller screens */
   @media (max-width: 1024px) {
     padding: 32px 20px 24px;
     gap: 18px;
   }
 }
 
+/* Next steps section */
 #next-steps {
   display: flex;
   border-top: 1px solid var(--border);
   text-align: left;
 
+  /* Individual next steps columns */
   & > div {
     flex: 1 1 0;
     padding: 32px;
+
+    /* Reduces padding on smaller screens */
     @media (max-width: 1024px) {
       padding: 24px 20px;
     }
   }
 
+  /* Icon inside the section */
   .icon {
     margin-bottom: 16px;
     width: 22px;
     height: 22px;
   }
 
+  /* Stacks the sections on smaller screens */
   @media (max-width: 1024px) {
     flex-direction: column;
     text-align: center;
   }
 }
 
+/* Documentation section */
 #docs {
   border-right: 1px solid var(--border);
 
+  /* Removes the right border and adds a bottom border */
   @media (max-width: 1024px) {
     border-right: none;
     border-bottom: 1px solid var(--border);
   }
 }
 
+/* Links inside the next steps section */
 #next-steps ul {
   list-style: none;
   padding: 0;
@@ -111,10 +132,12 @@
   gap: 8px;
   margin: 32px 0 0;
 
+  /* Small logo inside each link */
   .logo {
     height: 18px;
   }
 
+  /* Link button */
   a {
     color: var(--text-h);
     font-size: 16px;
@@ -127,24 +150,30 @@
     text-decoration: none;
     transition: box-shadow 0.3s;
 
+    /* Link hover effect */
     &:hover {
       box-shadow: var(--shadow);
     }
+
+    /* Icon inside the link button */
     .button-icon {
       height: 18px;
       width: 18px;
     }
   }
 
+  /* Responsive link layout */
   @media (max-width: 1024px) {
     margin-top: 20px;
     flex-wrap: wrap;
     justify-content: center;
 
+    /* Makes each link take half of the available width */
     li {
       flex: 1 1 calc(50% - 8px);
     }
 
+    /* Makes links fill their list item */
     a {
       width: 100%;
       justify-content: center;
@@ -153,18 +182,23 @@
   }
 }
 
+/* Empty spacing section */
 #spacer {
   height: 88px;
   border-top: 1px solid var(--border);
+
+  /* Reduces the spacer height on smaller screens */
   @media (max-width: 1024px) {
     height: 48px;
   }
 }
 
+/* Decorative tick marks */
 .ticks {
   position: relative;
   width: 100%;
 
+  /* Creates the left and right decorative marks */
   &::before,
   &::after {
     content: '';
@@ -173,10 +207,13 @@
     border: 5px solid transparent;
   }
 
+  /* Left decorative mark */
   &::before {
     left: 0;
     border-left-color: var(--border);
   }
+
+  /* Right decorative mark */
   &::after {
     right: 0;
     border-right-color: var(--border);
