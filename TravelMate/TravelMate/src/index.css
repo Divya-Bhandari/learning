@@ -1,27 +1,40 @@
+
+/* =========================
+   GLOBAL VARIABLES
+========================= */
+
 :root {
+  /* Main theme colors */
   --primary: #0f766e;
   --primary-dark: #115e59;
   --primary-light: #f0fdfa;
 
+  /* Text colors */
   --text-dark: #111827;
   --text: #374151;
   --text-light: #6b7280;
   --text-muted: #9ca3af;
 
+  /* Background colors */
   --background: #f8fafc;
   --white: #ffffff;
 
+  /* Border colors */
   --border: #e5e7eb;
   --border-dark: #d1d5db;
 
+  /* Success message colors */
   --success: #166534;
   --success-bg: #f0fdf4;
 
+  /* Error message colors */
   --error: #b91c1c;
   --error-bg: #fee2e2;
 
+  /* Default font */
   --font: Arial, Helvetica, sans-serif;
 
+  /* Global text settings */
   font-family: var(--font);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -29,31 +42,44 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* =========================
+   RESET
+========================= */
+
+/* Removes default browser spacing */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Smooth scrolling when moving to page sections */
 html {
   scroll-behavior: smooth;
 }
+
+/* =========================
+   BODY
+========================= */
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
 
+  /* Applies the main font and page colors */
   font-family: var(--font);
   background: var(--background);
   color: var(--text);
 }
 
+/* Main React application container */
 #root {
   min-height: 100vh;
   width: 100%;
 }
 
+/* Uses the same font for form elements */
 button,
 input,
 textarea,
@@ -61,19 +87,23 @@ select {
   font-family: inherit;
 }
 
+/* Shows pointer cursor on buttons */
 button {
   cursor: pointer;
 }
 
+/* Keeps links using the surrounding text color */
 a {
   color: inherit;
 }
 
+/* Makes images responsive */
 img {
   max-width: 100%;
   display: block;
 }
 
+/* Heading text color */
 h1,
 h2,
 h3,
@@ -83,16 +113,23 @@ h6 {
   color: var(--text-dark);
 }
 
+/* Paragraph line spacing */
 p {
   line-height: 1.6;
 }
 
+/* =========================
+   APP LAYOUT
+========================= */
+
+/* Main application wrapper */
 .app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
+/* Allows the main content to fill the available space */
 .app-content {
   flex: 1;
 }
@@ -101,19 +138,23 @@ p {
    SCROLLBAR
 ========================= */
 
+/* Custom scrollbar width */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
+/* Scrollbar background */
 ::-webkit-scrollbar-track {
   background: #f1f5f9;
 }
 
+/* Scrollbar handle */
 ::-webkit-scrollbar-thumb {
   background: #94a3b8;
   border-radius: 10px;
 }
 
+/* Scrollbar hover effect */
 ::-webkit-scrollbar-thumb:hover {
   background: #64748b;
 }
@@ -122,12 +163,14 @@ p {
    RESPONSIVE
 ========================= */
 
+/* Tablet and smaller screens */
 @media (max-width: 768px) {
   body {
     font-size: 15px;
   }
 }
 
+/* Small mobile screens */
 @media (max-width: 480px) {
   body {
     font-size: 14px;
