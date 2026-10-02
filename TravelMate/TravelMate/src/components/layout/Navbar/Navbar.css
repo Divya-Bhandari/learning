@@ -1,8 +1,14 @@
+
+/* =========================
+   MAIN NAVBAR
+========================= */
+
 .navbar {
   width: 100%;
   height: 76px;
   padding: 0 55px;
 
+  /* Aligns logo, links, and buttons in one row */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -10,12 +16,16 @@
   background: #ffffff;
   border-bottom: 1px solid #e5e7eb;
 
+  /* Keeps the navbar above other page content */
   position: relative;
   z-index: 1000;
 }
 
-/* Logo */
+/* =========================
+   LOGO
+========================= */
 
+/* Website logo */
 .logo a {
   color: #0f766e;
   font-size: 26px;
@@ -24,14 +34,18 @@
   letter-spacing: -0.5px;
 }
 
-/* Navigation */
+/* =========================
+   NAVIGATION
+========================= */
 
+/* Contains navigation links and authentication buttons */
 .navbar-content {
   display: flex;
   align-items: center;
   gap: 45px;
 }
 
+/* Navigation link list */
 .nav-links {
   display: flex;
   align-items: center;
@@ -43,6 +57,7 @@
   list-style: none;
 }
 
+/* Navigation links */
 .nav-links a {
   color: #374151;
   font-size: 15px;
@@ -52,24 +67,30 @@
   transition: color 0.2s ease;
 }
 
+/* Navigation link hover effect */
 .nav-links a:hover {
   color: #0f766e;
 }
 
-/* Authentication */
+/* =========================
+   AUTHENTICATION
+========================= */
 
+/* Login, register, and logout area */
 .navbar-auth {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
+/* Logged-in user's name */
 .navbar-user {
   color: #374151;
   font-size: 14px;
   font-weight: 600;
 }
 
+/* Common button styles */
 .login-btn,
 .register-btn,
 .logout-btn {
@@ -91,16 +112,19 @@
   cursor: pointer;
 }
 
+/* Login button */
 .login-btn {
   border: 1px solid #0f766e;
   background: #ffffff;
   color: #0f766e;
 }
 
+/* Login button hover effect */
 .login-btn:hover {
   background: #f0fdfa;
 }
 
+/* Register and logout buttons */
 .register-btn,
 .logout-btn {
   border: 1px solid #0f766e;
@@ -108,42 +132,55 @@
   color: #ffffff;
 }
 
+/* Register and logout hover effect */
 .register-btn:hover,
 .logout-btn:hover {
   background: #115e59;
 }
 
-/* Mobile menu */
+/* =========================
+   MOBILE MENU
+========================= */
 
+/* Mobile menu button is hidden on larger screens */
 .navbar-menu-button {
   display: none;
 }
 
-/* Tablet */
+/* =========================
+   TABLET
+========================= */
 
 @media (max-width: 950px) {
+  /* Reduces navbar side spacing */
   .navbar {
     padding: 0 30px;
   }
 
+  /* Reduces space between navbar sections */
   .navbar-content {
     gap: 25px;
   }
 
+  /* Reduces space between navigation links */
   .nav-links {
     gap: 20px;
   }
 }
 
-/* Mobile */
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 700px) {
+  /* Adjusts navbar size and spacing */
   .navbar {
     height: 68px;
     padding: 0 20px;
     flex-wrap: wrap;
   }
 
+  /* Shows the mobile menu button */
   .navbar-menu-button {
     width: 42px;
     height: 40px;
@@ -161,6 +198,7 @@
     font-size: 21px;
   }
 
+  /* Mobile navigation menu */
   .navbar-content {
     width: 100%;
     display: none;
@@ -175,10 +213,12 @@
     border-top: 1px solid #e5e7eb;
   }
 
+  /* Shows the menu when it is opened */
   .navbar-content.open {
     display: flex;
   }
 
+  /* Stacks navigation links vertically */
   .nav-links {
     width: 100%;
     flex-direction: column;
@@ -186,26 +226,31 @@
     gap: 0;
   }
 
+  /* Adds separators between mobile links */
   .nav-links li {
     border-bottom: 1px solid #f3f4f6;
   }
 
+  /* Mobile navigation links */
   .nav-links a {
     display: block;
     padding: 13px 5px;
     font-size: 15px;
   }
 
+  /* Stacks authentication buttons vertically */
   .navbar-auth {
     width: 100%;
     flex-direction: column;
   }
 
+  /* Centers the user's name */
   .navbar-user {
     text-align: center;
     padding-bottom: 5px;
   }
 
+  /* Makes authentication buttons full width */
   .login-btn,
   .register-btn,
   .logout-btn {
