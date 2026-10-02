@@ -1,3 +1,5 @@
+
+/* Main register page */
 .register-page {
   min-height: calc(100vh - 72px);
   display: flex;
@@ -8,6 +10,7 @@
   box-sizing: border-box;
 }
 
+/* Register form card */
 .register-card {
   width: 100%;
   max-width: 450px;
@@ -19,11 +22,13 @@
   box-sizing: border-box;
 }
 
+/* Register heading section */
 .register-header {
   text-align: center;
   margin-bottom: 30px;
 }
 
+/* Small text above the heading */
 .register-header > span {
   display: inline-block;
   margin-bottom: 8px;
@@ -34,6 +39,7 @@
   letter-spacing: 1px;
 }
 
+/* Main register heading */
 .register-header h1 {
   margin: 8px 0 10px;
   color: #111827;
@@ -41,6 +47,7 @@
   line-height: 1.2;
 }
 
+/* Register page description */
 .register-header p {
   margin: 0;
   color: #6b7280;
@@ -48,6 +55,7 @@
   line-height: 1.6;
 }
 
+/* Error message */
 .register-error {
   margin-bottom: 20px;
   padding: 12px 14px;
@@ -59,6 +67,7 @@
   line-height: 1.5;
 }
 
+/* Success message */
 .register-success {
   margin-bottom: 20px;
   padding: 12px 14px;
@@ -70,6 +79,7 @@
   line-height: 1.5;
 }
 
+/* Individual form field */
 .register-field {
   display: flex;
   flex-direction: column;
@@ -77,12 +87,14 @@
   margin-bottom: 18px;
 }
 
+/* Form field label */
 .register-field label {
   color: #374151;
   font-size: 14px;
   font-weight: 600;
 }
 
+/* Form input */
 .register-field input {
   width: 100%;
   padding: 13px 14px;
@@ -99,15 +111,18 @@
     box-shadow 0.2s ease;
 }
 
+/* Input placeholder text */
 .register-field input::placeholder {
   color: #9ca3af;
 }
 
+/* Input focus effect */
 .register-field input:focus {
   border-color: #0f766e;
   box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
 }
 
+/* Register button */
 .register-submit-button {
   width: 100%;
   margin-top: 5px;
@@ -125,20 +140,24 @@
     transform 0.2s ease;
 }
 
+/* Register button hover effect */
 .register-submit-button:hover {
   background: #115e59;
   transform: translateY(-1px);
 }
 
+/* Register button click effect */
 .register-submit-button:active {
   transform: translateY(0);
 }
 
+/* Login section below the form */
 .register-login {
   margin-top: 25px;
   text-align: center;
 }
 
+/* Login text */
 .register-login p {
   display: inline;
   margin: 0;
@@ -146,6 +165,7 @@
   font-size: 14px;
 }
 
+/* Login link */
 .register-login a {
   margin-left: 5px;
   color: #0f766e;
@@ -154,22 +174,27 @@
   text-decoration: none;
 }
 
+/* Login link hover effect */
 .register-login a:hover {
   color: #115e59;
   text-decoration: underline;
 }
 
+/* Mobile responsive design */
 @media (max-width: 500px) {
+  /* Reduces page spacing on mobile */
   .register-page {
     min-height: calc(100vh - 60px);
     padding: 40px 15px;
   }
 
+  /* Reduces card padding on smaller screens */
   .register-card {
     padding: 30px 20px;
     border-radius: 16px;
   }
 
+  /* Makes the heading smaller on mobile */
   .register-header h1 {
     font-size: 28px;
   }
