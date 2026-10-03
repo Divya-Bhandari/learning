@@ -1,20 +1,28 @@
+
+/* =========================
+   WHY CHOOSE US SECTION
+========================= */
+
 .why-choose-us {
   padding: 75px 20px;
   background: #f8fafc;
 }
 
+/* Centers and limits the section content */
 .why-choose-us-container {
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
 }
 
+/* Section heading area */
 .why-choose-us-header {
   max-width: 650px;
   margin: 0 auto 40px;
   text-align: center;
 }
 
+/* Small label above the heading */
 .why-choose-us-header span {
   color: #0f766e;
   font-size: 13px;
@@ -23,31 +31,37 @@
   letter-spacing: 1px;
 }
 
+/* Main section heading */
 .why-choose-us-header h2 {
   margin: 10px 0 0;
   color: #111827;
   font-size: 34px;
 }
 
+/* =========================
+   FEATURE GRID
+========================= */
+
+/* Displays the feature cards in four columns */
 .why-choose-us-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 18px;
 }
 
+/* Individual feature card */
 .why-choose-us-card {
   padding: 28px 18px;
   text-align: center;
-
   background: #ffffff;
   border: 1px solid #e5e7eb;
   border-radius: 14px;
 }
 
+/* Feature icon */
 .why-choose-us-icon {
   width: 50px;
   height: 50px;
-
   margin: 0 auto 15px;
 
   display: flex;
@@ -56,16 +70,17 @@
 
   border-radius: 50%;
   background: #f0fdfa;
-
   font-size: 23px;
 }
 
+/* Feature card heading */
 .why-choose-us-card h3 {
   margin: 0 0 7px;
   color: #111827;
   font-size: 16px;
 }
 
+/* Feature card description */
 .why-choose-us-card p {
   margin: 0;
   color: #6b7280;
@@ -73,21 +88,33 @@
   line-height: 1.55;
 }
 
+/* =========================
+   TABLET
+========================= */
+
 @media (max-width: 900px) {
+  /* Changes the grid to two columns */
   .why-choose-us-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
+/* =========================
+   MOBILE
+========================= */
+
 @media (max-width: 600px) {
+  /* Reduces section spacing on mobile */
   .why-choose-us {
     padding: 55px 15px;
   }
 
+  /* Makes the heading smaller */
   .why-choose-us-header h2 {
     font-size: 29px;
   }
 
+  /* Stacks feature cards into one column */
   .why-choose-us-grid {
     grid-template-columns: 1fr;
     max-width: 420px;
