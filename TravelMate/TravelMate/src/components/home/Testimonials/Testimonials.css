@@ -1,50 +1,66 @@
+/* =========================
+   TESTIMONIALS SECTION
+========================= */
+
 .testimonials {
   max-width: 1200px;
   margin: 80px auto;
   padding: 0 20px;
 }
 
+/* Section heading area */
 .section-header {
   text-align: center;
   margin-bottom: 50px;
 }
 
+/* Small label above the heading */
 .section-tag {
   color: teal;
   font-weight: 600;
   margin-bottom: 10px;
 }
 
+/* Main section heading */
 .section-header h2 {
   font-size: 40px;
   color: #222;
   margin-bottom: 15px;
 }
 
+/* Short description below the heading */
 .section-description {
   color: #666;
   font-size: 17px;
 }
 
+/* =========================
+   TESTIMONIAL GRID
+========================= */
+
+/* Displays testimonial cards in three columns */
 .testimonial-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
 }
 
+/* Individual testimonial card */
 .testimonial-card {
   background: white;
   padding: 30px;
   text-align: center;
   border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0,0,0,.08);
-  transition: .3s;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: 0.3s;
 }
 
+/* Moves the card slightly upward when hovered */
 .testimonial-card:hover {
   transform: translateY(-8px);
 }
 
+/* Testimonial person's profile image */
 .testimonial-card img {
   width: 90px;
   height: 90px;
@@ -53,33 +69,47 @@
   margin-bottom: 20px;
 }
 
+/* Testimonial person's name */
 .testimonial-card h3 {
   margin-bottom: 8px;
 }
 
+/* Person's role or location */
 .testimonial-card span {
   color: teal;
   font-size: 14px;
 }
 
+/* Testimonial message */
 .testimonial-card p {
   margin: 20px 0;
   color: #666;
   line-height: 1.6;
 }
 
+/* Star rating */
 .stars {
   color: #f4b400;
   font-size: 18px;
 }
 
+/* =========================
+   TABLET
+========================= */
+
 @media (max-width: 992px) {
+  /* Changes the cards to two columns */
   .testimonial-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
+/* =========================
+   MOBILE
+========================= */
+
 @media (max-width: 768px) {
+  /* Stacks the testimonial cards into one column */
   .testimonial-grid {
     grid-template-columns: 1fr;
   }
